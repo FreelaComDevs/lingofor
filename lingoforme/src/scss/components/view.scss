@@ -1,0 +1,64 @@
+.new-view {
+  display: initial;
+  
+  * {
+    box-sizing: border-box;
+  }
+
+  .dnone {
+    display: none !important;
+  }
+
+
+  .new-container {
+    position: relative;
+    padding: 0px 20px;
+    z-index: 2;
+
+    @media screen {
+      @media (min-width: 1024px) {
+        margin-left: 220px;
+        margin-top: 25px;
+      }
+    }
+
+    h2{
+      margin: 0 0 20px 122px;
+    }
+  }
+
+}
+
+.new-box {
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 1px 1px 4px 1px #DADADA;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+
+
+@media (min-width: 1025px) and (max-width: 1366px) {
+  .new-view .new-container {
+      max-width: 100%;
+      margin-left: 230px;
+      margin-top: 30px;
+
+      .calendar{
+        width: 100%;
+        margin: 0 auto;
+        max-width: 94%;
+      }
+
+      .listBoxNew{
+        width: 100%;
+        max-width: 93%;
+        margin-left: 38px;
+      }
+
+      h2{
+        margin: 0 0 20px 38px;
+      }
+  }
+}

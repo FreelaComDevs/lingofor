@@ -1,0 +1,124 @@
+.new-view {
+    .notesBox {
+        margin-top: 20px;
+        
+        h4 {
+            color: #403F4C;
+            font-size: 20px;
+            width: 100%;
+        }
+    
+        .boxType {
+            display: flex;
+            justify-content: center;
+    
+            .avatar img {
+                width: 66px;
+                height: 66px;
+                border-radius: 50%;
+            }
+            
+            button {
+                background: transparent;
+                border: none;
+                width: 50px;
+                height: 50px;
+                cursor: pointer;
+            }
+    
+            form {
+                display: flex;
+                padding: 0;
+
+                .typeMessage {
+                    margin-top: 0;
+                }
+            }
+    
+            textarea {
+                width: 542px;
+                height: 105px;
+                border-radius: 16px;
+                background-color: #fff;
+                font-size: 12px;
+                color: #111111;
+                padding: 18px 16px 0 16px;
+                margin: 0 15px 50px 15px;
+                resize: none;
+                border: 1px solid #E4E8EE;
+                font-family: 'Work Sans',sans-serif;
+            }
+        }
+    }
+    .demoClassMessage {
+        display: flex;
+        box-sizing: border-box;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 15px;
+        box-shadow: 1px 1px 4px 1px #DADADA;
+    
+        .avatar {
+            margin-right: 10px;
+    
+            img {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+            }
+        }
+    
+        .infoPerfil {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+    
+            .name {
+                color: #004FFF;
+                font-size: 14px;
+                font-weight: 600;
+                margin-right: 10px;
+            }
+    
+            .role {
+                color: white;
+                background-color: #5A6C96;
+                border-radius: 26px;
+                padding: 3px 10px;
+                font-size: 12px;
+                margin-right: 10px;
+                font-weight: 500;
+            }
+    
+            .date {
+                font-size: 11px;
+                color: rgba(64, 63, 76, 0.6);
+                margin-top: 2px;
+            }
+        }
+    
+        .message {
+            color: #222222;
+            font-size: 14px;
+        }
+    }
+
+    .extras {
+        text-align: center;
+
+        button {
+            background-color: transparent;
+            border: none;
+            color: #403f4cb3;
+
+            img {
+                margin-left: 5px;
+                position: relative;
+                top: 3px;
+            }
+        }
+    }
+}

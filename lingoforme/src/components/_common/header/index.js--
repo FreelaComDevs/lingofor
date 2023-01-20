@@ -1,0 +1,23 @@
+import React, { Component, Fragment } from 'react';
+import IconTitle from '../../../images/icons/schedule.svg';
+
+import { Header } from './styles.js';
+
+
+class Head extends Component {
+
+    render() {
+        return (
+            <Fragment>                
+                <Header>
+                    
+                    <div class="header-holder"></div>
+                    <h1><img src={IconTitle} alt=""/> Schedule</h1>
+                   
+                </Header>
+            </Fragment>
+        );
+    }
+}
+
+export default Head;

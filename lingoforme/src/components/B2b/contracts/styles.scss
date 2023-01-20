@@ -1,0 +1,183 @@
+.contacts {
+    h4 {
+        color: #004FFF;
+        font-size: 20px;
+        font-weight: 500;
+        margin: 30px 0 15px 0;
+    }
+
+    label {
+        color: #403F4C;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    input{
+        width: 360px;
+        height: 28px;
+        border-radius: 26px;
+        border: 1px solid #B2B2B7;
+        padding-left: 10px;
+        margin-bottom: 15px;
+    }
+
+    button{
+        background-color: #004FFF;
+        border: none;
+        border-radius: 26px;
+        width: 130px;
+        height: 28px;
+        color: #fff;
+        margin-left: 10px;
+        font-family: 'Quicksand', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    .results{
+        border: 1px solid #D8D8DA;
+        width: 55%;
+        padding: 0 0 0 20px;
+        display: flex;
+        flex-direction: column;
+        /* height: 100%;
+        max-height: 250px;
+        overflow: auto; */
+        margin: 0 !important;
+
+        .overflow{
+            overflow: auto;
+            width: 100%;
+            height: 250px;
+        }
+
+        .boxResults{
+            width: 100%;                    
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #D8D8DA;
+            /* margin: 45px 0 33px 0; */
+            margin-bottom: 10px;
+            justify-content: space-around;
+        }
+
+        img{
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+
+        .card {
+            h5{
+                color: #004FFF;
+                margin: 17px 0 8px 0;
+                font-size: 16px;
+            }
+
+            .btn {
+                width: auto;
+                height: 28px;
+                border-radius: 26px;
+                background: #004FFF;
+                border: 1px solid #004FFF;
+                color: #fff;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: bold;
+                margin: 14px 0 20px 320px;
+                padding: 0 12px 0 12px;
+
+                .fa{
+                    margin-left: 12px;
+                }
+            }
+        }
+
+       .tag {
+            background-color: #5A6C96;
+            border-radius: 25px;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 500;
+            text-align: center;
+            align-items: center;
+            margin-bottom: 15px;
+            display: inline-block;
+            padding: 0px 12px 0px 12px;
+            line-height: 20px;
+        }
+
+        button{
+            width: auto;
+            height: 28px;
+            border-radius: 26px;
+            background: #004FFF;
+            border: 1px solid #004FFF;
+            color: #fff;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 14px 0 20px 320px;
+            padding: 0 12px 0 12px;
+        }
+    }
+
+    .clear-search {
+        width: 100%;
+        text-align: center;
+        padding: 12px 0 20px 0;
+
+        > button {
+            width: auto;
+            height: 22px;
+            border-radius: 26px;
+            background: #fff;
+            border: 1px solid #B2B2B7;
+            color: #B2B2B7;
+            padding: 0 12px 0 12px;
+        }
+    }
+
+    
+}
+
+.btn-create-in-list {
+    width: 200px;
+    height: 32px;
+    background-color: transparent;
+    border: 1px solid #787780;
+    border-radius: 26px;
+    font-weight: 500;
+    color: #787780;
+    cursor: pointer;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 14px;
+
+    .fa{
+       font-size: 15px;
+       margin-left: 5px;                       
+    }
+}
+
+ul.jsx-4179805763 {
+    z-index: 9999;
+    background-color: #fff;
+}
+
+input.jsx-4179805763  {
+    width: 226px !important;
+    height: 32px;
+    border-radius: 26px;
+    border: 1px solid #B2B2B7;
+    padding-left: 10px;
+    margin-bottom: 0;
+    margin-top: 0;  
+}
+
+button.jsx-4179805763  {
+    margin: 0 0 1px 0 !important;
+    width: 200px !important;
+    border: 0 !important;
+}

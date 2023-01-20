@@ -1,0 +1,23 @@
+a.drive {
+    background-color: transparent;
+    border: 1px solid #B2B2B7;
+    border-radius: 26px;
+    color: #87868F;
+    font-size: 11px;
+    width: 80px !important;
+    height: 22px;
+    cursor: pointer;
+    padding-left: 8px;
+    display: flex;
+    align-items: center;
+    margin-right: 25px;
+}
+
+a.drive > span {
+    flex: 2;
+}
+
+a.drive > img {
+    /* flex: 1; */
+    margin-right: 5px;
+}

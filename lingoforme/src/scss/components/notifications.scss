@@ -1,0 +1,232 @@
+.notifications-view {
+  .new-container {
+    @media screen {
+      @media (min-width: 768px) {
+        padding: 0 50px;
+      }
+
+      @media (min-width: 1024px) {
+        padding: 50px;
+      }
+
+      @media (min-width: 1440px) {
+        padding: 0 125px;
+      }
+    }
+
+    .settingsLink {
+      font-size: 12px;
+      font-family: "Work Sans", sans-serif;
+      color: rgba(64, 63, 76, 0.7);
+      text-align: right;
+      margin-right: 20px; 
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .placeholderText{
+      color: #403F4C;
+      font-size: 28px;
+      font-family: "Quicksand", sans-serif;
+      text-align: center;
+    }
+
+    .placeholderImage{
+      margin: auto;
+      display: block;
+      margin-top: 50px;
+    }
+
+    
+
+    .new-box-table-list {
+      margin-left: 0;
+      max-width: 100%;
+      padding: 10px 30px;
+
+      tr {
+        border: none;
+
+        th, td {
+          padding: 0 20px 0 0;
+          line-height: 1.2;
+        }
+
+        th {
+          width: 60px;
+          
+          &:nth-child(2) {
+            min-width: 200px;
+          }
+        }
+
+        td {
+          padding-bottom: 40px;
+        }
+
+
+        div.input-yesSwitch {
+          
+          label {
+            margin-bottom: 0px;
+          }
+          
+          input {
+            display: none;
+          }
+    
+          div {
+            position: relative;
+            
+            label {
+              display: block;
+              margin-top: 10px;
+              margin-left: 50px;
+              color: #707070;
+              pointer-events: cursor;
+    
+              &:before {
+                content: "";
+                display: block;
+                background-color: #FF5666;
+                border: 1px solid #B9404C;
+                width: 35px;
+                height: 20px;
+                margin-top: 5px;
+                border-radius: 60px;
+                transition: background-color 0.4s;
+                position: absolute;
+                left: 0;
+                top: -7px;
+              }
+    
+              &:after {
+                content: "";
+                display: block;
+                position: absolute;
+                top: -14px;
+                width: 20px;
+                height: 20px;
+                background-color: #fff;
+                border-radius: 100%;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+                transition: transform 0.4s;
+                left: 0;
+                top: -1px;
+              }
+    
+              &.isActive {
+                &:before {
+                  background-color: #4DBD74;
+                  border: 1px solid #3A9D5D;    
+                }
+    
+                &:after {
+                  transform: translate(18px);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .new-box-notification {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+
+      .view-button {
+        border: 1px solid #787780;
+        border-radius: 26px;
+        padding: 3px 10px;
+        background-color: transparent;
+      }
+
+      .notificationInfo {
+
+        h4 {
+          color: #004FFF;
+          font-size: 13px;
+          font-weight: 600;
+          text-transform: uppercase;
+          margin-bottom: 5px;
+        }
+  
+        p {
+          font-size: 14px;
+          color: #403F4C;
+          margin-bottom: 3px;
+  
+          &.fromNow {
+            font-size: 12px;
+            opacity: .5;
+          }
+        }
+
+        &.unReadNotification {
+          position: relative;
+
+          &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 4px;
+            left: -18px;
+            background-color: #FF5666;
+            height: 8px;
+            width: 8px;
+            border-radius: 50%;
+          }
+
+          p {
+            font-weight: 600;
+
+            &.fromNow {
+              font-weight: 400;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#dialog-notification {
+  div {
+    justify-content: center;
+  }
+  #dialog-notification-title {
+    padding: 36px;
+
+    h2 {
+      color: #004FFF;
+      font-size: 28px;
+      text-align: center;
+      font-family: "Quicksand", sans-serif;
+      font-weight: 600;
+    }
+  }
+
+  #dialog-notification-message {
+    font-family: "Quicksand", sans-serif;
+    color: #403F4C;
+    font-weight: 500;
+    font-size: 13px;
+    text-align: left;
+    width: 100%;
+  }
+
+  button {
+    color: #fff;
+    font-family: "Work Sans", sans-serif;
+    font-size: 14px;
+    background-color: #004FFF;
+    border: none;
+    border-radius: 26px;
+    padding: 10px 30px;
+    font-weight: 900;
+    margin: 30px;
+  }
+}

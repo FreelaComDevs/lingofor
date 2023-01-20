@@ -1,0 +1,66 @@
+.new-button {
+    border-radius: 26px;
+    background: $darkBlue;
+    border: none;
+    padding: 10px 15px 12px;
+    margin-bottom: 20px;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    color: #fff;
+    cursor: pointer;
+
+    &.clear {
+        width: auto;
+        height: 22px;
+        border-radius: 26px;
+        background: #fff;
+        border: 1px solid #B2B2B7;
+        color: #B2B2B7;
+        cursor: pointer;
+        font-size: 11px;
+        font-weight: bold;
+        margin: 5px 0 0 0;
+        margin-right: 10px;
+        font-family: 'Quicksand',sans-serif;
+    }
+
+    &.add-button {
+        padding: 2px 10px 5px;
+        width: 180px;;
+        background-color: transparent;
+        color: #403F4C;
+        border: 1px solid #787780;
+        font-weight: 400;
+
+        span.plus {
+            position: relative;
+            top: 1px;
+            font-size: 19px;
+            font-weight: 600;
+            color: #403F4C;
+        }
+    }
+
+    &.remove-button {
+        width: 70px;
+        font-weight: 500;
+        padding: 0;
+    }
+    
+    i {
+        position: relative;
+        margin-left: 3px;
+        top: 1px;
+        font-size: 14px;
+    }
+
+    &.scheduleButton {
+        margin-top: 30px;
+    }
+}
+
+.buttonCenterBox {
+    display: flex;
+    justify-content: center;
+}

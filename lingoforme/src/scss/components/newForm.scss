@@ -1,0 +1,590 @@
+.new-view {
+
+  form {
+
+    @media screen {
+      @media (min-width: 768px) {
+        padding: 0 30px;
+      }
+
+      @media (min-width: 1440px) {
+        // padding: 0 105px;
+      }
+    }
+
+    .new-box-form {
+      padding: 25px 100px;
+      width: 100%;
+      // max-width: 96%;
+  
+      >div {
+        flex-direction: row;
+        flex-wrap: wrap;
+        max-width: 460px;
+      
+        h2 {
+          font-size: 24px;
+          font-family: "Quicksand", sans-serif;
+          font-weight: 500;
+          color: rgba(64, 63, 76, 0.7);
+          margin-bottom: 30px;
+          width: 100%;
+        }
+    
+        h3 {
+          margin-top: 15px;
+          color: $darkBlue;
+          font-weight: 500;
+          font-size: 20px;
+          margin-bottom: 15px;
+          width: 100%;
+        }
+  
+        >div {
+          margin-bottom: 15px;
+          max-width: 460px;
+          width: 460px;
+  
+          .select-wrapper {
+            position: relative;
+  
+            &:before {
+              content: "";
+              z-index: 3;
+              position: absolute;
+              top: 10px;
+              right: 15px;
+              transform: rotate(45deg);
+              border-right: 1px solid rgba(64, 63, 76, 0.6);
+              border-bottom: 1px solid rgba(64, 63, 76, 0.6);
+              width: 8px;
+              height: 8px;
+              pointer-events: none;
+            }
+          }
+  
+          label {
+            display: inline-block;
+            font-size: 14px;
+            margin-bottom: 3px;
+            margin-right: 5px;
+          }
+      
+          input, select {
+            display: block;
+            padding: 7px 10px;
+          }
+  
+          span {
+            font-size: 10px;
+            color: rgba(64, 63, 76, 0.6)
+          }
+  
+          &.input-commercialResponsibleName {
+            max-width: 360px;
+            width: 360px;
+          }
+  
+          &.input-lingoPlans {
+            max-width: 220px;
+            margin-right: 100px;
+          }
+  
+          &.input-lingoClassTool {
+            max-width: 220px;
+            margin-right: 20px;
+          }
+  
+          &.input-classToolId {
+            max-width: 220px;
+          }
+  
+          &.input-country {
+            max-width: 220px;
+            margin-right: 20px;
+          }
+  
+          &.input-timezone {
+            max-width: 220px;
+
+            >div {
+
+              >div {
+                >div {
+                  width: 220px;
+
+                  button {
+                    background-color: #fff;
+                  }
+                }
+              }
+            }
+  
+            input {
+              max-width: 220px;
+            }
+
+            p {
+              position: absolute;
+              top: 0;
+              left: calc(100% + 20px);
+              width: 220px;
+              font-size: 11px;
+              color: rgba(64, 63, 76, 0.6);
+            }
+          }
+
+          &.input-country {
+            max-width: 220px;
+            margin-right: 20px;
+          }
+
+          &.input-phone-array {
+            
+            >div {
+              position: relative;
+              margin-bottom: 15px;
+
+              > div {
+                display: inline-block;
+                max-width: 220px;
+                width: 220px;
+                
+                &.input-phone {
+                  margin-right: 20px;
+                }
+              }
+  
+              button {
+                position: absolute;
+                top: 23px;
+                left: calc(100% + 20px);
+
+                &.remove-button {
+                  top: 25px;
+                }
+              }
+            }
+          }
+
+          &.input-demoClassSchedules-array {
+
+            button {
+              width: auto;
+            }
+
+            >.input-demoClassSchedules {
+              padding-left: 10px;
+              margin-left: 10px;
+              border-left: 2px solid #E2E2E2;
+              margin-bottom: 20px;
+              width: 700px;
+
+              >div {
+
+                .input-lingoLanguageId {
+                  max-width: 180px;
+                  display: inline-block;
+                  margin-right: 10px;
+                  >div {
+                    
+                    >div {
+  
+                      &.placeholder {
+                        >div {
+                          >div {
+                            color: #b2b2b7;
+                          }
+                        }
+                      }
+  
+                      &.invalid {
+                        >div {
+                          >div {
+                            border-color: #FF5666;
+                          }
+                        }
+                      }
+  
+                      >div {
+                        >div {
+                          width: 158px;
+                          max-width: 180px;
+                          padding: 5px 10px;
+                          border: 1px solid #B2B2B7;
+                          border-radius: 26px;
+                          font-size: 14px;
+                          font-family: 'Work Sans',sans-serif;
+                          background-image: none;
+  
+                          >span {
+                            font-size: 14px;
+                            color: #403F4C;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+
+                button {
+                  margin-bottom: 0;
+                }
+
+                .input-status {
+                  float: right;
+                  width: auto;
+
+                  .select-wrapper {
+                    &:before {
+                      top: 9px;
+                      right: 20px;
+                      border-right: 1.5px solid #fff;
+                      border-bottom: 1.5px solid #fff;
+                      
+                    }
+                    select {
+                      font-size: 18px;
+                      font-family: "Work Sans";
+                      padding: 5px 40px 5px 15px;
+                      background-color: #004FFF;
+                      border: none;
+                      color: #fff;
+                      font-weight: 500;
+
+                      &[data-item="PENDING"] {
+                        background-color: #004FFF;
+                      }
+          
+                      &[data-item="DONE"] {
+                        background-color:: #0ED572;
+                      }
+          
+                      &[data-item="CANCELLED"] {
+                        background-color: #FF5666;
+                      }
+          
+                      &[data-item="NOSHOW"] {
+                        background-color: #FF5666;
+                      }
+
+                      option {
+                        background-color: #fff;
+                        font-size: 14px;
+                      }
+                    }
+                  }
+                }
+
+                .schedule {
+                  padding-bottom: 8px;
+                  border-bottom: 1px solid #7070702f;
+                  margin-top: 20px;
+                  margin-bottom: 8px;
+
+                  >div {
+                    display: flex;
+
+                    >.input-scheduledDate, >.input-scheduledStart, >.input-scheduledEnd {
+                      margin-right: 10px;
+
+                      label {
+                        font-size: 12px;
+                      }
+
+                      .select-wrapper {
+                        
+                        &:before {
+                          top: 6px;
+                          right: 15px;
+                          border-right: 1.5px solid #fff;
+                          border-bottom: 1.5px solid #fff;
+                        }
+
+                        input,select {
+                          background-color: #004FFF;
+                          padding: 5px 15px;
+                          color: #fff;
+                          border: none;
+                        }
+
+                        select {
+                          padding: 6px 15px;
+                        }
+                      }
+                    }
+
+                    >.input-scheduledDate {
+                      .select-wrapper {
+
+                        &.placeholder {
+                          
+                          &:before {
+                            top: 8px;
+                            right: 15px;
+                            border-right: 1px solid rgba(64, 63, 76, 0.6);
+                            border-bottom: 1px solid rgba(64, 63, 76, 0.6);
+                          }
+
+                          input {
+                            padding: 4px 15px;
+                            background-color: #fff;
+                            border: 1px solid #B2B2B7;
+                            color: #403F4C;
+
+                            &.invalid {
+                              border-color: #FF5666;
+                            }
+
+                          }
+                        }
+
+                        input {
+                          width: 180px;
+                        }
+                      }
+                    }
+
+                    >.input-scheduledStart {
+
+                      .select-wrapper {
+
+                        &.placeholder {
+                          
+                          &:before {
+                            top: 8px;
+                            right: 15px;
+                            border-right: 1px solid rgba(64, 63, 76, 0.6);
+                            border-bottom: 1px solid rgba(64, 63, 76, 0.6);
+                          }
+
+                          select {
+                            padding: 5px 15px;
+                            background-color: #fff;
+                            border: 1px solid #B2B2B7;
+                            color: #403F4C;
+
+                            &.invalid {
+                              border-color: #FF5666;
+                            }
+
+                          }
+                        }
+
+                        select {
+                          width: 120px;
+  
+                          option {
+                            background-color: #fff;
+                          }
+                        }
+                      }
+                    }
+
+                    >.input-scheduledEnd {
+                      input {
+                        padding: 6px 15px;
+                        width: 120px;
+                      }
+                    }
+
+                    >p {
+                      margin-top: 18px;
+                      font-size: 14px;
+                      color: rgba(64, 63, 76, 0.6);
+
+                      span {
+                        font-size: inherit;
+                        font-weight: 600;
+                      }
+                    }
+                  }
+                }
+
+                .schedule_tmz {
+                  display: flex;
+
+                  p {
+                    font-family: "Work Sans", sans-serif;
+                    font-size: 14px;
+                    color: rgba(64, 63, 76, 0.4);
+                    width: 120px;
+                    margin-right: 10px;
+                    padding-left: 15px;
+
+                    &:first-of-type {
+                      width: 180px;
+                    }
+
+                    &:last-of-type {
+                      padding: 0;
+                      width: 220px;
+                      font-size: 14px;
+                      color: rgba(64, 63, 76, 0.6);
+
+                      span {
+                        font-size: inherit;
+                        font-weight: 600;
+                      }
+                    }
+                  }
+
+                }
+
+                h4 {
+                  color: #403F4C;
+                  font-size: 14px;
+                }
+              }
+            }
+
+            .teacher {
+              margin-top: 20px;
+
+              h4 {
+                margin-bottom: 20px;
+              }
+              
+              .input-teacherId {
+                
+                .select-wrapper {
+                  width: 200px;
+
+                  &.placeholder {
+                    
+                    &:before {
+                      top: 8px;
+                      right: 15px;
+                      border-right: 1px solid rgba(64, 63, 76, 0.6);
+                      border-bottom: 1px solid rgba(64, 63, 76, 0.6);
+                    }
+
+                    select {
+                      padding: 5px 15px;
+                      background-color: #fff;
+                      border: 1px solid #B2B2B7;
+                      color: #403F4C;
+
+                      &.invalid {
+                        border-color: #FF5666;
+                      }
+
+                    }
+                  }
+                        
+                  &:before {
+                    top: 8px;
+                    right: 15px;
+                    border-right: 1.5px solid #fff;
+                    border-bottom: 1.5px solid #fff;
+                  }
+
+                  select {
+                    padding: 5px 15px;
+                    font-weight: 500;
+                    padding-right: 35px;
+                    border: none;
+
+                    option {
+                      background-color: #fff;
+                    }
+                  }
+                }
+              }
+              
+              .teacher-rating {
+                h4 {
+                  color: #403F4C;
+                  font-size: 16px;
+                  display: inline-block;
+                  margin: 12px 10px -10px 0;
+                }
+
+                p {
+                  display: inline-block;
+                  color: #403F4C;
+                  font-size: 28px;
+                  margin-right: 8px;
+                }
+                
+                span {
+                  bottom: 3px;
+                  margin: 0 3px 0 0;
+                  font-size: 18px;
+                  color: #FDC35E
+                }
+              }
+
+              .teacher-info {
+                font-size: 14px;
+                margin-top: 10px;
+                margin-bottom: 30px;
+
+                p {
+                  font-family: "QuickSand", sans-serif;
+                  font-size: 14px;
+                  color: #403F4C;
+                  line-height: 1.4;
+                }
+              }
+
+              label {
+                display: block;
+                margin-bottom: 10px;
+              }
+
+              select {
+                color: white;
+                background-color: #004FFF;
+                font-weight: 600;
+                width: 200px !important;
+                border: none;
+                border: 1px solid #B2B2B7;
+              }
+
+              img {
+                width: 72px;
+                height: 72px;
+                border-radius: 50%;
+                margin-right: 20px;
+              }
+
+              >div {
+                display: flex;
+              }
+            }
+            
+            .input-levelByStudent, .input-levelByLingo {
+              width: 220px;
+              display: inline-block;
+            }
+
+            .input-levelByStudent {
+              margin-right: 20px;
+            }
+          } 
+        }
+
+        .input-classConverted {
+          display: inline-block;
+          margin-right: 20px;
+        }
+
+        .input-classConvertedEmail {
+          width: 320px;
+          display: inline-block;
+        }
+      }
+    }
+
+    >.buttons {
+
+      >.new-button {
+        padding: 11px 25px;
+        font-size: 14px;
+        font-family: "Work Sans", sans-serif;
+        font-weight: 900;
+      }
+    } 
+  }
+}

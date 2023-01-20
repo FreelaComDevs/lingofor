@@ -1,0 +1,107 @@
+                
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?iy4ynd');
+  src:  url('fonts/icomoon.eot?iy4ynd#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?iy4ynd') format('truetype'),
+    url('fonts/icomoon.woff?iy4ynd') format('woff'),
+    url('fonts/icomoon.svg?iy4ynd#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-facebook:before {
+  content: "\e902";
+}
+
+.icon-delete:before {
+  content: "\e900";
+}
+
+.icon-lindekin:before {
+  content: "\e918";
+}
+.icon-linkedin:before {
+  content: "\e921";
+}
+.icon-confirm:before {
+  content: "\e927";
+}
+.icon-change:before {
+  content: "\e928";
+}
+.icon-order:before {
+  content: "\e929";
+}
+.icon-review:before {
+  content: "\e92a";
+}
+.icon-account:before {
+  content: "\e900";
+}
+.icon-b2b:before {
+  content: "\e901";
+}
+.icon-home:before {
+  content: "\e903";
+}
+.icon-analytics:before {
+  content: "\e904";
+}
+.icon-star:before {
+  content: "\e907";
+}
+.icon-contracts:before {
+  content: "\e909";
+}
+.icon-coordinator:before {
+  content: "\e90a";
+}
+.icon-customerservice:before {
+  content: "\e90b";
+}
+.icon-democlasses:before {
+  content: "\e90c";
+}
+.icon-notifications:before {
+  content: "\e90f";
+}
+.icon-globe:before {
+  content: "\e910";
+}
+.icon-schedule_run:before {
+  content: "\e911";
+}
+.icon-settings:before {
+  content: "\e913";
+}
+.icon-students:before {
+  content: "\e914";
+}
+.icon-user:before {
+  content: "\e916";
+}
+.icon-logout:before {
+  content: "\e917";
+}
+.icon-schedule:before {
+  content: "\e919";
+}
+.icon-teacher:before {
+  content: "\e91c";
+}

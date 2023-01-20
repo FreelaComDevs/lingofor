@@ -1,0 +1,85 @@
+.levels-items {
+    list-style: none;
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    
+}
+
+.levels-items > button {
+    border: 1px solid #B2B2B7 !important;
+    background-color: #fff !important;
+    color: #B2B2B7 !important;
+    width: 60px !important;
+}
+
+.levels-items > button.active {
+    border: 0;
+    background-color: #004FFF !important;
+    color: #fff !important;
+}
+
+.rating-box {
+    display: flex;
+    margin-left: 87px;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.rating-box > div {
+    display: inline-block;
+    margin-right: 50px;
+}
+
+.rating-box h2 {
+    color: #403F4C;
+    font-size: 20px; 
+    margin-bottom: 5px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.rating-box .teacher-info p {
+    font-size: 14px;
+}
+
+.rating-box .teacher-rating .items{
+    display: flex;
+    align-items: center;
+}
+
+.rating-box .teacher-rating .items img{
+    width: 18px !important;
+    height: 12px !important;
+    margin-right: 6px;
+}
+
+.rating-box .teacher-rating .items h5{
+    font-weight: 100;
+    font-size: 14px;
+}
+
+.rating-box p .rating {
+    color: #403F4C;
+    font-size: 22px;
+    margin-right: 5px;
+}
+
+.rating-box span {
+    color: #FDC35E;
+    font-size: 17px; 
+    margin-right: 2px;
+}
+
+.rating-box .ContentRating{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.rating-box .ContentRating .teacher-rating{
+    margin-right: 78px;
+    margin-bottom: 20px;
+}
+
+/* .container > div {
+    width: auto;
+} */

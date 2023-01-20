@@ -1,0 +1,62 @@
+.dashboard-content {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color-background);
+  /* padding: 20px; */
+}
+
+.content-color {
+  width: 100%;
+  /* height: 100%; */
+  padding-left: 8vw;
+  padding-right: 8vw;
+  box-sizing: border-box;
+}
+
+.classcard-holder {
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border: 1px;
+  border-radius: 6px;
+  /* padding: 10px; */
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  min-height: 100px;
+  max-height: 350px;
+}
+
+h3 {
+  font-size: 1.2em;
+  padding: 0;
+}
+
+.classcard-invite{
+  width: 4px;
+  height: 100px;
+  border-radius: 10px 0 0 10px;
+  background-image: linear-gradient(to bottom, var(--color-green-gradient), var(--color-blue));
+}
+
+.classcard-cont-left{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 50%;
+  height: inherit;
+  background-color: red;
+}
+
+.classcard-cont-right{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 50%;
+  height: inherit;
+  background-color: cadetblue;
+}

@@ -1,0 +1,60 @@
+.classWithoutTeacherBox {
+    width: auto;
+    margin: 15px 0 10px;
+    padding: 15px;
+
+    .classWithoutTeacherDate {
+        font-family: "Quicksand", sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        color: #403F4C;
+        margin-bottom: 6px;
+    }
+
+    .classWithoutTeacherInfoBox {
+        display: flex;
+
+        .classWithoutTeacherInfo {
+            flex: 1;
+            margin: 0 5px;
+
+            p {
+                font-family: "Quicksand", sans-serif;
+                font-size: 14px;
+                font-weight: 500;
+                color: #5A6C96;
+                margin-bottom: 5px;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .classWithoutTeacherButtonBox {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            
+            button {
+                align-self: flex-end;
+                font-family: "Quicksand", sans-serif;
+                font-size: 12px;
+                font-weight: 500;
+                color: #787780;
+                border: 1px solid #787780;
+                border-radius: 26px;
+                padding: 3px 10px;
+                background: transparent;
+                cursor: pointer;     
+            }
+
+            p {
+                font-family: "Quicksand", sans-serif;
+                font-size: 12px;
+                font-weight: 500;
+                color: #5A6C96
+            }
+        }
+    }
+}

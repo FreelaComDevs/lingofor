@@ -1,0 +1,40 @@
+.new-header {
+  background-repeat: no-repeat;
+  background-position: calc(100% + 30px) -5px;
+  background-size: 670px 80px;
+  margin-top: 45px;
+  margin-bottom: 20px;
+  padding: 80px 20px 0;
+
+  @media screen {
+    @media (min-width: 768px) {
+      padding: 80px 50px 0;
+    }
+
+    @media (min-width: 1024px) {
+      margin-top: 0px;
+      margin-left: 220px;
+      padding: 60px 60px 0;
+    }
+
+    @media (min-width: 1440px) {
+      padding: 40px 125px 0;
+      margin-bottom: 70px;
+    }
+  }
+
+  h1 {
+    color: $darkBlue;
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 10px;
+
+    img {
+      position: relative;
+      width: 30px;
+      top: 3px;
+      margin-right: 20px;
+    }
+  }
+}
+

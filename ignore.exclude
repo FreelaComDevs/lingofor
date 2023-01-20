@@ -1,0 +1,9 @@
+README.md
+deploy.sh
+docker-compose-debug.yml
+lingoforme/README.md
+lingoforme/.gitignore
+lingoforme/.eslintrc
+lingoforme/.env
+lingoforme/node_modules
+.git

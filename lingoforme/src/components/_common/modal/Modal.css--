@@ -1,0 +1,13 @@
+.modal-title {
+  font-weight: bolder;
+  /* font-size: 20px; */
+}
+
+.mobi-icon-button-modal { 
+  position: absolute;
+  right: 45px;
+  border: 0 none;
+  border-style: hidden;
+  background-color: #ECEEF0;
+  align-self: flex-end;
+}

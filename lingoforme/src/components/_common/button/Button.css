@@ -1,0 +1,173 @@
+.button-mb {
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  width: 100%;
+  max-width: 255px;
+  height: 38px;
+  border-radius: 26px;
+  background-color: #004FFF;
+  border: none;
+  cursor: pointer;
+  margin: 27px 30px 0 15px;
+  padding: 12px;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.button-mb-disable {
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  width: 94%;
+  height: 38px;
+  border-radius: 26px;
+  background-color: #A8A7AE;
+  border: none;
+  cursor: pointer;
+  margin: 5px 20px 0 0;
+  padding: 11px;
+  font-family: 'Work Sans', sans-serif;
+  text-transform: lowercase;
+}
+
+.button-mb-payPal {
+  background-image: url(../../../images/login/bt_paypal_content.png);
+  width: 190px;
+  height: 38px;
+  border-radius: 26px;
+  background-color: #ffc439;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  margin: 27px auto;
+  background-position: center;
+  border: none;
+  cursor: pointer;
+  margin-right: 40px;
+  margin-left: 15px;
+}
+
+/* .button-mb:hover {
+  border-width: 2px;
+  border-color: var(--color-blue-dark);
+  outline: none;
+  border-style: solid;
+}
+
+.button-mb:focus {
+  border-width: 2px;
+  border-style: solid;
+  border-color: var(--color-blue-dark);
+  outline: none;
+} */
+
+.button-light-small {
+  border-width: 1px;
+  border-radius: 25px;
+  width: 93%;
+  color: #787780;
+  border-color: #787780;
+  font-size: 12px;
+  height: 22px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #FFF;
+  cursor: pointer;
+  font-weight: bold;
+  
+}
+
+.button-light {
+  margin-left: 20px;
+  margin-top: 3px;
+  border-width: 1px;
+  border-radius: 25px;
+  width: 25%;
+  color: #787780;
+  border-color: #787780;
+  font-size: 1em;
+  height: 32px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #FFF;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.auto-size-button-light {
+  width: auto;
+  border-width: 1px;
+  border-radius: 25px;
+  color: #787780;
+  border-color: #787780;
+  font-size: 12px;
+  height: 22px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: 15px;
+  background-color: #FFF;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.button-auto-size {
+  border-width: 0;
+  border-radius: 25px;
+  width: auto;
+  color: white;
+  font-size: 1em;
+  height: 45px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: 15px;
+  background-color: var(--color-blue);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.button-small {
+  border-width: 0;
+  border-radius: 25px;
+  width: auto;
+  color: white;
+  font-size: 12px;
+  height: 22px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: var(--color-blue);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.button-light-87 {
+  width: 87px;
+  border-width: 1px;
+  border-radius: 25px;
+  color: #787780;
+  border-color: #787780;
+  font-size: 12px;
+  height: 28px;
+  background-color: #FFF;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.button-87 {
+  border-width: 0;
+  border-radius: 25px;
+  width: 87px;
+  color: white;
+  font-size: 1em;
+  height: 28px;
+  background-color: var(--color-blue);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+@media (max-width: 1024px) {
+  .button-mb{
+    margin: 25px auto;
+  }
+
+}

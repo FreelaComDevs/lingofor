@@ -1,0 +1,119 @@
+.alert-dialog-slide {
+
+    #alert-dialog-slide-title, .alert-dialog-slide-title {
+    
+        h2 {
+            font-size: 36px;
+            font-weight: 600;
+            font-family: "Quicksand", sans-serif;
+            color: #004FFF;
+            text-align: center;
+        }
+    }
+
+    .alert-dialog-slide-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        img {
+            width: 180px;
+            margin: 10px 0 30px;
+        }
+
+        >p {
+            font-size: 18px;
+            font-weight: 500;
+            color: $darkGray;
+            width: 100%;
+            max-width: 75%;
+            text-align: center;
+
+            &.alert-dialog-text-recurrency-message {
+                font-size: 18px !important;
+            }
+        }
+
+        >div {            
+            p {
+                display: flex;
+                font-weight: 500;
+                font-size: 14px;
+                color: $darkGray;
+                margin-bottom: 5px;
+
+                img {
+                    margin: 0 5px 0 0 !important;
+                    position: relative;
+                    bottom: 3px;
+                }
+            }
+        }
+
+        .timesBox {
+            display: flex;
+            margin-top: 30px;
+
+            button {
+                margin: 0 8px 20px !important;
+                background-color: #fff;
+                font-weight: 500;
+                font-size: 14px;
+                color: #B2B2B7;
+                border: 1px solid #B2B2B7;
+                padding: 0 18px 0 18px!important;
+                height: 28px;
+                width: auto;
+                font-family: 'Work Sans', sans-serif;
+
+                &:hover {
+                    border: 1px solid #004FFF;
+                    background-color: #004FFF;
+                    color: #fff;
+                    height: 28px;
+                }
+            }
+        }
+    }
+
+    .alert-dialog-slide-actions {
+        justify-content: center;
+
+        button {
+            margin: 0 8px 20px !important;
+
+            &.close {
+                background-color: #fff;
+                font-weight: 500;
+                font-size: 12px;
+                color: $textGray;
+                border: 1px solid $textGray;
+                padding: 5px 15px !important;
+            }
+        }
+    }
+
+    #alert-dialog-slide-description {
+        font-weight: 600;
+        font-size: 18px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .new-button {
+        border-radius: 26px;
+        background: #004FFF !important;
+        border: none;
+        padding: 10px 15px 9px;
+        font-family: 'Work Sans', sans-serif;
+        font-size: 14px;
+        font-weight: 800;
+        color: #fff;
+        margin: 20px auto;
+        cursor: pointer;
+
+        &:hover {
+            background: #004FFF !important
+        }
+    }
+}

@@ -1,0 +1,129 @@
+.side-menu-container {
+    width: 250px;
+    /* height: 100vh; */
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  
+  .side-menu-logo {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 18px;
+    margin-bottom: 15px;
+    border-bottom-style: solid;
+    border-bottom-width: 0.5px;
+    border-color: var(--grey-light);
+  }
+  
+  .side-menu-item {
+    border: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 40px;
+    font-weight: 500;
+    font-size: 1em;
+    background-color: #fff;
+    cursor: pointer;
+    outline: none;
+    text-align: left;
+    color: var(--color-black);
+    /* padding: 18px; */
+  }
+  
+  .side-menu-item:focus {
+    border-left-width: 4px;
+    border-left-color: var(--color-grey);
+    border-left-style: solid;
+  }
+  
+  .side-menu-selected {
+    /* background-color: var(--color-blue); */
+    height: 100%;
+    width: 4px;
+  }
+  
+  .side-menu-item > svg {
+    width: 19px;
+    height: 19px;
+    margin-left: 14px;
+    margin-right: 15px;
+  }
+
+  .language{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-left: 20px;
+  }
+
+  .language  h2{
+      color: #707070;
+      font-size: 14px;
+      font-weight: normal;
+  }
+
+  .language  .select{
+       margin: 0 0 0 12px;
+  }
+
+.share{
+    width: 100%;
+    margin: 40px 0 0 0;
+    padding-left: 20px;
+    border-top: 2px solid var(--grey-light)
+}
+
+.share h2{
+    color: #403F4C;
+    font-size: 12px;
+    margin-top: 10%;
+}
+
+.share-lingo {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+}
+
+.share-lingo img{
+  margin: 0 0.5rem;
+  width: 30px;
+  height: 30px;
+}
+
+.share-lingo img:first-of-type{
+  margin: 0;
+  width: 30px;
+  height: 30px;
+}
+
+
+/** Media Queries **/
+@media (max-width: 1250px) {
+  .side-menu-holder-items {
+     display: none;
+  }
+  
+  .language {
+    display: none;
+  }
+
+  .share {
+    display: none;
+  }
+
+  .side-menu-container {
+    margin: 0 auto;
+  }
+
+  .side-menu-logo {
+    margin-bottom: 0;
+  }
+}

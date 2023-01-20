@@ -1,0 +1,210 @@
+.teachers-view {
+    
+    .container {
+        height: auto;
+        box-sizing: border-box;
+    
+        button {
+            align-self: flex-end;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background-color: #004FFF;
+            border-radius: 26px;
+            padding: 10px 20px;
+            border: none;
+            color: #fff;
+            font-weight: 900;
+            font-size: 14px;
+            font-family: 'Work Sans',sans-serif;
+            cursor: pointer;
+        
+            i {
+                margin-right: 5px;
+            }
+        }
+        .bigBox {
+            box-sizing: border-box;
+            margin-bottom: 20px;
+    
+            h2 {
+                color: #87868F;
+                font-family: 'Quicksand', sans-serif;
+                font-size: 22px;
+                font-weight: 400;
+    
+                i {
+                    margin-right: 5px;
+                }
+            }
+    
+            .filterItems {
+                display: flex;
+                align-content: stretch;
+                flex-wrap: wrap;
+                margin-top: 10px;
+    
+                .input {
+                    display: flex;
+                    flex-direction: column;
+                    flex: 1;
+                    min-width: 200px;
+                    max-width: 280px;
+                }
+    
+                label {
+                    color: #403F4C;
+                    font-size: 14px;
+                    font-weight: bold;
+                    margin-bottom: 5px;
+                }
+    
+                input, select {
+                    height: 32px;
+                    border-radius: 26px;
+                    border: 1px solid #B2B2B7;
+                    color: #403F4C;
+                    padding-left: 10px;
+                    margin-bottom: 15px;
+                    margin-right: 10px;
+                    font-size: 14px;
+                    font-family: 'Quicksand',sans-serif;
+                }    
+                
+                .switch-container {
+                    input {
+                        margin: auto;
+                    }
+    
+                    label {
+                        margin-left: 45px;
+    
+                        &:before, &:after {
+                            left: -45px;
+                        }
+                    }
+                }
+            }
+    
+            button {
+                border-radius: 26px;
+                background: #004FFF;
+                border: 1px solid #004FFF;
+                color: #fff;
+                cursor: pointer;
+                font-size: 11px;
+                font-weight: bold;
+                padding: 10px 20px;
+                float: right;
+                margin: 0;
+                
+    
+                &.clear {
+                    padding: 5px 10px;
+                    border-radius: 26px;
+                    background: #fff;
+                    border: 1px solid #B2B2B7;
+                    color: #B2B2B7;
+                    cursor: pointer;
+                    font-size: 11px;
+                    font-weight: bold;
+                    font-family: 'Quicksand',sans-serif;
+                    margin: 5px 10px;
+                }
+            }
+    
+            &.list-card {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px rgba(64, 63, 76, 0.2) solid;
+                margin-bottom: 10px;
+    
+                .list-items {
+                    display: flex;
+                    flex-wrap: wrap;
+                    flex: 1;
+                    align-content: stretch;
+                    
+                    .list-item {
+                        flex: 1;
+                        margin-right: 20px;
+        
+                        h3 {
+                            font-size: 12px;
+                            color: #B2B1B6;
+                            margin-bottom: 5px;
+                        }
+        
+                        p {
+                            font-family: Work Sans;
+                            font-size: 14px;
+                            color: #403F4C;
+                        }
+                        
+                        &.list-item-teacherName {
+                            min-width: 200px;
+                            max-width: 280px;
+                        } 
+    
+                        &.list-item-nativeLanguageName {
+                            max-width:  80px;
+                        } 
+    
+                        &.list-item-otherLanguageName {
+                            min-width: 200px;
+                            max-width: 280px;
+                        } 
+    
+                        &.list-item-countryName {
+                            max-width: 100px;
+                        } 
+    
+                        &.list-item-teacherLevel {
+                            max-width: 200px;
+                        } 
+    
+                        &.list-item-demoClass {
+                            max-width: 80px;
+                        }
+    
+                        &.list-item-firstClass {
+                            max-width: 80px;
+                        }
+    
+                        &.list-item-isActive {
+                            max-width: 50px;
+                            font-weight: 600;
+    
+                            &[data-item="ACTIVE"] {
+                                span {
+                                    color: #0ED572;
+                                }
+                            }
+
+                            &[data-item="INACTIVE"] {
+                                span {
+                                    color: #FF5666;
+                                }
+                            }
+                        }
+
+                        &.list-item-rating {
+                            max-width: 160px;
+                            color: #FDC35E;
+
+                            label {
+                                color: #403F4C;
+                                font-size: 15px;
+                                margin-right: 6px;
+                            }
+
+                            .fa-2x {
+                                font-size: 18px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

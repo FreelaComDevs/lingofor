@@ -1,0 +1,2 @@
+See `lingoforme/README.md`
+

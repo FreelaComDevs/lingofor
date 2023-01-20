@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 13.578">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: 0.6;
+      }
+
+      .cls-2 {
+        fill: #707070;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <g id="ico_change" class="cls-1" transform="translate(-1104.73 -193.725)">
+    <g id="Group_3120" data-name="Group 3120" transform="translate(1116.73 201.304) rotate(180)">
+      <path id="navbar_mobile" class="cls-2" d="M0,1.072H5.357V0H0V1.072Z" transform="translate(0.758 3.033) rotate(45)"/>
+      <path id="navbar_mobile-2" data-name="navbar_mobile" class="cls-2" d="M0,1.072H9.57V0H0V1.072Z" transform="translate(0.756 3.253)"/>
+      <path id="navbar_mobile-3" data-name="navbar_mobile" class="cls-2" d="M0,1.072H5.356V0H0V1.072Z" transform="translate(0 3.787) rotate(-45)"/>
+    </g>
+    <g id="Group_3121" data-name="Group 3121" transform="translate(1104.73 199.724)">
+      <path id="navbar_mobile-4" data-name="navbar_mobile" class="cls-2" d="M0,1.072H5.357V0H0V1.072Z" transform="translate(0.758 3.033) rotate(45)"/>
+      <path id="navbar_mobile-5" data-name="navbar_mobile" class="cls-2" d="M3,17.072h9.57V16H3v1.072Z" transform="translate(-2.244 -12.747)"/>
+      <path id="navbar_mobile-6" data-name="navbar_mobile" class="cls-2" d="M0,1.072H5.356V0H0V1.072Z" transform="translate(0 3.787) rotate(-45)"/>
+    </g>
+  </g>
+</svg>

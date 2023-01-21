@@ -1,0 +1,21 @@
+FROM node:14.19
+
+RUN apt-get update -y
+RUN apt-get install -y python2 \
+    python3-pip -y \
+    libssl-dev -y
+
+WORKDIR /app
+
+ENV PATH /app/node_modules/.bin:$PATH
+
+COPY package.json .
+COPY yarn.lock .
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm","run","start"]

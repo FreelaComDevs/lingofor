@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+    lingofor_web:
+      image: lingofor_web
+      build:
+        context: .
+        dockerfile: dockerfile
+      ports:
+        - '3003:3000'
+      volumes:
+        - .:/app
+        - lingofor_node_modules:/app/node_modules/
+
+volumes:
+  lingofor_node_modules:

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import bg from '../../../images/bg-header.svg';
 
 export const Head = styled.div`
-    width: 100%;
+    width: 100%;    
 
     h1{
         padding: 32px 0 80px 85px;
@@ -16,18 +16,28 @@ export const Head = styled.div`
 
     img{
         margin: 0 10px 0 0;
-        height: 24px;
+        height: 40px;
+        border-radius:100%;
+    }
 
+    .personalData{
+        font-size:14px;
+    }
+
+    .personalData > h3 {
+        font-weight: 700;
     }
 
     .header-holder {
         background-image: url(${bg});
         background-position: 100% -4px;
         background-repeat: no-repeat;
-        height: 85px;
+        height: 120px;
         width: 100%;
         float: right;
         margin-bottom: 72px;
+        display:flex;
+        flex-direction:column;
     } 
 
     @media (min-width: 320px) and (max-width: 1024px) {
@@ -37,8 +47,7 @@ export const Head = styled.div`
             background-position: 120% -5px;
             height: 85px;
             width: 100%;
-            margin-bottom: 0;
-
+            margin-bottom: 0;            
             }
 
             h1 {

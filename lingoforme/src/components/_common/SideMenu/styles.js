@@ -264,3 +264,37 @@ export const Nav = styled.div`
         } */
     }
 `
+export const IconList = styled.li`
+flex-direction: column;
+gap: 5px;
+
+.icons{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 10px;
+    border-top: 1px solid #00000052; 
+    padding-top: 5px;
+    width:200px;   
+}
+ .title{
+    font-size: 14px;
+    color : var(--color-black);
+    font-weight: 500;
+    margin-left: 30px;
+    width:100%;
+    padding-top: 20px;
+};
+.icons > a > img{
+    height:30px;
+    width:100px;   
+};
+
+@media (max-width: 1024px) {
+align-items: start !important;
+
+.title{
+    margin-left: 12px;
+}
+}
+
+`

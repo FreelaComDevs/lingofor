@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { translate } from "react-i18next";
+import { EvaluationPending } from './Componentes/EvaluationPending';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import NextClass from "../_common/tableClass/nextClass";
@@ -9,6 +10,7 @@ import PlaceholderPlans from '../../images/placeholder/placeholder-noplan.png'
 import TablePlans from '../Home/Componentes/TabelaPlans/index';
 import ModalRating from '../ClassRating/modal_rating'
 import moment from "moment";
+import Services from '../_api/Services'
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -21,12 +23,12 @@ class HomeStudent extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      openAlert: null
+      openAlert: null,
     }    
 
     this.closeAlert = this.closeAlert.bind(this)
   }
-  
+
   closeAlert(e){
     this.setState({  openAlert: false })
   }
@@ -52,7 +54,15 @@ class HomeStudent extends Component {
     
 
     return (
+      
     <div className="student">
+
+      <EvaluationPending 
+        href={"/class-rating"}
+        name={"Avaliações Pendentes"}
+        number={"2"}
+      />
+
       { !!classesForRating.length && !!ratingCriterias.length && <ModalRating target="teacher"/> }
 
       { openAlert != null && 

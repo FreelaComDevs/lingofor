@@ -1,23 +1,23 @@
 import React from 'react'
-
+import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import { Head } from './styles';
 import { AvatarArea } from '../avatar/avatar';
 
-const Header = ({ title, icon, children }) => {
-
+const Header = ({ title, icon, children, user }) => {
+  console.log(user)
   return (
-
     <Head>
       <header>
         <div className="header-holder">
           <div className='container' style={{alignItems:"end"}}>
             <AvatarArea             
-            name={"Vini"}
+            name={user.name}
             language={"Português"}
             country={"Brasil"}
             date={"abril/2020"}
             href={"/manage-account"}
-            src={"https://img.freepik.com/vetores-gratis/astronauta-bonito-dabbing-ilustracao-do-icone-dos-desenhos-animados-icone-de-ciencia-espacial-isolado-estilo-flat-cartoon_138676-3101.jpg?w=2000"}
+            src={user.picture ?? "https://www.seekpng.com/png/detail/847-8474751_download-empty-profile.png"}
             /> 
           </div>
         </div>
@@ -37,4 +37,6 @@ const Header = ({ title, icon, children }) => {
   )
 }
 
-export default Header
+
+const mapStateToProps = ({ user }) => ({ user })
+export default connect(mapStateToProps)(translate('translations')(Header))

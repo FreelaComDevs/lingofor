@@ -3,6 +3,9 @@ import React from 'react'
 import { Head } from './styles';
 import { AvatarArea } from '../avatar/avatar';
 import { NotificationArea } from "../notification/notification";
+import { InfoCard } from '../infoArea/infoCard';
+import { RatingArea } from '../infoArea/ratingArea';
+
 
 const Header = ({ title, icon, children }) => {
 
@@ -11,9 +14,19 @@ const Header = ({ title, icon, children }) => {
     <Head>
       <header>
         <div className="header-holder">
-          <div className='container' style={{ alignItems: "end" }}>
+          <div className='container conteinar-between'>
+            <div className='info-area'>
+              <InfoCard>
+                <RatingArea 
+                data={[{
+                  flag:"US",
+                  rating: 3.7
+                }]}
+                />
+              </InfoCard>
+            </div>
             <div className='user-area'>
-              <NotificationArea/>
+              <NotificationArea />
               <AvatarArea
                 name={"Vini"}
                 language={"Português"}

@@ -13,7 +13,7 @@ const Header = ({ title, icon, children }) => {
         <div className="header-holder">
           <div className='container' style={{ alignItems: "end" }}>
             <div className='user-area'>
-              <NotificationArea>10</NotificationArea>
+              <NotificationArea/>
               <AvatarArea
                 name={"Vini"}
                 language={"Português"}

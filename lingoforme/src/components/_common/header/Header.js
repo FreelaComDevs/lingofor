@@ -1,34 +1,30 @@
 import React from 'react'
-
+import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import { Head } from './styles';
 import { AvatarArea } from '../avatar/avatar';
 import { NotificationArea } from "../notification/notification";
 
-const Header = ({ title, icon, children }) => {
-
+const Header = ({ title, icon, children, user }) => {
+  console.log(user)
   return (
-
     <Head>
       <header>
-        <div className="header-holder">
-          <div className='container' style={{ alignItems: "end" }}>
-            <div className='user-area'>
-              <NotificationArea/>
-              <AvatarArea
-                name={"Vini"}
-                language={"Português"}
-                country={"Brasil"}
-                date={"abril/2020"}
-                href={"/manage-account"}
-                src={"https://img.freepik.com/vetores-gratis/astronauta-bonito-dabbing-ilustracao-do-icone-dos-desenhos-animados-icone-de-ciencia-espacial-isolado-estilo-flat-cartoon_138676-3101.jpg?w=2000"}
-              />
-            </div>
+        <div className="header-holder"> 
+          <div className='container' style={{alignItems:"end"}}>
+            <AvatarArea             
+              name={user.name}
+              language={"Português"}
+              country={"Brasil"}
+              date={"02/09/2020"}
+              href={"/manage-account"}
+              src={user.picture ?? "https://www.seekpng.com/png/detail/847-8474751_download-empty-profile.png"}
+            /> 
           </div>
         </div>
         {title === '' &&
           { children }
         }
-
         {/* { title !== '' &&
             <h1>
               {icon}
@@ -37,8 +33,9 @@ const Header = ({ title, icon, children }) => {
           } */}
       </header>
     </Head>
-
   )
 }
 
-export default Header
+
+const mapStateToProps = ({ user }) => ({ user })
+export default connect(mapStateToProps)(translate('translations')(Header))

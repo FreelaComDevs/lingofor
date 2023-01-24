@@ -15,9 +15,7 @@ export const Head = styled.div`
     }
 
     img{
-        margin: 0 10px 0 0;
-        height: 40px;
-        border-radius:100%;
+        margin: 0 10px 0 0;        
     }    
 
     .header-holder {
@@ -27,9 +25,15 @@ export const Head = styled.div`
         height: 120px;
         width: 100%;        
         margin-bottom: 72px;
-        display:flex;    
+        display: flex;    
     }
-    
+
+    .user-area{
+        display: flex;
+        flex-direction: row;
+        gap: 25px;
+    }
+
     @media (min-width: 320px) and (max-width: 1024px) {
 
     header{

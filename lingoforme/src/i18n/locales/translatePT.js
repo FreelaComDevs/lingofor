@@ -607,7 +607,8 @@ const translatePT = {
   'LINK_C2': 'https://datastudio.google.com/s/qkQVK1Ax40U',
   'LINK_DM': 'https://datastudio.google.com/s/s6jFu5jFh9c',
   'LOAD_MORE': 'Mostar mais',
-  'CLASSES_AVAILABLE': 'Agendamentos disponíveis'
+  'CLASSES_AVAILABLE': 'Agendamentos disponíveis',
+  'AVATAR_SINCE': 'Desde'
 }
 
 export default {translatePT}

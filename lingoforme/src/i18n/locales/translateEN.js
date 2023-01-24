@@ -667,7 +667,8 @@ const translateEN = {
   'LINK_C2': 'https://datastudio.google.com/s/ivxtvC4K71g',
   'LINK_DM': 'https://datastudio.google.com/s/lT0p2x6AoQk',
   'LOAD_MORE': 'View more',
-  'CLASSES_AVAILABLE': 'Available schedules'
+  'CLASSES_AVAILABLE': 'Available schedules',
+  'AVATAR_SINCE': 'Since'
 }
 
 export default {translateEN}

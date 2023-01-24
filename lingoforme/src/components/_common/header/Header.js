@@ -15,7 +15,7 @@ const Header = ({ title, icon, children, user }) => {
             name={user.name}
             language={"Português"}
             country={"Brasil"}
-            date={"abril/2020"}
+            date={"02/09/2020"}
             href={"/manage-account"}
             src={user.picture ?? "https://www.seekpng.com/png/detail/847-8474751_download-empty-profile.png"}
             /> 

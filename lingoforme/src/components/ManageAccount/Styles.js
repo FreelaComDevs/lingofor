@@ -1421,7 +1421,7 @@ export const Manage = styled.div`
         width: 100%;
         max-width: 66%;
         text-align: center;
-    }
+    }    
 
     .tabs{
         width: 102%;
@@ -2935,7 +2935,7 @@ export const Manage = styled.div`
                             width: 85% !important;
                             margin-right: 60px;
                         }
-                    }
+                    }                   
 
                     .notification {
                         flex-direction: row;

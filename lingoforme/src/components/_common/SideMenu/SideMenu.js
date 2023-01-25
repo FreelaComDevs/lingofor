@@ -481,36 +481,6 @@ class SideMenu extends Component {
                 </li>
 
                 {this.roleMenu()}
-                <li style={{height:'12px'}}></li>
-                <IconList>
-                  <h3 className='title'>Redes Sociais:</h3>
-                  <div className='icons'>
-                    <a href='https://www.facebook.com/lingoforme' target={"_blank"}>
-                      <FaFacebookSquare color='#004FFF'/>
-                    </a>
-                    <a href='https://www.instagram.com/lingoforme/' target={"_blank"}>
-                      <FaInstagramSquare color='#004FFF'/>
-                    </a>
-                    <a href='#' target={"_blank"}>
-                      <FaTiktok color='#004FFF'/>
-                    </a>
-                    <a href='https://www.linkedin.com/company/lingoforme/' target={"_blank"}>
-                      <FaLinkedin color='#004FFF'/>
-                    </a>
-                  </div>
-                </IconList>
-                <li style={{height:'28px'}}></li>
-                <IconList className=''>
-                  <h3 className='title'>Download app:</h3>
-                  <div className='icons'>
-                    <a href='https://play.google.com/store/apps/details?id=me.lingofor.app&pli=1' target={"_blank"}>
-                      <img src={PlayStore} style={{padding:"0px"}} />
-                    </a>
-                    <a href='https://apps.apple.com/br/app/lingofor-me/id1464904000' target={"_blank"}>
-                      <img src={AppleStore} style={{padding:"0px"}} />
-                    </a>
-                  </div>
-                </IconList>
 
                 <li className="logoutMenu">
                   <Link to="#">
@@ -519,6 +489,20 @@ class SideMenu extends Component {
                 </li>
               </div>
             </ul>
+
+            <IconList>
+              <div className='box-link-app'>
+                <h3 className='text'>Para ter uma experiência mobile, baixe nosso app nas lojas:</h3>
+                <div className='icons-app'>
+                  <a href='https://play.google.com/store/apps/details?id=me.lingofor.app&pli=1' target={"_blank"}>
+                    <img src={PlayStore} style={{ padding: "0px" }} />
+                  </a>
+                  <a href='https://apps.apple.com/br/app/lingofor-me/id1464904000' target={"_blank"}>
+                    <img src={AppleStore} style={{ padding: "0px" }} />
+                  </a>
+                </div>
+              </div>
+            </IconList>
 
             <div className="language">
               <h2>{this.props.t("LANGUAGE")}:</h2>
@@ -529,7 +513,24 @@ class SideMenu extends Component {
                 <MenuItem value={'es'}><FlagIcon size={25} code='ES' /></MenuItem>
               </Select>
             </div>
-            <hr />
+
+            <IconList>
+              <h3 className='title mt-52'>Siga-nos</h3>
+              <div className='icons'>
+                <a href='https://www.facebook.com/lingoforme' target={"_blank"}>
+                  <FaFacebookSquare color='#004FFF' />
+                </a>
+                <a href='https://www.instagram.com/lingoforme/' target={"_blank"}>
+                  <FaInstagramSquare color='#004FFF' />
+                </a>
+                <a href='#' target={"_blank"}>
+                  <FaTiktok color='#004FFF' />
+                </a>
+                <a href='https://www.linkedin.com/company/lingoforme/' target={"_blank"}>
+                  <FaLinkedin color='#004FFF' />
+                </a>
+              </div>
+            </IconList>
 
             {
               this.state.userRole == 'student' &&

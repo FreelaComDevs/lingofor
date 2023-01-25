@@ -30,7 +30,7 @@ export const Nav = styled.div`
         }
 
         li.logoutMenu{
-            margin-top: 54px;
+            margin: 48px 0;
         }
 
         li{
@@ -153,21 +153,14 @@ export const Nav = styled.div`
                 }
             }
         } */
-    }
-
-    hr{
-        height: 1px;
-        background-color: #403F4C;
-        width: 100%;
-        border: none;
-        margin-top: 16px;
-    }
+    }    
 
     .language{
         display: flex;
         width: 100%;
-        margin: 87px 0 0 27px;
+        margin-top: 28px;
         align-items: center;
+        justify-content: center;
         background: transparent;
 
         h2{
@@ -267,27 +260,49 @@ export const Nav = styled.div`
 export const IconList = styled.li`
 flex-direction: column;
 gap: 5px;
+list-style: none;
 
 .icons{
     display: flex;
-    justify-content: space-between;
-    margin: 0 10px;
-    border-top: 1px solid #00000052; 
-    padding-top: 5px;
+    justify-content: space-around;
+    margin: 0 10px;    
+    padding-top: 12px;
     width:200px;   
 }
- .title{
+.icons-app{
+    padding-top: 12px;
+    gap: 4px;
+    display: flex;
+    justify-content: space-around;
+}
+.title{
     font-size: 14px;
     color : var(--color-black);
-    font-weight: 500;
-    margin-left: 30px;
-    width:100%;
-    padding-top: 20px;
+    font-weight: 500;    
+    width:100%;    
+    text-align: center;
 };
-.icons > a > img{
-    height:30px;
-    width:100px;   
+.box-link-app{
+    background-color: #f1f1f1;
+    border: 1px solid #707070;
+    width: 80%;
+    padding: 8px;
+    border-radius: 8px;
+    margin: auto
+}
+.text{
+    font-size: 14px;
+    color : var(--color-black);
+    text-align: center;
 };
+.icons-app > a > img{
+    height: 30px;
+    width: 90px;
+    border-radius: 8px;   
+};
+.mt-52{
+    margin-top: 52px;
+}
 
 @media (max-width: 1024px) {
 align-items: start !important;

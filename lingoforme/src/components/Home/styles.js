@@ -8,14 +8,12 @@ export const Profile = styled.div`
         margin-bottom: 50px;
         margin-top: -54px;
 
-        .infoUsers{
+        .nameScreen{
             display: flex;
             width: 100%;
 
-            .photo{
-                margin: 0 30px 0 80px;
+            .iconScreen{
                 img{
-                    border-radius:50%;
                     width:90px;
                     height:90px;
                 }
@@ -260,8 +258,8 @@ export const Profile = styled.div`
             margin-bottom: 50px;
             margin-top: 0;
 
-           .infoUsers{
-                .photo {
+           .nameScreen{
+                .iconScreen {
                     margin: 0 30px 0 33px;
                 }
            }

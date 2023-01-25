@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Table = styled.div`
     width: 100%;
 
+
     /** Retirar depois **/
     .bigBox {
         margin-top: 10px;
@@ -12,7 +13,6 @@ export const Table = styled.div`
 
     .boxItem{
         display: flex;
-        justify-content: space-between;
         flex-wrap: wrap;
         align-items: center;
 
@@ -22,19 +22,24 @@ export const Table = styled.div`
             width: 100%;
             flex-wrap: wrap;
             align-items: center;
+
             
             .itensBox{
-                margin: -10px 18px 15px 0;
-
                 h3{
-                font-size: 13px;
-                    font-weight: bold;
-                    color: #87868F;
+                    font-size: 23px;
+                    font-weight: normal;
+                    color: #555D67;
                     margin: 0;
                 }
+
+                b {
+                    margin-left: 5px
+                }
+
                 span{
-                    font-size: 14px;
-                    color: #87868F;
+                    font-size: 18px;
+                    font-weight: bold;
+                    color: #555D67;
 
                     li{
                         padding: 0;
@@ -52,9 +57,40 @@ export const Table = styled.div`
                     width: 100px;
                 }
             } */
+
+            .dflex {
+                display: flex;
+            }
+
+            .mt {
+                margin-top: 25px;
+            }
+
+            .automaticallyRenews {
+                color: #5778FB;
+                font-weight: normal;
+                font-size: 12px;
+            }
+
+            .containerExtra {
+                text-alignt: right;
+            }
+            
+            .extraClasses {
+                color: #004EFD;
+                font-weight: normal;
+                font-size: 20px;
+                margin-left -25px;
+            }
+
+            .extraNumber {
+                color: #004EFD;
+                font-size: 20px;
+                font-weight: bold;   
+                margin-left: 10px;
+            }
            
             .percentage{
-
                 h3{
                     color: #004FFF;
                     font-size: 22px;
@@ -99,8 +135,8 @@ export const Table = styled.div`
                 color: #87868F;
                 border-radius: 26px;
                 border: 1px solid #787780;
-                width: 58px;
-                height: 22px;
+                width: 105px;
+                padding: 10px;
                 font-size: 11px;
                 cursor: pointer;
             }
@@ -111,9 +147,6 @@ export const Table = styled.div`
     /** Media Queries **/
     @media (max-width: 1024px) {
         .item{
-            .itensBox{
-                width: 40%;
-            }
             .percentage{
                 display: flex;
                 align-items: center;

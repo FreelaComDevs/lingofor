@@ -4,13 +4,10 @@ import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import NextClass from "../_common/tableClass/nextClass";
 import ButtonSchedule from "../Home/Componentes/Buttons/index";
-import avatar from "../../images/profile/img_placeholder.svg";
 import PlaceholderPlans from '../../images/placeholder/placeholder-noplan.png'
 import TablePlans from '../Home/Componentes/TabelaPlans/index';
 import ModalRating from '../ClassRating/modal_rating'
 import moment from "moment";
-import Services from '../_api/Services'
-import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -38,17 +35,17 @@ class HomeStudent extends Component {
     } = this.props
     let { openAlert } = this.state
     let canceledPlans = []
-    canceledPlans = plans.filter( plan => plan.studentPlanPayments && plan.studentPlanPayments.length > 0 && plan.studentPlanPayments[0].status === 'cancelled')
+    canceledPlans = plans.filter( plan => plan?.studentPlanPayments && plan?.studentPlanPayments.length > 0 && plan?.studentPlanPayments[0]?.status === 'cancelled')
 
-    if(canceledPlans && canceledPlans.length == 1){
-      if(canceledPlans[0].plan.trial){
+    if(canceledPlans && canceledPlans?.length == 1){
+      if(canceledPlans[0]?.plan?.trial){
         if(openAlert == null)
           openAlert = true           
       }
     } 
 
-    if(plans && plans.length){
-      console.log('valid plan', plans, canceledPlans, plans.length, plans[0].plan.trial, moment(plans[0].expireIn).utc().isBefore(moment().utc()),openAlert)
+    if(plans && plans?.length){
+      console.log('valid plan', plans, canceledPlans, plans?.length, plans[0]?.plan?.trial, moment(plans[0]?.expireIn)?.utc().isBefore(moment().utc()),openAlert)
     }
     
 
@@ -56,9 +53,7 @@ class HomeStudent extends Component {
       
     <div className="student">
 
-     
-
-      { !!classesForRating.length && !!ratingCriterias.length && <ModalRating target="teacher"/> }
+      { !!classesForRating?.length && !!ratingCriterias?.length && <ModalRating target="teacher"/> }
 
       { openAlert != null && 
         <Dialog
@@ -82,30 +77,24 @@ class HomeStudent extends Component {
           </DialogActions>
         </Dialog>   
       }
+            
 
       <div className="boxInfo">
-        <div className="infoUsers">
-          <div className="photo">
+        <div className="nameScreen">
+          <div className="iconScreen">
           <img
-            src={picture ? picture : avatar}
-            alt='Avatar'
-            width='112'
-            height='112'
-            className='avatarRound'
-            style={{borderRadius:'50%', objectFit: 'cover'}}
+            src={""}
+            alt='IconHome'
           /> 
           </div>
           <div>
-            <div className="salutation">
-              <h1>{t("BTN_HELLO")},</h1>
-            </div>
-            <div className="name">
-              <h2>{name}</h2>
+            <div>
+              <h2>{t("SCREEN_HOME")}</h2>
             </div>
           </div>
         </div>
       </div>
-      { plans.length > canceledPlans.length ?
+      { plans?.length > canceledPlans?.length ?
           <div>
             <TablePlans/>
             <ButtonSchedule />
@@ -123,7 +112,7 @@ class HomeStudent extends Component {
             </div>
           </div>
         :
-           plans.length == 1 && plans[0].plan.trial && moment(plans[0].expireIn).utc().isBefore(moment().utc()) ?
+           plans?.length == 1 && plans[0]?.plan?.trial && moment(plans[0]?.expireIn)?.utc().isBefore(moment().utc()) ?
             <div className="container">
               <div className="placeholder">
                 <h4 className="trial_title">{t("TITLE_PLAN_EXPIRED")}</h4><br/><br/>
@@ -142,7 +131,7 @@ class HomeStudent extends Component {
                 <h4>{t("DONT_HAVE_ACTIVE_PLAN")}</h4>
                 <img src={PlaceholderPlans} alt="No Plans"/>
               </div>
-            </div>     
+            </div> 
         }
     </div>
     )

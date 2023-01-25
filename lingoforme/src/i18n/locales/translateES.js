@@ -66,6 +66,7 @@ const translateES = {
   'ITEM_DEMO_CLASSES': 'Clases de demostración',
   'ITEM_TEACHERS': 'Maestros',
   'ITEM_STUDENTS': 'Estudiantes',
+  'SCREEN_HOME': 'Home',
   'ITEM_CUSTOMER_SERVICE': 'Atención al cliente',
   'ITEM_PLANS': 'Planes y precios',
   'ITEM_NOTIFICATIONS': 'Notificaciones',

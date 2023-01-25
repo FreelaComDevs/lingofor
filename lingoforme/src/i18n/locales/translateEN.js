@@ -66,6 +66,7 @@ const translateEN = {
   'ITEM_HOME': 'Dashboard',
   'ITEM_SETTINGS': 'Settings',
   'ITEM_B2B': 'B2B',
+  'SCREEN_HOME': 'Home',
   'ITEM_CONTRACTS': 'Contracts',
   'ITEM_SCHEDULE': 'Schedule',
   'ITEM_DEMO_CLASSES': 'Demo Classes',

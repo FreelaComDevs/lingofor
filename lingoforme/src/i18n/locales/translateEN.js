@@ -217,7 +217,7 @@ const translateEN = {
   'BACK' : 'Back',
   'ADD_LANGUAGE': 'Add Language',
   'SCHEDULING_CONTROL': 'Scheduling Control',
-  'RESETS_ON' : 'Resets on',
+  'RESETS_ON' : 'Automatically renew daily',
   'LANGUAGE_COORDINATOR' : 'Lingo that Coordinates',
   'LANGUAGE_TEACHER' : 'Language Teacher',
   'CHANGE_PASSWORD_TITLE': 'Change Password',

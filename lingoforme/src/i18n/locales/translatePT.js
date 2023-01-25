@@ -540,7 +540,7 @@ const translatePT = {
   'YOU_HAVE' : 'Você tem',
   'EXTRA_CLASSES' : 'AULAS EXTRAS',
   'IN_STOCK' : 'em estoque',
-  'RESETS_ON' : 'Reinicia',
+  'RESETS_ON' : 'Renova automaticamente dia',
   'SHARE' : 'Compartilhe',
   'STUDENT_AVERAGE_RATING' : 'Média do Aluno',
   'TEACHER_AVERAGE_RATING' : 'Média do Professor',

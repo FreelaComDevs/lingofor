@@ -112,7 +112,7 @@ class TablePlans extends Component {
                             <h3>{this.t("CARD_PLAN_CLASS")}</h3>
                             <h3><b>{(plan?.plan?.totalClasses - plan?.availableClasses) > plan?.plan?.totalClasses ? plan?.plan?.totalClasses : (plan?.plan?.totalClasses - plan?.availableClasses)}</b> de <b>{plan?.plan?.totalClasses}</b></h3>
                           </div>
-                          <h6 className="automaticallyRenews">(Renova automaticamente dia {this.calculatePlanEndDate(plan)})</h6>
+                          <h6 className="automaticallyRenews">({this.t("RESETS_ON")} {this.calculatePlanEndDate(plan)})</h6>
 
                           </div>
                           {/* <div className="class">

@@ -447,7 +447,7 @@ const translateES = {
   'COURSE_FOCUS': 'Foco: "Business classes will be focused on corporate topics, encouraging the student to carry out presentations, meetings and conferences in short time."',
   'REPORT_LANGUAGE': 'Idioma',
   'SHARE' : 'Síguenos en:',
-  'RESETS_ON' : 'Reinicia en',
+  'RESETS_ON' : 'Renovar automáticamente todos los días',
   'YOU_HAVE' : 'Tienes',
   'EXTRA_CLASSES' : 'clase extra',
   'IN_STOCK' : 'en stock',

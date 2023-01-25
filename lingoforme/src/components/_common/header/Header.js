@@ -13,11 +13,11 @@ const Header = ({ title, icon, children, user }) => {
       <header>
         <div className="header-holder"> 
         
-          {/* <EvaluationPending 
+          <EvaluationPending 
             href={"/class-rating"}
             name={"Avaliações Pendentes"}
             number={"2"}
-          /> */}
+          />
 
           <div className='container' style={{alignItems:"end"}}>
             <AvatarArea             

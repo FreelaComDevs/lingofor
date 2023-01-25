@@ -10,7 +10,6 @@ import { RatingArea } from '../infoArea/ratingArea';
 const Header = ({ title, icon, children }) => {
 
   return (
-
     <Head>
       <header>
         <div className="header-holder">
@@ -21,7 +20,16 @@ const Header = ({ title, icon, children }) => {
                 data={[{
                   flag:"US",
                   rating: 3.7
-                }]}
+                },
+                {
+                  flag:"BR",
+                  rating:4.3
+                },
+                {
+                  flag:"ES",
+                  rating:3.3
+                }
+              ]}
                 />
               </InfoCard>
             </div>

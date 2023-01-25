@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { translate } from "react-i18next";
-import { EvaluationPending } from './Componentes/EvaluationPending';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import NextClass from "../_common/tableClass/nextClass";
@@ -57,11 +56,7 @@ class HomeStudent extends Component {
       
     <div className="student">
 
-      <EvaluationPending 
-        href={"/class-rating"}
-        name={"Avaliações Pendentes"}
-        number={"2"}
-      />
+     
 
       { !!classesForRating.length && !!ratingCriterias.length && <ModalRating target="teacher"/> }
 

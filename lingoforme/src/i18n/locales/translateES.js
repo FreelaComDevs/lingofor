@@ -564,6 +564,7 @@ const translateES = {
   'LINK_C2': 'https://datastudio.google.com/s/hSgn5GLrTsM',
   'LINK_DM': 'https://datastudio.google.com/s/rgchKd2G7nY',
   'LOAD_MORE': 'Ver más',
-  'CLASSES_AVAILABLE': 'Agendamientos disponibles'
+  'CLASSES_AVAILABLE': 'Agendamientos disponibles',
+  'AVATAR_SINCE': 'Ya que'
 }
 export default {translateES}

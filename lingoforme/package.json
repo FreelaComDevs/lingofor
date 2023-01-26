@@ -60,7 +60,7 @@
     "validator": "^10.5.0"
   },
   "scripts": {
-    "start": "react-scripts start --development",
+    "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start --development",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",

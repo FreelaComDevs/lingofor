@@ -33,12 +33,6 @@ const Header = ({ title, icon, children, user }) => {
         {title === '' &&
           { children }
         }
-        {/* { title !== '' &&
-            <h1>
-              {icon}
-              <span>{title}</span>
-            </h1>
-          } */}
       </header>
     </Head>
   )

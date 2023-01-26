@@ -27,6 +27,7 @@ import { translate } from 'react-i18next'
 import Myaccount from '../../images/icons/icon_myaccount_header.svg'
 import { MultiSelect } from "react-multi-select-component";
 import './multi-select.css';
+import { IoMdArrowDropdown } from "react-icons/io";
 
 import InputForClassTool from '../../elements/NewInputs/InputForClassTool';
 
@@ -303,20 +304,20 @@ class ManageAccount extends Component {
 
         if (e.target.name === 'language') {
             newObj = this.state.languages
-            newObj.reduce((acc, item) => {
-                const existLanguage = extra.find((selectedLanguage) => {
-                    if (selectedLanguage.value == item?.languageId) {
-                        return true
-                    }
-                    return false
-                })
-                if (existLanguage) {
-                    item.isNative = true
-                }
-                acc.push(item)
-                return acc
-            }, [])
 
+           const selectedLanguages = extra.reduce((acc, selectedLanguage)=>{
+            const existLanguage = newObj.find((item)=> item.languageId == selectedLanguage.value)
+
+                if(existLanguage) {
+                    acc.linguaQueFala.push(selectedLanguage)
+                } else {
+                    acc.linguaQueNaoFala.push(selectedLanguage)
+                }
+                return acc
+           }, { linguaQueFala:[], linguaQueNaoFala:[] })
+
+           
+            
             this.setState({
                 languages: newObj
             }, () => { this.validateForm() })
@@ -904,17 +905,22 @@ class ManageAccount extends Component {
                                                                 })
                                                             }
                                                             onChange={(languages) => {
+                                                                console.log("languages", languages)
                                                                 this.handleChangeList({ target: { name: "language" }, preventDefault: function () { } }, 0, languages)
                                                             }}
-                                                            value={
-                                                                nativeLanguage.map((item) => {
-                                                                    return {
-                                                                        label: item?.language?.name,
-                                                                        value: item?.language?.id
-                                                                    }
-                                                                })
-                                                            }
+                                                            // value={
+                                                            //     nativeLanguage.map((item) => {
+                                                            //         return {
+                                                            //             label: item?.language?.name,
+                                                            //             value: item?.language?.id
+                                                            //         }
+                                                            //     })
+                                                            // }
                                                             className="multi-select"
+                                                            hasSelectAll={false}
+                                                            ArrowRenderer={()=>{
+                                                                return <IoMdArrowDropdown color='#757575' fontSize={"18px"} className="arrowDropDown"/>
+                                                            }}
                                                         />
 
                                                         {/* <select

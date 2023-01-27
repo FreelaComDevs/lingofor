@@ -303,20 +303,43 @@ class ManageAccount extends Component {
         }
 
         if (e.target.name === 'language') {
+            console.log("extra", extra)
             newObj = this.state.languages
 
            const selectedLanguages = extra.reduce((acc, selectedLanguage)=>{
             const existLanguage = newObj.find((item)=> item.languageId == selectedLanguage.value)
 
                 if(existLanguage) {
-                    acc.linguaQueFala.push(selectedLanguage)
+                    acc.currentLanguages.push(selectedLanguage)
                 } else {
-                    acc.linguaQueNaoFala.push(selectedLanguage)
+                    acc.newLanguages.push(selectedLanguage)
                 }
                 return acc
-           }, { linguaQueFala:[], linguaQueNaoFala:[] })
+           }, { currentLanguages:[], newLanguages:[] })
 
-           
+           console.log("currentLanguages", selectedLanguages.currentLanguages, "newLanguages", selectedLanguages.newLanguages)
+          
+
+           newObj = newObj.map((item, key)=>{
+            const existLanguage = selectedLanguages.currentLanguages.find(found=>item.languageId == found.value)
+            if (existLanguage) {
+                item.isNative = true
+            } else if (item.isNative) {
+                item.delete = key
+            }
+            return item
+           })
+           newObj.forEach((itemDelete)=>{
+            if (itemDelete?.delete >= 0){
+                newObj.splice(itemDelete.delete, 1)
+            }
+           })
+           console.log("newObj", newObj)
+            selectedLanguages.newLanguages.forEach(element => {            
+            newObj.push({ languageId: element.value, isNative: true, language:{
+                id:element.value, name:element.label
+            } })            
+        }); 
             
             this.setState({
                 languages: newObj
@@ -904,18 +927,17 @@ class ManageAccount extends Component {
                                                                     }
                                                                 })
                                                             }
-                                                            onChange={(languages) => {
-                                                                console.log("languages", languages)
+                                                            onChange={(languages) => {                                                                
                                                                 this.handleChangeList({ target: { name: "language" }, preventDefault: function () { } }, 0, languages)
                                                             }}
-                                                            // value={
-                                                            //     nativeLanguage.map((item) => {
-                                                            //         return {
-                                                            //             label: item?.language?.name,
-                                                            //             value: item?.language?.id
-                                                            //         }
-                                                            //     })
-                                                            // }
+                                                            value={
+                                                                nativeLanguage.map((item) => {
+                                                                    return {
+                                                                        label: item?.language?.name,
+                                                                        value: item?.language?.id
+                                                                    }
+                                                                })
+                                                            }
                                                             className="multi-select"
                                                             hasSelectAll={false}
                                                             ArrowRenderer={()=>{

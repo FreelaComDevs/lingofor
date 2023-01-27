@@ -26,12 +26,6 @@
     font-size: 14px !important;
 }
 
-.multi-select .dropdown-content{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
 .multi-select .select-item{
     padding: 8px 0;
 }
@@ -69,4 +63,12 @@
 
 .arrowDropDown{
     margin-right: 11px;
+}
+
+.search-clear-button{
+    margin: 0 !important;
+    width: 24px!important;
+    height: 100% !important;
+    background-color: transparent !important;
+    padding: 0 !important;
 }

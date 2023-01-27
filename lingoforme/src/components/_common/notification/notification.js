@@ -1,9 +1,9 @@
 import { Notification } from './styles';
-import { FaRegBell } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { useEffect } from 'react';
 import { getUserNotifications } from "../../../actions/notificationActions";
+import  IconNotification  from "../../../images/icons/icon-notificacoes.png"
 
 const NotificationPLace = ({ notifications, getUserNotifications, user }) => {    
     useEffect(()=>{        
@@ -19,7 +19,7 @@ const NotificationPLace = ({ notifications, getUserNotifications, user }) => {
         <Notification>
             <Link to={"/notifications"}>
                 <div className='relative'>
-                    <FaRegBell className='bell-icon' />
+                    <img src={IconNotification} />
                     <span className='notification'>{unreadTotal}</span>
                 </div>
             </Link>

@@ -15,13 +15,17 @@ import { Link } from 'react-router-dom'
 import Auth from '../../_api/AuthService'
 import Moment from 'react-moment'
 import timezone from 'moment-timezone'
-import PlayStore from '../../../images/icons/google-play.png'
-import AppleStore from '../../../images/icons/apple-store.svg'
+import PlayStore from '../../../images/icons/googleplay.png'
+import AppleStore from '../../../images/icons/appstore.png'
+import Instagram from '../../../images/icons/instagram.png'
+import Facebook from '../../../images/icons/facebook.png'
+import Linkedin from '../../../images/icons/linkedin.png'
+import Tiktok from '../../../images/icons/tiktok.png'
+import Youtube from '../../../images/icons/youtube.png'
 
 import Services from '../../_api/Services'
 
 import { Nav, IconList } from './styles';
-import { FaFacebookSquare, FaInstagramSquare, FaLinkedin, FaTiktok } from 'react-icons/fa';
 import ShareButton from './ShareButton';
 import moment from 'moment';
 
@@ -517,18 +521,21 @@ class SideMenu extends Component {
             <IconList>
               <h3 className='title mt-52'>Siga-nos</h3>
               <div className='icons'>
-                <a href='https://www.facebook.com/lingoforme' target={"_blank"}>
-                  <FaFacebookSquare color='#004FFF' />
+              <a href='https://www.instagram.com/lingoforme/' target={"_blank"}>
+                <img src={Instagram} className="icons-social"/>
                 </a>
-                <a href='https://www.instagram.com/lingoforme/' target={"_blank"}>
-                  <FaInstagramSquare color='#004FFF' />
+                <a href='https://www.facebook.com/lingoforme' target={"_blank"}>
+                  <img src={Facebook} className="icons-social"/>
+                </a>                
+                <a href='#' target={"_blank"}>
+                <img src={Tiktok} className="icons-social"/>
                 </a>
                 <a href='#' target={"_blank"}>
-                  <FaTiktok color='#004FFF' />
+                <img src={Youtube} className="icons-social"/>
                 </a>
                 <a href='https://www.linkedin.com/company/lingoforme/' target={"_blank"}>
-                  <FaLinkedin color='#004FFF' />
-                </a>
+                <img src={Linkedin} className="icons-social"/>
+                </a>                
               </div>
             </IconList>
 

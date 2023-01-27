@@ -302,6 +302,11 @@ list-style: none;
 };
 .mt-52{
     margin-top: 52px;
+};
+.icons-social{
+    height: 22px;
+    width: 22px;
+    object-fit: contain;
 }
 
 @media (max-width: 1024px) {

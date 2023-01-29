@@ -3,9 +3,7 @@
   padding: 15px;
   margin-top: 15px;
   border-radius: 4px;
-  box-shadow: 2px 2px 12px 1px #ccc;
   width: 100%;
-  max-width: 86%;
   margin-left: 118px;
 
   @media (min-width: 1025px) and (max-width: 1366px) {
@@ -50,6 +48,12 @@
   .scheduleDateTime {
     margin: 0;
     margin-right: 10px;
+    font-size: 15px;
+    font-weight: normal;
+    text-align: left;
+    letter-spacing: 0px;
+    color: #707070;
+    opacity: 1;
   }
 
   .scheduleDetails {
@@ -100,8 +104,19 @@
       margin-bottom: 5px;
       flex: 3;
 
+      .typeClass {
+        display: flex;
+        width: 180px;
+      }
+
+      .typeText {
+        color: #004EFD;
+        font-weight: bold;
+      }
+
       .scheduleLanguageContent {
         margin-bottom: 4px;
+        color: #707070;
       }
 
       .scheduleLanguageFocus {
@@ -121,7 +136,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-end;
 
       > * {
         margin: 0;
@@ -133,6 +147,7 @@
         @media (min-width: 1240px) {
           flex-direction: row;
           align-items: start;
+          width: 265px;
 
           > * {
             margin: 0;
@@ -150,6 +165,7 @@
           .scheduleConfirmed {
             width: 110px;
             text-align: center;
+            margin: 0;
           }
 
           .scheduleCanceled {
@@ -189,11 +205,11 @@
       }
 
       .viewSchedule {
-        color: #787780;
+        color: #004fff;
         font-size: 12px;
         border-radius: 26px;
-        max-width: 70px;
-        border: 1px solid #787780;
+        // max-width: 70px;
+        border: 1px solid #004fff;
         padding: 3px 10px 3px 10px;
         background-color: #fff;
         cursor: pointer;

@@ -14,7 +14,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Buttons } from '../Home/Componentes/Buttons/styles'
-import {Schedules} from '../Schedule/NewIndex'
 class HomeStudent extends Component {
 
   constructor (props) {
@@ -32,7 +31,7 @@ class HomeStudent extends Component {
 
   render() {
     const { 
-      t, user: {classesForRating, plans }, lingo: { ratingCriterias }
+      t, user: { picture, name, classesForRating, plans }, lingo: { ratingCriterias }
     } = this.props
     let { openAlert } = this.state
     let canceledPlans = []
@@ -110,10 +109,22 @@ class HomeStudent extends Component {
                   <NextClass />
                 </div>
               </div>
-              <div className="contentScheduling">
+              {/* <div className="contentScheduling">
                 Agendamento
-              </div>
+              </div> */}
             </div>
+            {/* <div className="nextHome">
+              <NextClass single={true} />
+              <NextClass />
+            </div> */}
+            {/* <div className="buttons">
+              <Link to={`/Calendar/`}>
+                <button>
+                  {t("BTN_VIEW_ALL")}
+                  <i className="fa fa-angle-right" aria-hidden="true" />
+                </button>
+              </Link>
+            </div> */}
           </div>
         :
            plans?.length == 1 && plans[0]?.plan?.trial && moment(plans[0]?.expireIn)?.utc().isBefore(moment().utc()) ?

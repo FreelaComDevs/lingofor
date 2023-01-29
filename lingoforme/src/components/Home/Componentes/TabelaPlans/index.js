@@ -4,13 +4,11 @@ import { connect } from 'react-redux';
 import moment from "moment";
 import Services from "../../../_api/Services";
 import { translate } from "react-i18next";
-import { Table } from "./styles";
+import { Container } from "./styles";
 import LinearProgress from "@material-ui/core/LinearProgress";
-import MenuItem from "@material-ui/core/MenuItem";
-import { FlagIcon } from "react-flag-kit";
 import PlaceholderText from "../../../_common/placeholder/placeholderText";
-import infinite from "../../../../images/flag_multilingo.png";
 import {MomentHelpers} from '../../../_common/momentLocalDate/momentLocalDate'
+import {CardPlan} from '../../../_common/cardPlans/index'
 import { Buttons } from '../Buttons/styles'
 import  PieChart  from '../../../PieChart/index'
 
@@ -31,7 +29,6 @@ class TablePlans extends Component {
 
   componentDidMount() {
 
-    //Get Lnaguages
     let urlGetLanguages = "lingolanguages/getall";
     this.serv
       .get(urlGetLanguages)
@@ -61,7 +58,7 @@ class TablePlans extends Component {
 
   render() {
     const {
-      props: { t, user: { plans }}
+      props: {user: { plans }}
     } = this;
 
     let newUserPlans = [];
@@ -84,154 +81,47 @@ class TablePlans extends Component {
     return (
       <div className="container">
         { !newPlans?.length ? <PlaceholderText /> : (
-          <Table>
-            { newPlans.map(plan => (
+          <Container>
+            {newPlans.map(plan => (
               <div key={JSON.stringify(plan)}>
-                <div className="bigBox">
-                    <div className="boxItem">
-                      <div className="item">
-                        <div className="itensBox dflex">
-                          <div>
-                            <MenuItem value={plan.id}>
-                              <FlagIcon size="75" code={plan?.studentPlanLanguages[0]?.lingoLanguage?.flag} />
-                            </MenuItem>
-                          </div>
-                          <div>
-                            <h3>{this.t("CARD_PLAN")}</h3>
-                            <span>{plan?.plan?.nameEnglish}</span>
-                          </div>
-                        </div>
-                        <div className="itensBox dflex">
-                         <div>
-                          <PieChart
-                              percent={plan?.cyclePercentage > 100 ? '100' : plan?.cyclePercentage}
-                            />
-                         </div>
-                          <div>
-                          <div className="dflex mt">
-                            <h3>{this.t("CARD_PLAN_CLASS")}</h3>
-                            <h3><b>{(plan?.plan?.totalClasses - plan?.availableClasses) > plan?.plan?.totalClasses ? plan?.plan?.totalClasses : (plan?.plan?.totalClasses - plan?.availableClasses)}</b> de <b>{plan?.plan?.totalClasses}</b></h3>
-                          </div>
-                          <h6 className="automaticallyRenews">({this.t("RESETS_ON")} {this.calculatePlanEndDate(plan)})</h6>
-
-                          </div>
-                          {/* <div className="class">
-                            <h3>{this.t("CARD_PLAN_CLASS")}</h3>
-                            <h3><b>{(plan.plan.totalClasses - plan.availableClasses) > plan.plan.totalClasses ? plan.plan.totalClasses : (plan.plan.totalClasses - plan.availableClasses)}</b> de <b>{plan.plan.totalClasses}</b></h3>
-                          </div>
-                          <h6 className="automaticallyRenews">(Renova automaticamente dia 30/06)</h6>
-                          {console.log("plan")}
-                          {console.log(plan)} */}
-                          {/* <span>
-                            {plan.plan.multiLingo === false && (
-                              <div>
-                                <MenuItem value={plan.id}>
-                                 <FlagIcon code={plan.studentPlanLanguages[0].lingoLanguage.flag} /> {this.t(plan.studentPlanLanguages[0].lingoLanguage.description.toUpperCase())}
-                                </MenuItem>
-                              </div>
-                            )}
-                            {plan.plan.multiLingo === true && (
-                              <div>
-                                <MenuItem value={plan.id}>
-                                  <img style={{ width: "24px" }} src={infinite} alt="multilingo" />
-                                  {this.t("Multilingo")}
-                                </MenuItem>
-                              </div>
-                            )}
-                          </span> */}
-                        </div>
-
-                        {/* <div className="itensBox">
-                          <h3>{this.t("CARD_PLAN_LEVEL")}</h3>
-                          <span>{plan.student.studentLevelGrades.length > 0 
-                            ? plan.student.studentLevelGrades.map(item => item.level.level).join(", ") 
-                            : "-"}</span>
-                        </div> */}
-                        {/* <div className="itensBox">
-                          <h3>{this.t("CARD_PLAN_FOCUS")} </h3>
-                          <span>{plan.studentPlanLanguages[0].focus}</span>
-                        </div>
-                        <div className="itensBox">
-                          <h3>{this.t("CARD_PLAN_STRUCTURE")}</h3>
-                          <span>{plan.studentPlanLanguages[0].struct}</span>
-                        </div> */}
-                        {/* <div className="itensBox">
-                          <h3>{this.t("CARD_PLAN_SCHEDULE")}</h3>
-                          <span>
-                            { !plan.plan.trial ? this.t("RESETS_ON") : this.t("EXPIRED_ON")}{" "}
-                            {this.calculatePlanEndDate(plan)}
-                          </span>
-                        </div> */}
-                        {/* { plan.plan.unlimited === false 
-                          ? ( <div className="itensBox percentage">
-                              <h3>{plan.cyclePercentage > 100 ? '100' : plan.cyclePercentage}%</h3>
-                              <span>
-                                {(plan.plan.totalClasses - plan.availableClasses) > plan.plan.totalClasses ? plan.plan.totalClasses : (plan.plan.totalClasses - plan.availableClasses)} / {plan.plan.totalClasses} {this.t("CARD_PLAN_CLASS")}
-                              </span>
-                            </div> )
-                        : ( <div className="itensBox percentage">
-                            <h3>
-                              <img
-                                style={{ width: "48px" }}
-                                src={infinite}
-                                alt="multilingo"
-                              />
-                            </h3>
-                          </div> )
-                        } */}
-                        <div className="containerExtra dflex">
-                            <h2 className="extraClasses">{this.t("EXTRA_CLASSES")}</h2>
-                            <h2 className="extraNumber">{plans[0]?.availablePartClasses}</h2>
-                        </div>
-                        <div>
-                        <div className="itensBox itensBoxButtons">
-                          <Link to={`/manage-account/plan`}>
-                            <button>
-                              {this.t("BTN_VIEW")}{" "}
-                              {/* <i className="fa fa-angle-right" aria-hidden="true" /> */}
-                            </button>
-                          </Link>
-                          {plan?.cyclePercentage === 100 && plan?.studentPlanPayments?.length > 0 && !plan?.plan?.trial && (
-                            <Link
-                              to={`/manage-account/plan?planId=${plan?.planId}`}
-                            >
-                              <button className="button-buy-more">
-                                {t("BUY_MORE_CLASSES")}
-                              </button>
-                            </Link>
-                          )}                          
-                        </div>
-                        {/* { plan.availablePartClasses > 0 && 
-                            <div className="extraClassLabel">
-                              <span> <b>{plan.availablePartClasses}</b> <b>{t("EXTRA_CLASSES")}</b> {t("IN_STOCK")}.</span>
-                            </div>
-                          } */}
-                        </div>
-                      </div>
+                <CardPlan
+                  valueMenuItem={plan?.id}
+                  sizeMenuItem={75}
+                  codeMenuItem={plan?.studentPlanLanguages[0]?.lingoLanguage?.flag}
+                  titlePlan={this.t("CARD_PLAN")}
+                  subTitlePlan={plan?.plan?.nameEnglish}
+                  pieChart={
+                    <div>
+                      <PieChart
+                        percent={plan?.cyclePercentage > 100 ? '100' : plan?.cyclePercentage} />
                     </div>
-                </div>
-                { plan?.plan?.multiLingo === false && (
+                  }
+                  titleClass={this.t("CARD_PLAN_CLASS")}
+                  classTotal={(plan?.plan?.totalClasses - plan?.availableClasses) > plan?.plan?.totalClasses ? plan?.plan?.totalClasses : (plan?.plan?.totalClasses - plan?.availableClasses)}
+                  MissingClass={plan?.plan?.totalClasses}
+                  titleExtraClass={this.t("EXTRA_CLASSES")}
+                  resetPlans={this.t("RESETS_ON")}
+                  subResetPlan={this.calculatePlanEndDate(plan)}
+                  numberExtra={plan?.availablePartClasses}
+                  href={"/manage-account/plan"}
+                  buttonView={this.t("BTN_VIEW")}
+                />
+                {plan?.plan?.multiLingo === false && (
                   <div className={plan?.root}>
-                    <LinearProgress color="primary" variant="determinate" value={plan?.cyclePercentage}/>
+                    <LinearProgress color="primary" variant="determinate" value={plan?.cyclePercentage} />
                   </div>
                 )}
-                { plan?.plan?.multiLingo === true && (
-                  <div className={plan?.root}>
-                    <LinearProgress color="primary" variant="determinate" value="100"/>
-                  </div>
-                )}  
-                { newPlans?.length === 1 && plan?.plan?.trial && 
+                {newPlans?.length === 1 && plan?.plan?.trial &&
                   <div>
                     <Buttons>
-                        <Link to="/manage-account/plan?type=buynewplan">
-                            <button style={{backgroundColor:"red"}}>{this.t('BTN_BUY_PLAN')}</button>
-                        </Link>
+                      <Link to="/manage-account/plan?type=buynewplan">
+                        <button style={{ backgroundColor: "red" }}>{this.t('BTN_BUY_PLAN')}</button>
+                      </Link>
                     </Buttons>
-                  </div>
-                }
+                  </div>}
               </div>
             ))}
-          </Table>
+          </Container>
         )}
       </div>
     );

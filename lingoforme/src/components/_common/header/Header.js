@@ -17,34 +17,35 @@ const Header = ({ title, icon, children, user }) => {
           <div className='container conteinar-between'>
             <div className='info-area'>
               <InfoCard>
-                <RatingArea 
-                data={[{
-                  flag:"US",
-                  rating: 3.7
-                },
-                {
-                  flag:"BR",
-                  rating:4.3
-                },
-                {
-                  flag:"ES",
-                  rating:3.3
-                }
-              ]}
+                <RatingArea
+                  data={[{
+                    flag: "US",
+                    rating: 3.7
+                  },
+                  {
+                    flag: "BR",
+                    rating: 4.3
+                  },
+                  {
+                    flag: "ES",
+                    rating: 3.3
+                  }
+                  ]}
                 />
               </InfoCard>
             </div>
-            <div className='user-area'>           
+            <div className='user-area'>
               <NotificationArea />
-               <AvatarArea             
+              <AvatarArea
                 name={user.name}
                 language={"Português"}
                 country={"Brasil"}
                 date={"02/09/2020"}
                 href={"/manage-account"}
                 src={user.picture ?? "https://www.seekpng.com/png/detail/847-8474751_download-empty-profile.png"}
-              /> 
+              />
             </div>
+          </div>
         </div>
         {title === '' &&
           { children }

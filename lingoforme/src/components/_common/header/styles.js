@@ -24,8 +24,7 @@ export const Head = styled.div`
         background-repeat: no-repeat;
         height: 120px;
         width: 100%;        
-        margin-bottom: 72px;
-        display: flex;    
+        margin-bottom: 72px;           
     }
 
     .user-area{
@@ -34,6 +33,17 @@ export const Head = styled.div`
         gap: 25px;
     }
 
+    .conteinar-between{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .info-area{
+        padding-top: 4px;     
+    } 
+    
     @media (min-width: 320px) and (max-width: 1024px) {
 
     header{

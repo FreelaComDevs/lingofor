@@ -5,7 +5,7 @@ const translatePT = {
   'LINGO_INTER': 'Intermediário',
   'LINGO_ADV': 'Avançado',
   'BTN_LOGIN': 'Entrar',
-  'BTN_VIEW': 'Mais',
+  'BTN_VIEW': 'VER MAIS',
   'BTN_BUY_MORE': 'Compre mais aulas',
   'BTN_CANCEL': 'Cancelar',
   'O_K': 'Ok',
@@ -66,6 +66,7 @@ const translatePT = {
   'FORGET_TITLE': 'Recuperar senha',
   'ITEM_ACCOUNT': 'Minha Conta',
   'ITEM_HOME': 'Dashboard',
+  'SCREEN_HOME': 'Home',
   'ITEM_SETTINGS': 'Configurações',
   'ITEM_B2B': 'B2B',
   'ITEM_CONTRACTS': 'Contratos',
@@ -83,7 +84,7 @@ const translatePT = {
   'CARD_PLAN_FOCUS': 'Foco do curso',
   'CARD_PLAN_STRUCTURE': 'Estrutura',
   'CARD_PLAN_SCHEDULE': 'Controle de agendamentos',
-  'CARD_PLAN_CLASS': 'Aulas',
+  'CARD_PLAN_CLASS': 'AULAS',
   'PLAN_GRAMMAR': 'Gramatical',
   'PLAN_CONVERSATIONAL': 'Conversação',
   'PLAN_BALANCED': 'Balanceado',
@@ -537,9 +538,9 @@ const translatePT = {
   'AVERAGE' : 'Média',
   'NOTIFICATION_TITLE' : 'Controle onde você receberá notificações da Lingo:',
   'YOU_HAVE' : 'Você tem',
-  'EXTRA_CLASSES' : 'aulas extras',
+  'EXTRA_CLASSES' : 'AULAS EXTRAS',
   'IN_STOCK' : 'em estoque',
-  'RESETS_ON' : 'Reinicia',
+  'RESETS_ON' : 'Renova automaticamente dia',
   'SHARE' : 'Compartilhe',
   'STUDENT_AVERAGE_RATING' : 'Média do Aluno',
   'TEACHER_AVERAGE_RATING' : 'Média do Professor',
@@ -607,7 +608,8 @@ const translatePT = {
   'LINK_C2': 'https://datastudio.google.com/s/qkQVK1Ax40U',
   'LINK_DM': 'https://datastudio.google.com/s/s6jFu5jFh9c',
   'LOAD_MORE': 'Mostar mais',
-  'CLASSES_AVAILABLE': 'Agendamentos disponíveis'
+  'CLASSES_AVAILABLE': 'Agendamentos disponíveis',
+  'AVATAR_SINCE': 'Desde'
 }
 
 export default {translatePT}

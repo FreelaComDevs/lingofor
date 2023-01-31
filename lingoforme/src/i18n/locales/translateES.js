@@ -66,6 +66,7 @@ const translateES = {
   'ITEM_DEMO_CLASSES': 'Clases de demostración',
   'ITEM_TEACHERS': 'Maestros',
   'ITEM_STUDENTS': 'Estudiantes',
+  'SCREEN_HOME': 'Home',
   'ITEM_CUSTOMER_SERVICE': 'Atención al cliente',
   'ITEM_PLANS': 'Planes y precios',
   'ITEM_NOTIFICATIONS': 'Notificaciones',
@@ -446,7 +447,7 @@ const translateES = {
   'COURSE_FOCUS': 'Foco: "Business classes will be focused on corporate topics, encouraging the student to carry out presentations, meetings and conferences in short time."',
   'REPORT_LANGUAGE': 'Idioma',
   'SHARE' : 'Síguenos en:',
-  'RESETS_ON' : 'Reinicia en',
+  'RESETS_ON' : 'Renovar automáticamente todos los días',
   'YOU_HAVE' : 'Tienes',
   'EXTRA_CLASSES' : 'clase extra',
   'IN_STOCK' : 'en stock',
@@ -564,6 +565,7 @@ const translateES = {
   'LINK_C2': 'https://datastudio.google.com/s/hSgn5GLrTsM',
   'LINK_DM': 'https://datastudio.google.com/s/rgchKd2G7nY',
   'LOAD_MORE': 'Ver más',
-  'CLASSES_AVAILABLE': 'Agendamientos disponibles'
+  'CLASSES_AVAILABLE': 'Agendamientos disponibles',
+  'AVATAR_SINCE': 'Ya que'
 }
 export default {translateES}

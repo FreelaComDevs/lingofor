@@ -66,6 +66,7 @@ const translateEN = {
   'ITEM_HOME': 'Dashboard',
   'ITEM_SETTINGS': 'Settings',
   'ITEM_B2B': 'B2B',
+  'SCREEN_HOME': 'Home',
   'ITEM_CONTRACTS': 'Contracts',
   'ITEM_SCHEDULE': 'Schedule',
   'ITEM_DEMO_CLASSES': 'Demo Classes',
@@ -216,7 +217,7 @@ const translateEN = {
   'BACK' : 'Back',
   'ADD_LANGUAGE': 'Add Language',
   'SCHEDULING_CONTROL': 'Scheduling Control',
-  'RESETS_ON' : 'Resets on',
+  'RESETS_ON' : 'Automatically renew daily',
   'LANGUAGE_COORDINATOR' : 'Lingo that Coordinates',
   'LANGUAGE_TEACHER' : 'Language Teacher',
   'CHANGE_PASSWORD_TITLE': 'Change Password',
@@ -667,7 +668,8 @@ const translateEN = {
   'LINK_C2': 'https://datastudio.google.com/s/ivxtvC4K71g',
   'LINK_DM': 'https://datastudio.google.com/s/lT0p2x6AoQk',
   'LOAD_MORE': 'View more',
-  'CLASSES_AVAILABLE': 'Available schedules'
+  'CLASSES_AVAILABLE': 'Available schedules',
+  'AVATAR_SINCE': 'Since'
 }
 
 export default {translateEN}

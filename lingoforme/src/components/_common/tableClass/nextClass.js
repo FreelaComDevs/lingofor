@@ -7,7 +7,7 @@ import PlaceholderText from '../../_common/placeholder/placeholderText';
 import ListCalendarSchedule from '../../Calendar/ListCalendarSchedule';
 import timezone from 'moment-timezone';
 import {MomentHelpers} from '../../_common/momentLocalDate/momentLocalDate';
-import Idioma from '../../../i18n'
+import {Scroll, Legend} from './styles'
 
 const NextClass = ({ t, single, user: { nextClasses } }) => {
   const lang = localStorage.getItem("i18nextLng");
@@ -22,14 +22,15 @@ const NextClass = ({ t, single, user: { nextClasses } }) => {
   let minutes;
   let rminutes;
   let count = 0;
+
   const serv = new Services();
   
-  if(nextClasses.length > 0){
+  if(nextClasses?.length > 0){
     console.log('nextClasses: ', nextClasses);
-    nextClasses.map((el, index) =>{
+    nextClasses?.map((el, index) =>{
       if(count < 10){
         const user = serv.getUserFromToken();
-        const resp = timezone.tz(el.originalScheduledDateTimeUTC, 'UTC').clone().tz(user.timezone);
+        const resp = timezone.tz(el.originalScheduledDateTimeUTC, 'UTC').clone().tz(user?.timezone);
         const time = resp;
         const initialDate = MomentHelpers.formatHelper(time, lang);
         const initialDay = t(time.format("dddd"));
@@ -37,18 +38,17 @@ const NextClass = ({ t, single, user: { nextClasses } }) => {
         const finalTime = time.clone().add(30, "minutes").format("hh:mm A");
         const schedule = `${initialDate} • ${initialDay} • ${initialTime} - ${finalTime}`;
         if(el.sequentialSchedule == true){
-          //agrupamento das aulas sequenciais
-          let numeroAulas = el.sequentialScheduleClassesCount;
+          let numeroAulas = el?.sequentialScheduleClassesCount;
           let cont = 0;
-          if(saveCod.includes(el.allocationScheduleId) == false){          
-            saveCod.push(el.allocationScheduleId);
-            for(let a = 0; a < nextClasses.length; a++){
-              if(nextClasses[a].allocationScheduleId == el.allocationScheduleId){
+          if(saveCod.includes(el?.allocationScheduleId) == false){          
+            saveCod.push(el?.allocationScheduleId);
+            for(let a = 0; a < nextClasses?.length; a++){
+              if(nextClasses[a]?.allocationScheduleId == el?.allocationScheduleId){
                 cont++;
                 if(cont == numeroAulas){
                   //gravar aula no array
                   const user2 = serv.getUserFromToken();
-                  const resp2 = timezone.tz(nextClasses[a].originalScheduledDateTimeUTC, 'UTC').clone().tz(user2.timezone);
+                  const resp2 = timezone.tz(nextClasses[a]?.originalScheduledDateTimeUTC, 'UTC').clone().tz(user2.timezone);
                   const atualDate2 = serv.getLocalTimeFromUtcAdd();
                   const formatDateAtual = atualDate2.format("YYYY-MM-DDTHH:mm:ss.sss");
                   const startT = moment(formatDateAtual, "YYYY-MM-DDTHH:mm:ss.sss");
@@ -112,8 +112,10 @@ const NextClass = ({ t, single, user: { nextClasses } }) => {
       }
     });
   }
-  array.sort((a,b) => a.sequentialScheduleClassesCount < b.sequentialScheduleClassesCount ? 1 : -1).sort((a,b) => a.originalScheduledDateTimeUTC > b.originalScheduledDateTimeUTC ? 1 : -1);
+  array.sort((a,b) => a?.sequentialScheduleClassesCount < b?.sequentialScheduleClassesCount ? 1 : -1).sort((a,b) => a?.originalScheduledDateTimeUTC > b?.originalScheduledDateTimeUTC ? 1 : -1);
   const schedules = array;
+  const date = moment(nextClasses[0]?.scheduledDate).format('DD/MM')
+
   // const schedules = nextClasses.length > 0 
   //   ? single ? [nextClasses[0]] : nextClasses
   //   : []
@@ -122,13 +124,52 @@ const NextClass = ({ t, single, user: { nextClasses } }) => {
     <></>
     :
     <Fragment>
-      { <h2><strong>{t("BTN_UPCOMING_CLASS")}</strong></h2> }
-      <div >
-        { schedules.length > 0 
-          ? schedules.map( schedule => <ListCalendarSchedule key={JSON.stringify(schedule)} schedule={schedule} /> )  
-          : <PlaceholderText />
-        }
-      </div>
+      
+        <h2 className="titleNextClass">
+          <div>
+            <strong>
+              {t("BTN_UPCOMING_CLASS")}
+            </strong>
+          </div>
+        </h2>
+        <br/>
+          <strong className="dateNexyClass">
+            {date}
+          </strong>
+          <hr className="separator"></hr>
+
+      
+      
+      <Scroll>
+        <div>
+          { schedules?.length > 0 
+            ? schedules?.map( schedule => <ListCalendarSchedule key={JSON.stringify(schedule)} schedule={schedule} /> )  
+            : <PlaceholderText />
+          }
+        </div>
+      </Scroll>
+      <Legend>
+          <div className="scheduledLegend">
+            <div className="container"></div>
+            <h5>Agendadas</h5>
+          </div>
+          <div className="InprogressLegend">
+            <div className="container"></div>
+            <h5>em andamento</h5>
+          </div>
+          <div className="noShowLegend">
+            <div className="container"></div>
+            <h5> no show</h5>
+          </div>
+          <div className="cancelLegend">
+            <div className="container"></div>
+            <h5>cancelado out of limit</h5>
+          </div>
+          <div className="performedLegend">
+            <div className="container"></div>
+            <h5>realizadas</h5>
+          </div>
+      </Legend>
     </Fragment>
   )
 }

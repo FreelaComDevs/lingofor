@@ -1,4 +1,113 @@
-import styled from 'styled-components';;
+import styled from 'styled-components';
+
+export const Scroll = styled.div`
+    max-height: 300px;
+    overflow-y: scroll;
+    
+`;
+
+export const Legend = styled.div`
+    margin-top: 200px;
+    display: flex;
+    justify-content: space-between;
+
+    .scheduledLegend{
+        display: flex;
+
+        .container{
+            width: 26px;
+            height: 26px;
+            background: #91E2CF;
+            border-radius: 5px;
+            opacity: 0.8;
+            margin-right: 10px;
+        }
+        h5{
+            color: #707070;
+            opacity: 1;
+            margin-top: 5px;
+        }
+
+    }
+    .InprogressLegend{
+        display: flex;
+
+        .container{
+            width: 26px;
+            height: 26px;
+            background: #A19CEC;
+            border-radius: 5px;
+            opacity: 0.8;
+            margin-right: 10px;
+        }
+        h5{
+            color: #707070;
+            opacity: 1;
+            margin-top: 5px;
+        }
+    }
+    .noShowLegend{
+        display: flex;
+
+        .container{
+            width: 26px;
+            height: 26px;
+            background: #F2B0B0;
+            border-radius: 5px;
+            opacity: 0.8;
+            margin-right: 10px;
+        }
+        h5{
+            color: #707070;
+            opacity: 1;
+            margin-top: 5px;
+        }
+    }
+    .cancelLegend{
+        display: flex;
+
+        .container{
+            width: 26px;
+            height: 26px;
+            background: #98BEAA;
+            border-radius: 5px;
+            opacity: 0.8;
+            margin-right: 10px;
+        }
+        h5{
+            color: #707070;
+            opacity: 1;
+            margin-top: 5px;
+        }
+    }
+    .performedLegend{
+        display: flex;
+
+        .container{
+            width: 26px;
+            height: 26px;
+            background: #ABABAB;
+            border-radius: 5px;
+            opacity: 0.8;
+            margin-right: 10px;
+        }
+        h5{
+            color: #707070;
+            opacity: 1;
+            margin-top: 5px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        margin-top: 50px;
+        flex-wrap: wrap;
+
+        .container{
+            margin-bottom: 20px
+        }
+
+    }
+`;
 
 export const Next = styled.div`
     h2{
@@ -216,8 +325,7 @@ export const Request = styled(Next)`
             margin: 12px 0 10px 0;
             padding: 0;
             display: flex;
-           
-            
+              
             .borderLeft{
                 width: 4px;
                 border-radius: 26px 0 0 26px;

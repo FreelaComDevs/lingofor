@@ -142,6 +142,36 @@ export const Profile = styled.div`
         margin: 25px 0 0 103px;
     }
 
+    .content{
+        display: flex;
+        justify-content: space-between;
+        max-width: 87%;
+        margin: 20px auto;
+    }
+
+    .contentScheduling {
+        width: 30%;
+        height: 550px;
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        box-shadow: 0px 5px 25px #52575D1A;
+        border-radius: 9px 9px 0px 0px;
+        opacity: 1; 
+    }
+
+    .contentCycles {
+        width: 30%;
+        height: 613px;
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        box-shadow: 0px 5px 25px #52575D1A;
+        border-radius: 9px 9px 0px 0px;
+        opacity: 1; 
+    }
+
+    .contentNextClass{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
     .buttons{
         display: flex;
         justify-content: center;
@@ -217,9 +247,40 @@ export const Profile = styled.div`
 
     .nextHome{
         .listScheduleCard{                    
-            width: 100%;
-            max-width: 86%;
-            margin-left: 102px;                 
+            width: 94%;
+            margin-left: 0px;                 
+        }
+
+        .titleNextClass {
+            color: #004FFF;
+            margin: 0;
+            font-weight: bold;
+            font-size:25px;
+        } 
+        .dateNexyClass {
+            color: #004FFF;
+            font-weight: bold;
+            font-size:17px;
+        }
+        .separator {
+            background-color: #004FFF;
+            height: 3px;
+            width: 100%
+        }
+
+    }
+
+
+    @media (max-width: 767px) {
+        .contentCycles{
+            display: none;
+        }
+        .contentScheduling{
+            display: none;
+        }
+        .contentNextClass{
+            margin-left: 0;
+            margin-right: 0;
         }
     }
 

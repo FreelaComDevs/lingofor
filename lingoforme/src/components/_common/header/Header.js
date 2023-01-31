@@ -13,7 +13,6 @@ const Header = ({ title, icon, children, user }) => {
   return (
     <Head>
       <header>
-
         <div className="header-holder">
           <div className='container conteinar-between'>
             <div className='info-area'>

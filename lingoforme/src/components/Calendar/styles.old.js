@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const BigCalendar = styled.div`
 
     table {
-    
+      
+
        .fc-widget-header{
             border-style: solid;
             border-width: 1px;
@@ -697,4 +698,3 @@ export const SelectButtons = styled.div`
         cursor: pointer; 
     }
 `;
-

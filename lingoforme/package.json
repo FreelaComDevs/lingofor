@@ -9,6 +9,7 @@
     "@material-ui/icons": "^2.0.2",
     "axios": "^0.18.0",
     "body-scroll-lock": "^2.5.7",
+    "clsx": "^1.2.1",
     "components-jqueryui": "github:components/jqueryui",
     "file-saver": "^2.0.1",
     "font-awesome": "^4.7.0",

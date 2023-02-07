@@ -14,7 +14,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Buttons } from '../Home/Componentes/Buttons/styles'
-import {Schedules} from '../Schedule/NewIndex'
+import SchedulesClass from '../ScheduleClass/index'
 class HomeStudent extends Component {
 
   constructor (props) {
@@ -26,11 +26,15 @@ class HomeStudent extends Component {
     this.closeAlert = this.closeAlert.bind(this)
   }
 
+  state = { showing: true };
+
+
   closeAlert(e){
     this.setState({  openAlert: false })
   }
 
   render() {
+    const { showing } = this.state;
     const { 
       t, user: {classesForRating, plans }, lingo: { ratingCriterias }
     } = this.props
@@ -102,17 +106,30 @@ class HomeStudent extends Component {
             {/* <ButtonSchedule /> */}
             <div className="content">
               <div className="contentCycles">
-                Ciclos
+
               </div>
               <div className="contentNextClass">
-                <div className="nextHome">
-                  <NextClass single={true} />
-                  <NextClass />
+              <div className="nextHome">
+                {!showing ?
+                <div className="buttonShed">
+                <button onClick={() => this.setState({ showing: !showing })}>+ AGENDAR AULA</button>
+              </div> 
+               : null}
+                
+                <NextClass single={true} />
+                <NextClass />
+              </div>
+                
+              </div>
+              { showing 
+                ? 
+                <div className="contentScheduling">
+                  <SchedulesClass></SchedulesClass>
                 </div>
-              </div>
-              <div className="contentScheduling">
-                Agendamento
-              </div>
+                : null
+                }
+
+             
             </div>
           </div>
         :

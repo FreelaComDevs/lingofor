@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const Scroll = styled.div`
-    max-height: 300px;
+    max-height: 550px;
     overflow-y: scroll;
     
 `;
 
 export const Legend = styled.div`
-    margin-top: 200px;
+    margin-top: 70px;
     display: flex;
     justify-content: space-between;
 

@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { setCalendarInitialParams, getScheduledClasses } from '../../actions/calendarActions';
 import { getUserInfo } from '../../actions/userActions';
 import SideMenu from '../_common/SideMenu/SideMenu';
-import Header from '../_common/header/NewHeader';
+import Header from '../_common/header/Header';
 import scheduleIcon from '../../images/icons/icon_schedule_header.svg';
 import Calendar from './Calendar';
 import moment from 'moment'

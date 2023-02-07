@@ -24,7 +24,7 @@ import InputForLingoPlan from "../../elements/NewInputs/InputForLingoPlan";
 import InputForStatus from "../../elements/NewInputs/InputForStatus";
 import InputForText from "../../elements/NewInputs/InputForText";
 import Loading from 'react-fullscreen-loading'
-import Example from './calendarSchedule'
+import Schedule from './calendarSchedule'
 
 class Calendar extends Component {
   state = this.initialState;
@@ -446,7 +446,7 @@ class Calendar extends Component {
         )}
         <div className="new-container">
           <div className="calendar">
-            <Example />
+            <Schedule />
           </div>
           {isStudent && (
             <div className="buttonCenterBox">

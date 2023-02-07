@@ -1,5 +1,5 @@
 import React from 'react'
-import { CardSchedule } from './cardSchedule'
+import { CardSchedule, ScheduleCard } from './cardSchedule'
 
 const Hours = ({ start, end }) => {
     const hours = []
@@ -22,10 +22,10 @@ export const BodySchedule = ({ startDay, endDay, events }) => {
 
     const horas = [
         startDay, endDay
-    ]
+    ]    
 
     return (
-        <div className="flex flex-auto w-[700px] overflow-y-hidden">
+        <div className="flex flex-auto">
             <div className="flex-none bg-white w-14 ring-1 ring-gray-100" />
             <div className="grid flex-auto grid-cols-1 grid-rows-1">
                 {/* Horizontal lines */}
@@ -43,9 +43,9 @@ export const BodySchedule = ({ startDay, endDay, events }) => {
                     style={{ gridTemplateRows: `1.75rem repeat(${(horas[1] - horas[0]) * 12 + 12}, minmax(0, 1fr)) auto` }}
                 >
                     {
-                        events.map((item, key) => {                            
-                            return (
-                                <CardSchedule key={key} item={item} horas={horas}/>
+                        events.map((item, key) => {                                                                            
+                            return (                                
+                                <ScheduleCard key={item.id} item={item} horas={horas}/>                                
                             )
                         })
                     }

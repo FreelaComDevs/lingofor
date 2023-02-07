@@ -8,9 +8,10 @@ module.exports = {
       colors: {
         'primary': '#004FFF',
         'warning': '#FF1700',
-        'available': '#707070',
+        'available': '#D6DCB1',
         'sucess': '#22AF5F',
-        'progress': '#B2AEEF'
+        'progress': '#B2AEEF',
+        'btn-class-confirmed': '#707070'       
       }
     },
   },

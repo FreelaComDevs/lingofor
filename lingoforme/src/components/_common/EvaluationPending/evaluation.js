@@ -15,8 +15,7 @@ const EvaluationPending = () => {
 
   const getClassesForRating = () => {
     service.ApiGetParams("ClassScheduleRating")
-      .then( async res => { 
-
+      .then( async res => {
         foundTotal(res.result.totalFound*2);
       })
       .catch( res => console.log(res))

@@ -279,7 +279,7 @@ export const Profile = styled.div`
         }
         .separator {
             background-color: #004FFF;
-            margin-top: 10px;
+            margin-top: 3px;
             height: 3px;
             width: 100%
         }

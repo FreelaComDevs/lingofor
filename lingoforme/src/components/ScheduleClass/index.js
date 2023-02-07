@@ -479,7 +479,7 @@ class Schedules extends Component {
                           </div>
                         </li>
                       </ul>
-                        <ul>
+                        <ul style={{justifyContent: "space-between"}}>
                         <li>
                           <span>{t('BTN_START_TIME')}:</span>
                           <select name='scheduledStart' onChange={handleChange}>

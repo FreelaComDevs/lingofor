@@ -184,6 +184,7 @@ export const Schedule = styled.div`
             
         .time, .focus{
             margin-bottom: 15px;
+            justify-content: space-between;
             
             .lineInputs{
                 margin-bottom: 20px;

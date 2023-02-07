@@ -110,14 +110,14 @@ class HomeStudent extends Component {
               </div>
               <div className="contentNextClass">
               <div className="nextHome">
-                {!showing ?
-                <div className="buttonShed">
-                <button onClick={() => this.setState({ showing: !showing })}>+ AGENDAR AULA</button>
-              </div> 
-               : null}
+                  {!showing ?
+                    <div className="buttonShed">
+                    <button onClick={() => this.setState({ showing: !showing })}>+ AGENDAR AULA</button>
+                  </div> 
+                  : null}
                 
-                <NextClass single={true} />
-                <NextClass />
+                  <NextClass single={true} />
+                  <NextClass />
               </div>
                 
               </div>

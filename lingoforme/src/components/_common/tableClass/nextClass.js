@@ -127,9 +127,7 @@ const NextClass = ({ t, single, user: { nextClasses } }) => {
       
         <h2 className="titleNextClass">
           <div>
-            <strong>
               {t("BTN_UPCOMING_CLASS")}
-            </strong>
           </div>
         </h2>
         <br/>

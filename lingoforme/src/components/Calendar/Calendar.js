@@ -93,7 +93,7 @@ class Calendar extends Component {
   };
 
   onDateClick = async (day) => {
-    console.log(this.props.calendar.selectedLingoLanguageId)
+    // console.log(this.props.calendar.selectedLingoLanguageId)
     const {
       state: { filters },
       props: {

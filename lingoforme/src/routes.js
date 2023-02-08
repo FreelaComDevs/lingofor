@@ -84,7 +84,7 @@ export default () => (
         <Route path='/sign-up/cancelSubscription' exact component={Confirmation}/>
         <Route path='/sign-up/notifySubscription' exact component={Confirmation}/>
         <Route path='/forget-pass' exact component={ForgetPass}/>
-        <AuthRoute path='/' exact component={Home} />
+        <AuthRoute path='/' exact component={Calendar} />
         <AuthRoute path='/users/new' exact component={EditUsers} />
         <AuthRoute path='/users/:id' exact component={EditUsers} />
         <AuthRoute path='/customer-service' exact component={CustomerService}/>

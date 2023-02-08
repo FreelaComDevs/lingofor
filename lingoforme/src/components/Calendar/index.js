@@ -20,7 +20,7 @@ class CalendarIndex extends Component {
   }
 
   render () {
-  const { t, calendar: { atualDate }, user: { role }} = this.props
+  const { t, calendar: { atualDate }, user: { role }} = this.props  
 
     return (
       <div className='view new-view calendar-view'>

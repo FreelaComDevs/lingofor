@@ -11,7 +11,10 @@ module.exports = {
         'available': '#D6DCB1',
         'sucess': '#22AF5F',
         'progress': '#B2AEEF',
-        'btn-class-confirmed': '#707070'       
+        'btn-class-confirmed': '#707070',
+        'card-accepted': '#A7E7D8',
+        'text-card': '#52575D',
+        'text-card-focus': '#333333'
       }
     },
   },

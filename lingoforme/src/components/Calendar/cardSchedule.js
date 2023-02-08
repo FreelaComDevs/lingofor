@@ -6,7 +6,7 @@ import moment from 'moment'
 const CARD_TYPE = {
     'in-progress': 'bg-progress',
     'available': 'bg-available',
-    'accepted': 'bg-sucess'
+    'accepted': 'bg-card-accepted'
 }
 
 export const CardSchedule = ({ children, item, horas }) => {
@@ -14,10 +14,7 @@ export const CardSchedule = ({ children, item, horas }) => {
     const startHour = moment.duration(startTime).asHours()
     
     const endTime = moment(item.endDate).format('HH:mm')
-    const endHour = moment.duration(endTime).asHours() 
-
-    console.log('starthour', startHour)
-    console.log('endhour', endHour)
+    const endHour = moment.duration(endTime).asHours()     
    
     return (
         <li

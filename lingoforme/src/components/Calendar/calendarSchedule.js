@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useMemo } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 import scheduleIcon from '../../images/icons/icon_schedule_header.svg'
 import { HeaderSchedule } from './scheduleHeader'
@@ -6,6 +6,11 @@ import { BodySchedule } from './bodySchedule'
 import { FlagIcon } from 'react-flag-kit'
 import { FaCalendarAlt } from "react-icons/fa";
 import './style.css'
+import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
+import { setCalendarInitialParams, getScheduledClasses } from '../../actions/calendarActions';
+import moment from 'moment'
 
 const days = [
   { date: '2022-01-01', isCurrentMonth: true },
@@ -43,7 +48,7 @@ const days = [
 
 const classHours = [
   {
-    id: 1,    
+    id: 1,
     type: 'available',
     flag: 'BR',
     favorite: true,
@@ -51,7 +56,7 @@ const classHours = [
     endDate: '2023-01-06 09:00'
   },
   {
-    id: 2,    
+    id: 2,
     type: 'accepted',
     flag: 'ES',
     favorite: true,
@@ -59,7 +64,7 @@ const classHours = [
     endDate: '2023-01-06 11:00'
   },
   {
-    id: 3,    
+    id: 3,
     type: 'in-progress',
     flag: 'US',
     favorite: true,
@@ -70,7 +75,7 @@ const classHours = [
 
 const classHours2 = [
   {
-    id: 1,    
+    id: 1,
     type: 'accepted',
     flag: 'US',
     favorite: false,
@@ -78,7 +83,7 @@ const classHours2 = [
     endDate: '2023-01-06 09:30'
   },
   {
-    id: 2,    
+    id: 2,
     type: 'in-progress',
     flag: 'ES',
     favorite: true,
@@ -86,7 +91,7 @@ const classHours2 = [
     endDate: '2023-01-06 11:30'
   },
   {
-    id: 3,    
+    id: 3,
     type: 'available',
     flag: 'BR',
     favorite: false,
@@ -95,12 +100,96 @@ const classHours2 = [
   },
 ]
 
+function weekOfMonth (input ) {
+  const firstDayOfMonth = input.clone().startOf('month');
+  const firstDayOfWeek = firstDayOfMonth.clone().startOf('week');
+
+  const offset = firstDayOfMonth.diff(firstDayOfWeek, 'days');
+
+  return Math.ceil((input.date() + offset) / 7);
+}
+
+const RenderDay = ({ date, currentDate }) => { 
+
+  console.log(date)
+
+  const day = useMemo(() => {
+    const objDay = {
+      isCurrentMonth: false,
+      isSelected: false,
+      isToday: false
+    }
+    objDay.isCurrentMonth = date.isSame(currentDate, 'month')
+    objDay.isToday = date.isSame(moment(), 'day')
+    objDay.isSelected = date.isSame(currentDate, 'day')
+
+    return objDay
+  }, [currentDate, date])
+
+  const week = new Date(date.format('YYYY-MM-DD')).getDay()
+  return (
+    <button
+      type="button"
+      className={classNames(
+        'group py-1 text-card bg-gray-200 hover:bg-white hover:shadow-xl duration-300 focus:z-10 rounded-lg h-32',
+        day.isCurrentMonth ? 'bg-white' : 'bg-gray-50',
+        (day.isSelected || day.isToday) && 'font-semibold',
+        day.isSelected && 'text-card-focus bg-white',
+        !day.isSelected && day.isCurrentMonth && !day.isToday && 'text-gray-900',
+        !day.isSelected && !day.isCurrentMonth && !day.isToday && 'text-card',
+        day.isToday && !day.isSelected && 'text-indigo-600'
+      )}
+    >
+      <div className='flex flex-row justify-between pl-5 duration-200 rounded-full group-hover:font-semibold group-hover:text-black'>
+        <div className='flex flex-col justify-start'>
+          <span className='self-start'>{date.format('ddd')}</span>
+          <time
+            dateTime={date.format('YYYY-MM-DD hh:mm:ss')}
+            className={classNames(
+              'flex items-start text-lg'
+            )}
+          >
+            {date.format('D')}
+          </time>
+          <div className='flex flex-row gap-1 mt-4'>
+            <FlagIcon size={20} code={'BR'} />
+            <FlagIcon size={20} code={'US'} />
+          </div>
+        </div>
+        <div className='flex flex-row items-center mr-5'>
+          <span className='flex items-center justify-center mr-3 text-white bg-red-600 rounded-md w-9 h-9'>1</span>
+          <span className='flex items-center justify-center mr-3 text-white bg-blue-600 rounded-md w-9 h-9'>2</span>
+          <span className='flex items-center justify-center text-white bg-purple-600 rounded-md w-9 h-9'>3</span>
+        </div>
+      </div>
+    </button>
+  )
+}
+
+const generateDays = ( selectedDay ) => {
+  const lastDay = selectedDay.daysInMonth()
+  const month = selectedDay.month() + 1
+  const year = selectedDay.year()
+  const days = []
+  for (let i = 1; i <= lastDay; i++){
+    const date = moment(`${year}-${month}-${i}`)
+    days.push(
+      <RenderDay key={i} date={date} currentDate={selectedDay} />
+    )    
+  } 
+  return days
+}
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Schedule({ t, title }) {
+const Schedule = ({ calendar }) => {
+  console.log('month', calendar.atualDate.date())
+  const daysInMonth = useMemo(()=>{
+    return generateDays(calendar.atualDate)
+  },[calendar.atualDate])
   return (
     <div className="flex flex-col h-full">
       <header className={`flex items-center justify-between flex-none px-6 py-4 border-b border-gray-200`}>
@@ -112,7 +201,7 @@ export default function Schedule({ t, title }) {
         </h1>
       </header>
       <div className="flex flex-row-reverse flex-auto bg-white isolate heightCalc">
-        <div className="flex flex-row flex-auto w-5/12 overflow-y-scroll">             
+        <div className="flex flex-row flex-auto w-5/12 overflow-y-scroll">
           <div className='flex flex-col'>
             <HeaderSchedule date={'Sep 6'} />
             <BodySchedule startDay={8} endDay={20} events={classHours} />
@@ -132,7 +221,7 @@ export default function Schedule({ t, title }) {
                 <span className="sr-only">Previous month</span>
                 <ChevronLeftIcon className="w-5 h-5" aria-hidden="true" />
               </button>
-              <div className="flex-auto font-semibold">January 2022</div>
+              <div className="flex-auto font-semibold">{calendar.atualDate.format('MMMM YYYY')}</div>
               <button
                 type="button"
                 className="-m-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
@@ -144,51 +233,21 @@ export default function Schedule({ t, title }) {
             <FaCalendarAlt className='text-[#9CA3AF] text-base cursor-pointer hover:text-[#777c85]' />
           </div>
           <div className="grid w-4/5 grid-cols-1 gap-3 mx-auto mt-2 text-sm bg-white rounded-lg isolate">
-            {days.map((day, dayIdx) => (
-              <button
-                key={day.date}
-                type="button"
-                className={classNames(
-                  'group py-1 text-gray-700 bg-gray-200 hover:bg-white hover:shadow-xl duration-300 focus:z-10 rounded-lg h-32',
-                  day.isCurrentMonth ? 'bg-white' : 'bg-gray-50',
-                  (day.isSelected || day.isToday) && 'font-semibold',
-                  day.isSelected && 'text-white',
-                  !day.isSelected && day.isCurrentMonth && !day.isToday && 'text-gray-900',
-                  !day.isSelected && !day.isCurrentMonth && !day.isToday && 'text-gray-400',
-                  day.isToday && !day.isSelected && 'text-indigo-600',
-                  dayIdx === 0 && 'rounded-tl-lg',
-                  dayIdx === 6 && 'rounded-tr-lg',
-                  dayIdx === days.length - 7 && 'rounded-bl-lg',
-                  dayIdx === days.length - 1 && 'rounded-br-lg'
-                )}
-              >
-                <div className='flex flex-row justify-between pl-5 duration-200 rounded-full group-hover:font-semibold group-hover:text-black'>
-                  <div className='flex flex-col justify-start'>
-                    <span>Wednesday</span>
-                    <time
-                      dateTime={day.date}
-                      className={classNames(
-                        'flex items-start text-lg'
-                      )}
-                    >
-                      {day.date.split('-').pop().replace(/^0/, '')}
-                    </time>
-                    <div className='flex flex-row gap-1 mt-4'>
-                      <FlagIcon size={20} code={'BR'} />
-                      <FlagIcon size={20} code={'US'} />
-                    </div>
-                  </div>
-                  <div className='flex flex-row items-center mr-5'>
-                    <span className='flex items-center justify-center mr-3 text-white bg-red-600 rounded-md w-9 h-9'>1</span>
-                    <span className='flex items-center justify-center mr-3 text-white bg-blue-600 rounded-md w-9 h-9'>2</span>
-                    <span className='flex items-center justify-center text-white bg-purple-600 rounded-md w-9 h-9'>3</span>
-                  </div>
-                </div>
-              </button>
-            ))}
+            {daysInMonth}
           </div>
         </div>
       </div>
     </div>
   )
 }
+
+const mapStateToProps = ({ calendar, user }) => ({ calendar, user })
+const mapDispatchToProps = dispatch => ({
+  setCalendarScreen: data => dispatch(setCalendarScreen(data)),
+  applyCalendarFilters: data => dispatch(applyCalendarFilters(data)),
+  clearCalendarFilters: data => dispatch(clearCalendarFilters(data)),
+  setCalendarSchedules: data => dispatch(setCalendarSchedules(data)),
+  getNextClasses: data => dispatch(getNextClasses(data)),
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate('translations')(Schedule)))

@@ -43,28 +43,55 @@ const days = [
 
 const classHours = [
   {
-    id: 1,
-    start: 8,
-    end: 8.5,
-    type: 'in-progress',
+    id: 1,    
+    type: 'available',
     flag: 'BR',
-    favorite: true
+    favorite: true,
+    startDate: '2023-01-06 08:00',
+    endDate: '2023-01-06 09:00'
   },
   {
-    id: 2,
-    start: 10.5,
-    end: 12,
+    id: 2,    
     type: 'accepted',
     flag: 'ES',
-    favorite: false
+    favorite: true,
+    startDate: '2023-01-06 10:30',
+    endDate: '2023-01-06 11:00'
   },
   {
-    id: 3,
-    start: 14,
-    end: 18,
-    type: 'available',
+    id: 3,    
+    type: 'in-progress',
     flag: 'US',
-    favorite: true
+    favorite: true,
+    startDate: '2023-01-06 14:00',
+    endDate: '2023-01-06 15:00'
+  },
+]
+
+const classHours2 = [
+  {
+    id: 1,    
+    type: 'accepted',
+    flag: 'US',
+    favorite: false,
+    startDate: '2023-01-06 09:00',
+    endDate: '2023-01-06 09:30'
+  },
+  {
+    id: 2,    
+    type: 'in-progress',
+    flag: 'ES',
+    favorite: true,
+    startDate: '2023-01-06 10:00',
+    endDate: '2023-01-06 11:30'
+  },
+  {
+    id: 3,    
+    type: 'available',
+    flag: 'BR',
+    favorite: false,
+    startDate: '2023-01-06 15:00',
+    endDate: '2023-01-06 16:45'
   },
 ]
 
@@ -85,14 +112,14 @@ export default function Schedule({ t, title }) {
         </h1>
       </header>
       <div className="flex flex-row-reverse flex-auto bg-white isolate heightCalc">
-        <div className="flex flex-row flex-auto w-5/12 overflow-y-scroll">
+        <div className="flex flex-row flex-auto w-5/12 overflow-y-scroll">             
           <div className='flex flex-col'>
             <HeaderSchedule date={'Sep 6'} />
             <BodySchedule startDay={8} endDay={20} events={classHours} />
           </div>
           <div className='flex flex-col'>
             <HeaderSchedule date={'Sep 7'} />
-            <BodySchedule startDay={8} endDay={20} events={classHours} />
+            <BodySchedule startDay={8} endDay={20} events={classHours2} />
           </div>
         </div>
         <div className="z-50 flex-none hidden w-5/12 max-w-md py-10 overflow-y-scroll border-l border-gray-100 shadow-xl md:block">

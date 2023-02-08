@@ -1,6 +1,7 @@
 import { clsx } from 'clsx';
 import { MdEmojiPeople, MdStar } from "react-icons/md"
 import { FlagIcon } from 'react-flag-kit'
+import moment from 'moment'
 
 const CARD_TYPE = {
     'in-progress': 'bg-progress',
@@ -9,23 +10,33 @@ const CARD_TYPE = {
 }
 
 export const CardSchedule = ({ children, item, horas }) => {
+    const startTime = moment(item.startDate).format('HH:mm')
+    const startHour = moment.duration(startTime).asHours()
+    
+    const endTime = moment(item.endDate).format('HH:mm')
+    const endHour = moment.duration(endTime).asHours() 
 
+    console.log('starthour', startHour)
+    console.log('endhour', endHour)
+   
     return (
         <li
-            className={clsx(CARD_TYPE[item.type], 'relative rounded-lg p-2 hover:bg-blue-100 mx-2 duration-300')}
-            style={{ gridRow: `${(item.start - horas[0]) * 12 + 2} / span ${(item.end - item.start) * 12}` }}>
+            className={clsx(CARD_TYPE[item.type], 'relative rounded-lg hover:bg-blue-100 mx-2 duration-300 overflow-hidden')}
+            style={{ gridRow: `${(startHour - horas[0]) * 12 + 2} / span ${Math.round((endHour - startHour) * 12)}` }}>
             {children}
         </li>
     )
 }
 
 export const ScheduleItem = ({ item }) => {
-    const formatHourStart = item.start >= 12 ? (item.start.toString().replace('.5', ':30') + " PM") : (item.start.toString().replace('.5', ':30') + " AM")
-    const formatHourEnd = item.end >= 12 ? (item.end.toString().replace('.5', ':30') + " PM") : (item.end.toString().replace('.5', ':30') + " AM")
+    const startTime = moment(item.startDate).format('hh:mm A')
+    const endTime = moment(item.endDate).format('hh:mm A')
+
+    
     return (
         <a
             href="#"
-            className={`flex flex-col text-xs leading-5 group inset-1 h-full`}
+            className={`absolute flex flex-col text-xs leading-5 group inset-1 h-full p-2`}
         >
             <div className='flex justify-between'>
                 <div className='flex flex-row gap-2'>
@@ -37,10 +48,10 @@ export const ScheduleItem = ({ item }) => {
             </div>
             <div className='flex justify-center'>
                 <p className={`text-black group-hover:text-black`}>
-                    <time dateTime="2022-01-22T06:00">{formatHourStart}</time>
+                    <time dateTime={item.startDate}>{startTime}</time>
                 </p>
                 <p className={`text-black group-hover:black before:content-['-'] before:mx-1`}>
-                    <time dateTime="2022-01-22T06:00">{formatHourEnd}</time>
+                    <time dateTime={item.endDate}>{endTime}</time>
                 </p>
             </div>
         </a>
@@ -48,21 +59,28 @@ export const ScheduleItem = ({ item }) => {
 }
 
 export const AvailableScheduleItem = ({ item }) => {
-    const formatHourStart = item.start >= 12 ? (item.start.toString().replace('.5', ':30') + " PM") : (item.start.toString().replace('.5', ':30') + " AM")
+    const startTime = moment(item.startDate).format('hh:mm A')
+    const endDate = moment(item.endDate)
+    const difHours = moment.duration(endDate.diff(item.startDate))
+    let formatDif = difHours.hours() 
+    if (difHours.minutes() > 0) formatDif += ':' + difHours.minutes()
+    formatDif += 'H'
+
+    
 
     return (
         <a
             href="#"
-            className={`flex flex-col justify-between text-xs leading-5 group inset-1 h-full`}
+            className={`absolute flex flex-col justify-between text-xs leading-5 group inset-1 h-full p-2`}
         >
             <div className='flex flex-row gap-2'>
                 <FlagIcon size={20} code={item.flag} />
                 <p className={`text-black group-hover:text-black`}>
-                    <time dateTime="2022-01-22T06:00">{formatHourStart}</time>
+                    <time dateTime={item.startDate}>{startTime}</time>
                 </p>
             </div>
             <div className='flex justify-between mx-1'>
-                <p>{item.end - item.start}</p>
+                <p>{formatDif}</p>
                 {item.favorite && <MdStar className={`text-lg`} />}
             </div>
         </a>

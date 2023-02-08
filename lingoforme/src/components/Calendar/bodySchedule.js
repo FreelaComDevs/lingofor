@@ -1,14 +1,17 @@
 import React from 'react'
 import { CardSchedule, ScheduleCard } from './cardSchedule'
+import moment from 'moment'
 
-const Hours = ({ start, end }) => {
-    const hours = []
+const Hours = ({ start, end }) => {    
+    const hours = []    
     for (let i = start; i <= end; i++) {
+        const hour = moment.utc(moment.duration(i, 'h').asMilliseconds()).format('h A')
+        
         hours.push(
-            <React.Fragment key={i}>
+            <React.Fragment key={hour}>
                 <div>
                     <div className="sticky left-0 -mt-2.5 -ml-14 w-14 pr-2 text-right text-xs leading-5 text-gray-400">
-                        {i}
+                        {hour}
                     </div>
                 </div>
                 <div />

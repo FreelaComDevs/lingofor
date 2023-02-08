@@ -9,7 +9,7 @@ import { RatingArea } from '../infoArea/ratingArea';
 import { EvaluationPending } from '../EvaluationPending';
 
 const Header = ({ title, icon, children, user }) => {
-  console.log(user)
+  // console.log(user)
   return (
     <Head>
       <header>

@@ -4,9 +4,9 @@ import { FlagIcon } from 'react-flag-kit'
 import moment from 'moment'
 
 const CARD_TYPE = {
-    'in-progress': 'bg-progress',
-    'available': 'bg-available',
-    'accepted': 'bg-card-accepted'
+    'in-progress': 'bg-progress w-36',
+    'available': 'bg-available w-28',
+    'accepted': 'bg-card-accepted w-36'
 }
 
 export const CardSchedule = ({ children, item, horas }) => {
@@ -33,7 +33,7 @@ export const ScheduleItem = ({ item }) => {
     return (
         <a
             href="#"
-            className={`absolute flex flex-col text-xs leading-5 group inset-1 h-full p-2`}
+            className={`absolute flex flex-col text-xs leading-5 group inset-1 h-full px-2 py-1`}
         >
             <div className='flex justify-between'>
                 <div className='flex flex-row gap-2'>
@@ -43,7 +43,7 @@ export const ScheduleItem = ({ item }) => {
                 </div>
                 {item.favorite && <MdStar className={`text-lg`} />}
             </div>
-            <div className='flex justify-center'>
+            <div className='flex justify-center mt-1'>
                 <p className={`text-black group-hover:text-black`}>
                     <time dateTime={item.startDate}>{startTime}</time>
                 </p>

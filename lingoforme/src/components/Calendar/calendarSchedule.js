@@ -1,4 +1,4 @@
-import { useEffect, useRef, useMemo } from 'react'
+import { useEffect, useRef, useMemo, useState, useCallback } from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 import scheduleIcon from '../../images/icons/icon_schedule_header.svg'
 import { HeaderSchedule } from './scheduleHeader'
@@ -49,7 +49,7 @@ const days = [
 const classHours = [
   {
     id: 1,
-    type: 'available',
+    type: 'accepted',
     flag: 'BR',
     favorite: true,
     startDate: '2023-01-06 08:00',
@@ -70,6 +70,30 @@ const classHours = [
     favorite: true,
     startDate: '2023-01-06 14:00',
     endDate: '2023-01-06 15:00'
+  },
+  {
+    id: 4,
+    type: 'available',
+    flag: 'ES',
+    favorite: true,
+    startDate: '2023-01-06 08:00',
+    endDate: '2023-01-06 09:00'
+  },
+  {
+    id: 5,
+    type: 'available',
+    flag: 'ES',
+    favorite: true,
+    startDate: '2023-01-06 08:00',
+    endDate: '2023-01-06 08:30'
+  },
+  {
+    id: 6,
+    type: 'available',
+    flag: 'US',
+    favorite: true,
+    startDate: '2023-01-06 08:00',
+    endDate: '2023-01-06 09:00'
   },
 ]
 
@@ -100,19 +124,7 @@ const classHours2 = [
   },
 ]
 
-function weekOfMonth (input ) {
-  const firstDayOfMonth = input.clone().startOf('month');
-  const firstDayOfWeek = firstDayOfMonth.clone().startOf('week');
-
-  const offset = firstDayOfMonth.diff(firstDayOfWeek, 'days');
-
-  return Math.ceil((input.date() + offset) / 7);
-}
-
-const RenderDay = ({ date, currentDate }) => { 
-
-  console.log(date)
-
+const RenderDay = ({ date, currentDate, onSelect }) => {
   const day = useMemo(() => {
     const objDay = {
       isCurrentMonth: false,
@@ -126,21 +138,27 @@ const RenderDay = ({ date, currentDate }) => {
     return objDay
   }, [currentDate, date])
 
+  const handleDaySelect = () => {
+    onSelect(date)    
+  }
+
   const week = new Date(date.format('YYYY-MM-DD')).getDay()
   return (
     <button
       type="button"
       className={classNames(
-        'group py-1 text-card bg-gray-200 hover:bg-white hover:shadow-xl duration-300 focus:z-10 rounded-lg h-32',
+        'group py-1 text-card focus:bg-white focus:shadow-xl duration-300 focus:z-10 rounded-lg h-32',
         day.isCurrentMonth ? 'bg-white' : 'bg-gray-50',
-        (day.isSelected || day.isToday) && 'font-semibold',
-        day.isSelected && 'text-card-focus bg-white',
+        (!day.isToday && !day.isSelected) && 'bg-gray-200',    
+        (day.isToday && !day.isSelected) && 'bg-gray-500 text-white',
+        (day.isToday && day.isSelected) && 'bg-white',
+        day.isSelected && 'text-card-focus bg-white font-semibold shadow-xl',
         !day.isSelected && day.isCurrentMonth && !day.isToday && 'text-gray-900',
-        !day.isSelected && !day.isCurrentMonth && !day.isToday && 'text-card',
-        day.isToday && !day.isSelected && 'text-indigo-600'
+        !day.isSelected && !day.isCurrentMonth && !day.isToday && 'text-card',        
       )}
+      onClick={handleDaySelect}
     >
-      <div className='flex flex-row justify-between pl-5 duration-200 rounded-full group-hover:font-semibold group-hover:text-black'>
+      <div className='flex flex-row justify-between pl-5 duration-200 rounded-full group-focus:font-semibold group-focus:text-black'>
         <div className='flex flex-col justify-start'>
           <span className='self-start'>{date.format('ddd')}</span>
           <time
@@ -157,26 +175,27 @@ const RenderDay = ({ date, currentDate }) => {
           </div>
         </div>
         <div className='flex flex-row items-center mr-5'>
-          <span className='flex items-center justify-center mr-3 text-white bg-red-600 rounded-md w-9 h-9'>1</span>
-          <span className='flex items-center justify-center mr-3 text-white bg-blue-600 rounded-md w-9 h-9'>2</span>
-          <span className='flex items-center justify-center text-white bg-purple-600 rounded-md w-9 h-9'>3</span>
+          <span className='flex items-center justify-center mr-3 text-white rounded-md bg-progress w-9 h-9'>1</span>
+          <span className='flex items-center justify-center mr-3 text-white rounded-md bg-card-accepted w-9 h-9'>2</span>
+          <span className='flex items-center justify-center text-white rounded-md bg-available w-9 h-9'>3</span>
         </div>
       </div>
     </button>
   )
 }
 
-const generateDays = ( selectedDay ) => {
+const generateDays = (selectedDay, handleDaySelect) => {
   const lastDay = selectedDay.daysInMonth()
   const month = selectedDay.month() + 1
   const year = selectedDay.year()
-  const days = []
-  for (let i = 1; i <= lastDay; i++){
+  const days = []  
+
+  for (let i = 1; i <= lastDay; i++) {
     const date = moment(`${year}-${month}-${i}`)
     days.push(
-      <RenderDay key={i} date={date} currentDate={selectedDay} />
-    )    
-  } 
+      <RenderDay key={i} date={date} currentDate={selectedDay} onSelect={handleDaySelect} />
+    )
+  }
   return days
 }
 
@@ -185,11 +204,38 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const Schedule = ({ calendar }) => {
-  console.log('month', calendar.atualDate.date())
-  const daysInMonth = useMemo(()=>{
-    return generateDays(calendar.atualDate)
-  },[calendar.atualDate])
+const Schedule = ({ calendar }) => {  
+  const [calendarDate, setCalendarDate] = useState(calendar.atualDate.clone())
+  const [selectedDate, setSelectedDate] = useState(calendar.atualDate.clone())
+
+  const handleDaySelect = useCallback((clickedDay) => {    
+    setSelectedDate(clickedDay.clone())
+  }, [])
+
+  const daysInMonth = useMemo(() => {
+    return generateDays(calendarDate, handleDaySelect)
+  }, [calendarDate, handleDaySelect])  
+
+  const nextMonth = () => {
+    setCalendarDate(calendarDate.clone().add(1, 'months'))
+  }
+
+  const prevMonth = () => {
+    setCalendarDate(calendarDate.clone().subtract(1, 'months'))
+  }
+
+  const nextAtualDate = () => {
+    const newDate = selectedDate.clone().add(1, 'days')
+    setSelectedDate(newDate)
+    setCalendarDate(newDate)
+  }
+
+  const prevAtualDate = () => {
+    const newDate= selectedDate.clone().subtract(1, 'days')
+    setSelectedDate(newDate)
+    setCalendarDate(newDate)
+  }
+
   return (
     <div className="flex flex-col h-full">
       <header className={`flex items-center justify-between flex-none px-6 py-4 border-b border-gray-200`}>
@@ -199,32 +245,52 @@ const Schedule = ({ calendar }) => {
             {'Schedule'}
           </span>
         </h1>
+        <span className="inline-flex rounded-md shadow-sm isolate">
+          <button
+            type="button"
+            className="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            onClick={prevAtualDate}
+          >            
+            <ChevronLeftIcon className="w-5 h-5" />
+            <span>Previous</span>
+          </button>
+          <button
+            type="button"
+            className="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+            onClick={nextAtualDate}
+          >
+            <span>Next</span>
+            <ChevronRightIcon className="w-5 h-5" />
+          </button>
+        </span>        
       </header>
       <div className="flex flex-row-reverse flex-auto bg-white isolate heightCalc">
-        <div className="flex flex-row flex-auto w-5/12 overflow-y-scroll">
-          <div className='flex flex-col'>
-            <HeaderSchedule date={'Sep 6'} />
+        <div className="flex flex-row flex-auto w-full overflow-scroll">
+          <div className='flex flex-col min-w-[38rem]'>
+            <HeaderSchedule date={selectedDate} />
             <BodySchedule startDay={8} endDay={20} events={classHours} />
           </div>
-          <div className='flex flex-col'>
-            <HeaderSchedule date={'Sep 7'} />
+          <div className='flex flex-col min-w-[38rem]'>
+            <HeaderSchedule date={selectedDate.clone().add(1, 'days')} />
             <BodySchedule startDay={8} endDay={20} events={classHours2} />
           </div>
         </div>
-        <div className="z-50 flex-none hidden w-5/12 max-w-md py-10 overflow-y-scroll border-l border-gray-100 shadow-xl md:block">
+        <div className="z-50 flex-none hidden w-1/4 max-w-md py-10 overflow-y-scroll border-l border-gray-100 shadow-xl md:block">
           <div className="flex items-center justify-between w-4/5 mx-auto text-center text-gray-900">
             <div className='flex items-start justify-center'>
               <button
                 type="button"
                 className="-m-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
+                onClick={prevMonth}
               >
                 <span className="sr-only">Previous month</span>
                 <ChevronLeftIcon className="w-5 h-5" aria-hidden="true" />
               </button>
-              <div className="flex-auto font-semibold">{calendar.atualDate.format('MMMM YYYY')}</div>
+              <div className="flex-auto font-semibold w-36">{calendarDate.format('MMMM YYYY')}</div>
               <button
                 type="button"
                 className="-m-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
+                onClick={nextMonth}
               >
                 <span className="sr-only">Next month</span>
                 <ChevronRightIcon className="w-5 h-5" aria-hidden="true" />

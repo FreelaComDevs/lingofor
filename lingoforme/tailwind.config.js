@@ -14,7 +14,8 @@ module.exports = {
         'btn-class-confirmed': '#707070',
         'card-accepted': '#A7E7D8',
         'text-card': '#52575D',
-        'text-card-focus': '#333333'
+        'text-card-focus': '#333333',
+        'card-class-done': '#ABABAB'
       }
     },
   },

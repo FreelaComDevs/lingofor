@@ -204,9 +204,9 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const Schedule = ({ calendar }) => {  
+const Schedule = ({ calendar, ...rest }) => {  
   const [calendarDate, setCalendarDate] = useState(calendar.atualDate.clone())
-  const [selectedDate, setSelectedDate] = useState(calendar.atualDate.clone())
+  const [selectedDate, setSelectedDate] = useState(calendar.atualDate.clone())  
 
   const handleDaySelect = useCallback((clickedDay) => {    
     setSelectedDate(clickedDay.clone())
@@ -237,6 +237,7 @@ const Schedule = ({ calendar }) => {
   }
 
   return (
+    <>
     <div className="flex flex-col h-full">
       <header className={`flex items-center justify-between flex-none px-6 py-4 border-b border-gray-200`}>
         <h1 className='flex flex-row gap-3 text-primary'>
@@ -303,7 +304,11 @@ const Schedule = ({ calendar }) => {
           </div>
         </div>
       </div>
+      <div className='w-full h-24 border border-red-600'>
+        
+      </div>
     </div>
+    </>
   )
 }
 

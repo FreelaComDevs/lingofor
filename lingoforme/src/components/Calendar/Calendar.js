@@ -92,8 +92,7 @@ class Calendar extends Component {
     this.props.setCalendarScreen(activeScreen)
   };
 
-  onDateClick = async (day) => {
-    // console.log(this.props.calendar.selectedLingoLanguageId)
+  onDateClick = async (day) => {   
     const {
       state: { filters },
       props: {
@@ -455,12 +454,7 @@ class Calendar extends Component {
               </button>
             </div>
           )}
-          {!isManager &&
-
-            <div className="listBoxNew">
-              <NextClass single={false} isCalendar={true} />
-            </div>
-          }
+          
         </div>
       </Fragment>
     );

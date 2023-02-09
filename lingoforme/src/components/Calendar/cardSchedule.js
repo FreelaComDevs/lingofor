@@ -6,7 +6,8 @@ import moment from 'moment'
 const CARD_TYPE = {
     'in-progress': 'bg-progress w-36',
     'available': 'bg-available w-28',
-    'accepted': 'bg-card-accepted w-36'
+    'accepted': 'bg-card-accepted w-36',
+    'done': 'bg-card-class-done w-36'
 }
 
 export const CardSchedule = ({ children, item, horas }) => {

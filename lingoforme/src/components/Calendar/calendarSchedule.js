@@ -9,8 +9,8 @@ import './style.css'
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
-import { setCalendarInitialParams, getScheduledClasses } from '../../actions/calendarActions';
 import moment from 'moment'
+import { Legend } from '../_common/tableClass/styles'
 
 const days = [
   { date: '2022-01-01', isCurrentMonth: true },
@@ -139,7 +139,7 @@ const RenderDay = ({ date, currentDate, onSelect }) => {
   }, [currentDate, date])
 
   const handleDaySelect = () => {
-    onSelect(date)    
+    onSelect(date)
   }
 
   const week = new Date(date.format('YYYY-MM-DD')).getDay()
@@ -149,12 +149,12 @@ const RenderDay = ({ date, currentDate, onSelect }) => {
       className={classNames(
         'group py-1 text-card focus:bg-white focus:shadow-xl duration-300 focus:z-10 rounded-lg h-32',
         day.isCurrentMonth ? 'bg-white' : 'bg-gray-50',
-        (!day.isToday && !day.isSelected) && 'bg-gray-200',    
+        (!day.isToday && !day.isSelected) && 'bg-gray-200',
         (day.isToday && !day.isSelected) && 'bg-gray-500 text-white',
         (day.isToday && day.isSelected) && 'bg-white',
         day.isSelected && 'text-card-focus bg-white font-semibold shadow-xl',
         !day.isSelected && day.isCurrentMonth && !day.isToday && 'text-gray-900',
-        !day.isSelected && !day.isCurrentMonth && !day.isToday && 'text-card',        
+        !day.isSelected && !day.isCurrentMonth && !day.isToday && 'text-card',
       )}
       onClick={handleDaySelect}
     >
@@ -188,7 +188,7 @@ const generateDays = (selectedDay, handleDaySelect) => {
   const lastDay = selectedDay.daysInMonth()
   const month = selectedDay.month() + 1
   const year = selectedDay.year()
-  const days = []  
+  const days = []
 
   for (let i = 1; i <= lastDay; i++) {
     const date = moment(`${year}-${month}-${i}`)
@@ -204,17 +204,17 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const Schedule = ({ calendar, ...rest }) => {  
+const Schedule = ({ calendar, ...rest }) => {
   const [calendarDate, setCalendarDate] = useState(calendar.atualDate.clone())
-  const [selectedDate, setSelectedDate] = useState(calendar.atualDate.clone())  
+  const [selectedDate, setSelectedDate] = useState(calendar.atualDate.clone())
 
-  const handleDaySelect = useCallback((clickedDay) => {    
+  const handleDaySelect = useCallback((clickedDay) => {
     setSelectedDate(clickedDay.clone())
   }, [])
 
   const daysInMonth = useMemo(() => {
     return generateDays(calendarDate, handleDaySelect)
-  }, [calendarDate, handleDaySelect])  
+  }, [calendarDate, handleDaySelect])
 
   const nextMonth = () => {
     setCalendarDate(calendarDate.clone().add(1, 'months'))
@@ -231,83 +231,102 @@ const Schedule = ({ calendar, ...rest }) => {
   }
 
   const prevAtualDate = () => {
-    const newDate= selectedDate.clone().subtract(1, 'days')
+    const newDate = selectedDate.clone().subtract(1, 'days')
     setSelectedDate(newDate)
     setCalendarDate(newDate)
   }
 
   return (
     <>
-    <div className="flex flex-col h-full">
-      <header className={`flex items-center justify-between flex-none px-6 py-4 border-b border-gray-200`}>
-        <h1 className='flex flex-row gap-3 text-primary'>
-          <img src={scheduleIcon} className='h-10 w-11' />
-          <span className='text-4xl font-bold'>
-            {'Schedule'}
+      <div className="flex flex-col h-full">
+        <header className={`flex items-center justify-between flex-none px-6 py-4 border-b border-gray-200`}>
+          <h1 className='flex flex-row gap-3 text-primary'>
+            <img src={scheduleIcon} className='h-10 w-11' />
+            <span className='text-4xl font-bold'>
+              {'Schedule'}
+            </span>
+          </h1>
+          <span className="inline-flex rounded-md shadow-sm isolate">
+            <button
+              type="button"
+              className="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+              onClick={prevAtualDate}
+            >
+              <ChevronLeftIcon className="w-5 h-5" />
+              <span>Previous</span>
+            </button>
+            <button
+              type="button"
+              className="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+              onClick={nextAtualDate}
+            >
+              <span>Next</span>
+              <ChevronRightIcon className="w-5 h-5" />
+            </button>
           </span>
-        </h1>
-        <span className="inline-flex rounded-md shadow-sm isolate">
-          <button
-            type="button"
-            className="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-            onClick={prevAtualDate}
-          >            
-            <ChevronLeftIcon className="w-5 h-5" />
-            <span>Previous</span>
-          </button>
-          <button
-            type="button"
-            className="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md hover:bg-gray-50 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-            onClick={nextAtualDate}
-          >
-            <span>Next</span>
-            <ChevronRightIcon className="w-5 h-5" />
-          </button>
-        </span>        
-      </header>
-      <div className="flex flex-row-reverse flex-auto bg-white isolate heightCalc">
-        <div className="flex flex-row flex-auto w-full overflow-scroll">
-          <div className='flex flex-col min-w-[38rem]'>
-            <HeaderSchedule date={selectedDate} />
-            <BodySchedule startDay={8} endDay={20} events={classHours} />
-          </div>
-          <div className='flex flex-col min-w-[38rem]'>
-            <HeaderSchedule date={selectedDate.clone().add(1, 'days')} />
-            <BodySchedule startDay={8} endDay={20} events={classHours2} />
-          </div>
-        </div>
-        <div className="z-50 flex-none hidden w-1/4 max-w-md py-10 overflow-y-scroll border-l border-gray-100 shadow-xl md:block">
-          <div className="flex items-center justify-between w-4/5 mx-auto text-center text-gray-900">
-            <div className='flex items-start justify-center'>
-              <button
-                type="button"
-                className="-m-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
-                onClick={prevMonth}
-              >
-                <span className="sr-only">Previous month</span>
-                <ChevronLeftIcon className="w-5 h-5" aria-hidden="true" />
-              </button>
-              <div className="flex-auto font-semibold w-36">{calendarDate.format('MMMM YYYY')}</div>
-              <button
-                type="button"
-                className="-m-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
-                onClick={nextMonth}
-              >
-                <span className="sr-only">Next month</span>
-                <ChevronRightIcon className="w-5 h-5" aria-hidden="true" />
-              </button>
+        </header>
+        <div className="flex flex-row-reverse flex-auto bg-white isolate heightCalc">
+          <div className="flex flex-row flex-auto w-full overflow-scroll">
+            <div className='flex flex-col min-w-[38rem]'>
+              <HeaderSchedule date={selectedDate} />
+              <BodySchedule startDay={8} endDay={20} events={classHours} />
             </div>
-            <FaCalendarAlt className='text-[#9CA3AF] text-base cursor-pointer hover:text-[#777c85]' />
+            <div className='flex flex-col min-w-[38rem]'>
+              <HeaderSchedule date={selectedDate.clone().add(1, 'days')} />
+              <BodySchedule startDay={8} endDay={20} events={classHours2} />
+            </div>
           </div>
-          <div className="grid w-4/5 grid-cols-1 gap-3 mx-auto mt-2 text-sm bg-white rounded-lg isolate">
-            {daysInMonth}
+          <div className="z-50 flex-none hidden w-1/4 max-w-md py-10 overflow-y-scroll border-l border-gray-100 shadow-xl md:block">
+            <div className="flex items-center justify-between w-4/5 mx-auto text-center text-gray-900">
+              <div className='flex items-start justify-center'>
+                <button
+                  type="button"
+                  className="-m-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
+                  onClick={prevMonth}
+                >
+                  <span className="sr-only">Previous month</span>
+                  <ChevronLeftIcon className="w-5 h-5" aria-hidden="true" />
+                </button>
+                <div className="flex-auto font-semibold w-36">{calendarDate.format('MMMM YYYY')}</div>
+                <button
+                  type="button"
+                  className="-m-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
+                  onClick={nextMonth}
+                >
+                  <span className="sr-only">Next month</span>
+                  <ChevronRightIcon className="w-5 h-5" aria-hidden="true" />
+                </button>
+              </div>
+              <FaCalendarAlt className='text-[#9CA3AF] text-base cursor-pointer hover:text-[#777c85]' />
+            </div>
+            <div className="grid w-4/5 grid-cols-1 gap-3 mx-auto mt-2 text-sm bg-white rounded-lg isolate">
+              {daysInMonth}
+            </div>
           </div>
         </div>
+        <Legend style={{ marginTop: '24px' }} className='px-10'>
+          <div className="scheduledLegend">
+            <div className="container"></div>
+            <h5>Agendadas</h5>
+          </div>
+          <div className="InprogressLegend">
+            <div className="container"></div>
+            <h5>em andamento</h5>
+          </div>
+          <div className="noShowLegend">
+            <div className="container"></div>
+            <h5> no show</h5>
+          </div>
+          <div className="cancelLegend">
+            <div className="container"></div>
+            <h5>cancelado out of limit</h5>
+          </div>
+          <div className="performedLegend">
+            <div className="container"></div>
+            <h5>realizadas</h5>
+          </div>
+        </Legend>
       </div>
-      <div className='w-full h-24 border border-red-600'>
-        
-      </div>
-    </div>
     </>
   )
 }

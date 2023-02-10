@@ -461,7 +461,6 @@ class Schedules extends Component {
                           <select name='focus' value={focus} onChange={ ({target: {value}}) => {
                             value ===  t("BTN_SPECIFIC") ? this.handlerSubjectEspecific(true, value) : this.handlerSubjectEspecific(false, value);
                           }}>
-                            <option value='Select'>{t('SELECT')}</option>
                             <option>{t('BTN_REGULAR')}</option>
                             <option>{t('BTN_SPECIFIC')}</option>
                           </select>
@@ -479,7 +478,7 @@ class Schedules extends Component {
                           </div>
                         </li>
                       </ul>
-                        <ul>
+                        <ul style={{justifyContent: "space-between"}}>
                         <li>
                           <span>{t('BTN_START_TIME')}:</span>
                           <select name='scheduledStart' onChange={handleChange}>
@@ -523,11 +522,12 @@ class Schedules extends Component {
                       </li>
                     </ul>
                   </div>
+                  <div className="buttons">
+                    <button className="button-blue" onClick={submitHandle}>{t('BTN_SCHEDULE_HOME')}</button>
+                  </div>
                 </div>
               </div>
-              <div className="buttons">
-                <button className="button-blue" onClick={submitHandle}>{t('BTN_SCHEDULE_HOME')}</button>
-              </div>
+             
             </Schedule>
           </div>
       </div>

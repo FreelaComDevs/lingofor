@@ -123,7 +123,7 @@ class HomeStudent extends Component {
               </div>
               { showing 
                 ? 
-                <div className="contentScheduling">
+                <div>
                   <SchedulesClass></SchedulesClass>
                 </div>
                 : null

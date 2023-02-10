@@ -13,7 +13,7 @@ export const Schedule = styled.div`
                     
     .boxWhite{
         margin-top: 15px;
-        padding: 0;
+        width: 350px;
 
         .selectDays{
             color: #403F4C;
@@ -27,7 +27,7 @@ export const Schedule = styled.div`
             }
 
             h4{
-                color: #403F4C;
+                color: #3d3d3d;
                 font-size: 12px;
                 margin: 24px 0 6px 0;
             }
@@ -178,7 +178,7 @@ export const Schedule = styled.div`
 
         .focus{
             display: flex;
-            flex-direction: space-between;
+            justify-content: space-between;
         }
 
             
@@ -246,7 +246,7 @@ export const Schedule = styled.div`
             display: none;
 
             h4{
-                color: #403F4C;
+                color: #3d3d3d;
                 font-size: 12px;
                 // margin: 24px 0 6px 0;
             }
@@ -372,12 +372,13 @@ export const Schedule = styled.div`
         .button-blue{
             background-color: #004FFF;
             border: 1px solid #004FFF;
-            width: 128px;
-            height: 38px;
+            width: 165px;
+            height: 34px;
             margin-top: 24px;
+            margin-bottom: 24px;
             border-radius: 26px;
             color: #fff;
-            font-weight: bold;
+            font-size: 16px;
             cursor: pointer
         }
 

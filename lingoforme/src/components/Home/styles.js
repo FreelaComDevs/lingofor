@@ -159,16 +159,15 @@ export const Profile = styled.div`
 
     .contentCycles {
         width: 50%;
-        height: 752px;
+        height: 620px;
         background: #FFFFFF 0% 0% no-repeat padding-box;
         box-shadow: 0px 5px 25px #52575D1A;
         border-radius: 9px 9px 0px 0px;
+        margin-right: 30px;
         opacity: 1; 
     }
 
     .contentNextClass{
-        margin-left: 20px;
-        margin-right: 20px;
         width: 100%;
     }
 

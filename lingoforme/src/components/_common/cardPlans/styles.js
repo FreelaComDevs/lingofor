@@ -21,10 +21,14 @@ width: 100%;
         flex-wrap: wrap;
         align-items: center;
 
+        .containerPlan {
+            width: 292px;
+        }
+
         
         .itensBox{
             h3{
-                font-size: 23px;
+                font-size: 22px;
                 font-weight: normal;
                 color: #555D67;
                 margin: 0;
@@ -35,7 +39,7 @@ width: 100%;
             }
 
             span{
-                font-size: 18px;
+                font-size: 22px;
                 font-weight: bold;
                 color: #555D67;
 
@@ -61,7 +65,7 @@ width: 100%;
         .automaticallyRenews {
             color: #5778FB;
             font-weight: normal;
-            font-size: 12px;
+            font-size: 15px;
         }
 
         .containerExtra {
@@ -78,7 +82,7 @@ width: 100%;
         .extraClasses {
             color: #004EFD;
             font-weight: normal;
-            font-size: 20px;
+            font-size: 22px;
             margin-left -25px;
         }
 

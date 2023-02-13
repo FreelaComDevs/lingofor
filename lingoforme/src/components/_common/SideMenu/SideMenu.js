@@ -494,9 +494,20 @@ class SideMenu extends Component {
               </div>
             </ul>
 
+            <div className="language">
+              <h2>{this.props.t("LANGUAGE")}:</h2>
+              <Select disableUnderline value={this.state.lang} onChange={this.changeLanguage} className={'select'} displayEmpty name='lang' // className={classes.selectEmpty}
+              >
+                <MenuItem value={'en'}><FlagIcon size={25} code='US' /></MenuItem>
+                <MenuItem value={'pt'}><FlagIcon size={25} code='BR' /></MenuItem>
+                <MenuItem value={'es'}><FlagIcon size={25} code='ES' /></MenuItem>
+              </Select>
+            </div>
+
+
             <IconList>
               <div className='box-link-app'>
-                <h3 className='text'>Para ter uma experiência mobile, baixe nosso app nas lojas:</h3>
+                <h3 className='text'>Baixe nosso app:</h3>
                 <div className='icons-app'>
                   <a href='https://play.google.com/store/apps/details?id=me.lingofor.app&pli=1' target={"_blank"}>
                     <img src={PlayStore} style={{ padding: "0px" }} />
@@ -508,16 +519,7 @@ class SideMenu extends Component {
               </div>
             </IconList>
 
-            <div className="language">
-              <h2>{this.props.t("LANGUAGE")}:</h2>
-              <Select disableUnderline value={this.state.lang} onChange={this.changeLanguage} className={'select'} displayEmpty name='lang' // className={classes.selectEmpty}
-              >
-                <MenuItem value={'en'}><FlagIcon size={25} code='US' /></MenuItem>
-                <MenuItem value={'pt'}><FlagIcon size={25} code='BR' /></MenuItem>
-                <MenuItem value={'es'}><FlagIcon size={25} code='ES' /></MenuItem>
-              </Select>
-            </div>
-
+           
             <IconList>
               <h3 className='title mt-52'>Siga-nos</h3>
               <div className='icons'>
@@ -539,11 +541,11 @@ class SideMenu extends Component {
               </div>
             </IconList>
 
-            {
+            {/* {
               this.state.userRole == 'student' &&
 
-              <ShareButton />
-            }
+              // <ShareButton />
+            } */}
 
           </Nav>
         }

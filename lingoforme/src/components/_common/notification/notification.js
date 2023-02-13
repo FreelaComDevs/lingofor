@@ -20,7 +20,7 @@ const NotificationPLace = ({ notifications, getUserNotifications, user }) => {
             <Link to={"/notifications"}>
                 <div className='relative'>
                     <img src={IconNotification} />
-                    <span className='notification'>{unreadTotal}</span>
+                    <span className='notification'>{unreadTotal >= 99 ? "99+" : unreadTotal}</span>
                 </div>
             </Link>
         </Notification>

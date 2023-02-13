@@ -6,7 +6,7 @@ import { AvatarArea } from '../avatar/avatar';
 import { NotificationArea } from "../notification/notification";
 import { InfoCard } from '../infoArea/infoCard';
 import { RatingArea } from '../infoArea/ratingArea';
-import { EvaluationPending } from '../EvaluationPending';
+import { Evaluation } from '../EvaluationPending/evaluation';
 
 const Header = ({ title, icon, children, user }) => {
   return (
@@ -14,25 +14,30 @@ const Header = ({ title, icon, children, user }) => {
       <header>
         <div className="header-holder">
           <div className='container conteinar-between'>
-            <div className='info-area'>
-              <InfoCard>
-                <RatingArea
-                  data={[{
-                    flag: "US",
-                    rating: 3.7
-                  },
-                  {
-                    flag: "BR",
-                    rating: 4.3
-                  },
-                  {
-                    flag: "ES",
-                    rating: 3.3
-                  }
-                  ]}
-                />
-              </InfoCard>
-            </div>
+            {user.role != "student" ?
+                <div className='info-area'>
+                <InfoCard>
+                  <RatingArea
+                    data={[{
+                      flag: "US",
+                      rating: 3.7
+                    },
+                    {
+                      flag: "BR",
+                      rating: 4.3
+                    },
+                    {
+                      flag: "ES",
+                      rating: 3.3
+                    }
+                    ]}
+                  />
+                </InfoCard>
+              </div>
+             : 
+              <Evaluation />
+             }
+            
             <div className='user-area'>
               <NotificationArea />
               <AvatarArea

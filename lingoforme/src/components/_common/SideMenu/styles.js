@@ -158,7 +158,7 @@ export const Nav = styled.div`
     .language{
         display: flex;
         width: 100%;
-        margin-top: 28px;
+        margin-bottom: 20px;
         align-items: center;
         justify-content: center;
         background: transparent;
@@ -286,7 +286,7 @@ list-style: none;
     background-color: #f1f1f1;
     border: 1px solid #707070;
     width: 80%;
-    padding: 8px;
+    padding: 15px;
     border-radius: 8px;
     margin: auto
 }

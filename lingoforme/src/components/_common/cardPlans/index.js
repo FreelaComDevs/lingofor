@@ -26,7 +26,7 @@ export const CardPlan = (
             <div className="bigBox">
                 <div className="boxItem">
                     <div className="item">
-                        <div className="itensBox dflex">
+                        <div className="itensBox containerPlan dflex">
                             <div>
                                 <MenuItem value={valueMenuItem}>
                                     <FlagIcon size={sizeMenuItem} code={codeMenuItem} />
@@ -50,6 +50,7 @@ export const CardPlan = (
                                 </div>
                                 <h6 className="automaticallyRenews">
                                     {resetPlans}
+                                    {" "}
                                     {subResetPlan}
                                 </h6>
                             </div>

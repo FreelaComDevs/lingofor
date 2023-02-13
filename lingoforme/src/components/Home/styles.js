@@ -144,14 +144,13 @@ export const Profile = styled.div`
 
     .content{
         display: flex;
-        justify-content: space-between;
         max-width: 87%;
-        margin: 20px auto;
+        margin: 50px auto;
     }
 
     .contentScheduling {
-        width: 30%;
-        height: 550px;
+        width: 50%;
+        height: 700px;
         background: #FFFFFF 0% 0% no-repeat padding-box;
         box-shadow: 0px 5px 25px #52575D1A;
         border-radius: 9px 9px 0px 0px;
@@ -159,17 +158,17 @@ export const Profile = styled.div`
     }
 
     .contentCycles {
-        width: 30%;
-        height: 613px;
+        width: 50%;
+        height: 620px;
         background: #FFFFFF 0% 0% no-repeat padding-box;
         box-shadow: 0px 5px 25px #52575D1A;
         border-radius: 9px 9px 0px 0px;
+        margin-right: 30px;
         opacity: 1; 
     }
 
     .contentNextClass{
-        margin-left: 20px;
-        margin-right: 20px;
+        width: 100%;
     }
 
     .buttons{
@@ -248,7 +247,22 @@ export const Profile = styled.div`
     .nextHome{
         .listScheduleCard{                    
             width: 94%;
-            margin-left: 0px;                 
+            margin-left: 0px;  
+        }
+
+        .buttonShed {
+            text-align: right;
+
+            button {
+                background-color: #004FFF;
+                width: 165px;
+                height: 34px;
+                border-radius: 17px;
+                opacity: 1;
+                border: none;
+                font-size: 16px;
+                color: #FFF;
+            }
         }
 
         .titleNextClass {
@@ -264,6 +278,7 @@ export const Profile = styled.div`
         }
         .separator {
             background-color: #004FFF;
+            margin-top: 10px;
             height: 3px;
             width: 100%
         }

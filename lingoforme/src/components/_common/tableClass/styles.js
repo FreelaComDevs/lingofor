@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const Scroll = styled.div`
-    max-height: 300px;
+    max-height: 380px;
     overflow-y: scroll;
     
 `;
 
 export const Legend = styled.div`
-    margin-top: 200px;
+    margin-top: 70px;
     display: flex;
     justify-content: space-between;
 
@@ -19,7 +19,6 @@ export const Legend = styled.div`
             height: 26px;
             background: #91E2CF;
             border-radius: 5px;
-            opacity: 0.8;
             margin-right: 10px;
         }
         h5{
@@ -37,7 +36,6 @@ export const Legend = styled.div`
             height: 26px;
             background: #A19CEC;
             border-radius: 5px;
-            opacity: 0.8;
             margin-right: 10px;
         }
         h5{
@@ -54,7 +52,6 @@ export const Legend = styled.div`
             height: 26px;
             background: #F2B0B0;
             border-radius: 5px;
-            opacity: 0.8;
             margin-right: 10px;
         }
         h5{
@@ -71,7 +68,6 @@ export const Legend = styled.div`
             height: 26px;
             background: #98BEAA;
             border-radius: 5px;
-            opacity: 0.8;
             margin-right: 10px;
         }
         h5{
@@ -88,7 +84,6 @@ export const Legend = styled.div`
             height: 26px;
             background: #ABABAB;
             border-radius: 5px;
-            opacity: 0.8;
             margin-right: 10px;
         }
         h5{

@@ -7,8 +7,11 @@ import { NotificationArea } from "../notification/notification";
 import { InfoCard } from '../infoArea/infoCard';
 import { RatingArea } from '../infoArea/ratingArea';
 import { Evaluation } from '../EvaluationPending/evaluation';
+import moment from 'moment'
 
-const Header = ({ title, icon, children, user }) => {
+const Header = ({ title, icon, children, user, ...rest }) => {
+  console.log('user', user)
+  const formatSinceDate = moment(user.createdAt).format('MMMM/YYYY')
   return (
     <Head>
       <header>
@@ -42,9 +45,9 @@ const Header = ({ title, icon, children, user }) => {
               <NotificationArea />
               <AvatarArea
                 name={user.name}
-                language={"Português"}
-                country={"Brasil"}
-                date={"02/09/2020"}
+                language={user.nativeLanguageName}
+                country={user.countryName}
+                date={formatSinceDate}
                 href={"/manage-account"}
                 src={user.picture ?? "https://www.seekpng.com/png/detail/847-8474751_download-empty-profile.png"}
               />

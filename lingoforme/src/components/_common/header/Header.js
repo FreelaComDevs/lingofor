@@ -9,8 +9,6 @@ import { RatingArea } from '../infoArea/ratingArea';
 import { Evaluation } from '../EvaluationPending/evaluation';
 
 const Header = ({ title, icon, children, user }) => {
-  console.log("userINFO")
-  console.log(user)
   return (
     <Head>
       <header>

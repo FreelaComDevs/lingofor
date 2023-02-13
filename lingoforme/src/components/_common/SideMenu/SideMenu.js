@@ -451,8 +451,7 @@ class SideMenu extends Component {
         docked={this.state.sidebarDocked}
         onSetOpen={this.onSetSidebarOpen}
         // sidebarWidth={this.state.sidebarWidth}
-        transitions={false}
-        onSetOpen={this.onSetSidebarOpen}
+        transitions={false}        
         styles={{ root: { height: '200%' }, overlay: { backgroundColor: 'rgba(255,255,255)' }, sidebar: { boxshadow: 'rgba(0, 0, 0, 0.15) 0px 0px 0px', backgroundColor: '#fff', overflow: 'hidden', width: this.state.sidebarWidth } }}
         sidebar={
           <Nav>

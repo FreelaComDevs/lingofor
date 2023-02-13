@@ -23,8 +23,8 @@ export const Head = styled.div`
         background-position: 100% -4px;
         background-repeat: no-repeat;
         height: 120px;
-        width: 100%;        
-        margin-bottom: 72px;           
+        width: 100%;
+        margin-bottom: 4px;  
     }
 
     .user-area{

@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment'
-import { Legend } from '../_common/tableClass/styles'
+import { Legend } from '../Home/styles'
 
 const days = [
   { date: '2022-01-01', isCurrentMonth: true },
@@ -307,7 +307,7 @@ const Schedule = ({ calendar, ...rest }) => {
         <Legend style={{ marginTop: '24px' }} className='px-10'>
           <div className="scheduledLegend">
             <div className="container"></div>
-            <h5>Agendadas</h5>
+            <h5>aceitas</h5>
           </div>
           <div className="InprogressLegend">
             <div className="container"></div>

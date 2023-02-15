@@ -5,8 +5,6 @@ export const Profile = styled.div`
         width: 100%;
         max-width: 87%;
         margin: 0 auto;
-        margin-bottom: 50px;
-        margin-top: -54px;
 
         .nameScreen{
             display: flex;
@@ -14,8 +12,10 @@ export const Profile = styled.div`
 
             .iconScreen{
                 img{
-                    width:90px;
-                    height:90px;
+                    width:25px;
+                    height:22px;
+                    margin-top: 15px;
+                    margin-right: 5px;
                 }
             }
 
@@ -245,13 +245,19 @@ export const Profile = styled.div`
     
 
     .nextHome{
+        .containerNextClass {
+            justify-content: space-between;
+            display: flex;
+        }
+
         .listScheduleCard{                    
             width: 94%;
             margin-left: 0px;  
         }
 
         .buttonShed {
-            text-align: right;
+            width: 100px;
+            margin-right: 52px;
 
             button {
                 background-color: #004FFF;
@@ -350,5 +356,113 @@ export const Profile = styled.div`
                 width: 100%;
             }
         }
+    }
+`;
+
+export const Legend = styled.div`
+    display: flex;
+    margin: 0 auto;
+    padding: 100px 0px;
+
+    .scheduledLegend{
+        display: flex;
+
+        .container{
+            width: 26px;
+            height: 26px;
+            background: #91E2CF;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        h5{
+            color: #707070;
+            opacity: 1;
+            margin-top: 3px;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+    }
+    .InprogressLegend{
+        display: flex;
+
+        .container{
+            width: 26px;
+            height: 26px;
+            background: #A19CEC;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        h5{
+            color: #707070;
+            opacity: 1;
+            margin-top: 3px;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+    }
+    .noShowLegend{
+        display: flex;
+
+        .container{
+            width: 26px;
+            height: 26px;
+            background: #F2B0B0;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        h5{
+            color: #707070;
+            opacity: 1;
+            margin-top: 3px;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+    }
+    .cancelLegend{
+        display: flex;
+
+        .container{
+            width: 26px;
+            height: 26px;
+            background: #98BEAA;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        h5{
+            color: #707070;
+            opacity: 1;
+            margin-top: 3px;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+    }
+    .performedLegend{
+        display: flex;
+
+        .container{
+            width: 26px;
+            height: 26px;
+            background: #ABABAB;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        h5{
+            color: #707070;
+            opacity: 1;
+            margin-top: 3px;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        margin-top: 50px;
+        flex-wrap: wrap;
+
+        .container{
+            margin-bottom: 20px
+        }
+
     }
 `;

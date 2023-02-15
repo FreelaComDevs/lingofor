@@ -10,6 +10,7 @@ import { setClassesForRating } from '../../actions/userActions'
 import { getLingoRatingCriterias } from '../../actions/lingoActions'
 import { FilterUser, RatingModal, Next } from './styles'
 import ModalRating from './modal_rating'
+import ModalRatingStudent from './modal_rating_student'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import { FlagIcon } from 'react-flag-kit'
@@ -542,8 +543,13 @@ class ClassRatings extends Component {
               <div align='center'>
                 <h4 style={{fontSize: '24px', fontFamily: 'Quicksand', fontWeight: '500', color:'#797881',  margin: '20px'}}>No results</h4>
               </div>
-          }         
-        { !!classesForRating.length && !!ratingCriterias.length && <ModalRating target={classesForRating[0].target} updateScreen={applyFilters} /> }
+          } 
+
+          {
+            this.user.role == "teacher" ? 
+            !!classesForRating.length && !!ratingCriterias.length && <ModalRating target={classesForRating[0].target} updateScreen={applyFilters} />
+            :  !!classesForRating.length && !!ratingCriterias.length && <ModalRatingStudent target={classesForRating[0].target} updateScreen={applyFilters} />
+          }
         </section>
       </div>
     )

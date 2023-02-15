@@ -1,4 +1,10 @@
-import styled from 'styled-components';;
+import styled from 'styled-components';
+
+export const Scroll = styled.div`
+    max-height: 380px;
+    overflow-y: scroll;
+    
+`;
 
 export const Next = styled.div`
     h2{
@@ -216,8 +222,7 @@ export const Request = styled(Next)`
             margin: 12px 0 10px 0;
             padding: 0;
             display: flex;
-           
-            
+              
             .borderLeft{
                 width: 4px;
                 border-radius: 26px 0 0 26px;
@@ -267,8 +272,8 @@ export const Request = styled(Next)`
                         font-family: 'Work Sans', sans-serif;
 
                         .fa{
-                            margin-left: 7px;
-                            font-size: 17px;
+                            margin-left:37px;
+                            font-size: 14px;
                             font-weight: 100;
                         }
                     }

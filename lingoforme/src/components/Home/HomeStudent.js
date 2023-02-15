@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { translate } from "react-i18next";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import NextClass from "../_common/tableClass/nextClass";
+import NextClassHomeStudent from "../_common/tableClass/nextClassHomeStudent";
 import ButtonSchedule from "../Home/Componentes/Buttons/index";
 import PlaceholderPlans from '../../images/placeholder/placeholder-noplan.png'
-import TablePlans from '../Home/Componentes/TabelaPlans/index';
+import iconHome from '../../images/icon-home-aluno.svg'
+import TablePlansHomeStudent from '../Home/Componentes/TabelaPlans/table_plans_home_student';
 import ModalRating from '../ClassRating/modal_rating'
 import moment from "moment";
 import Dialog from '@material-ui/core/Dialog';
@@ -15,6 +16,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Buttons } from '../Home/Componentes/Buttons/styles'
 import SchedulesClass from '../ScheduleClass/index'
+import { Legend } from './styles'
 class HomeStudent extends Component {
 
   constructor (props) {
@@ -88,7 +90,7 @@ class HomeStudent extends Component {
         <div className="nameScreen">
           <div className="iconScreen">
           <img
-            src={""}
+            src={iconHome}
             alt='IconHome'
           /> 
           </div>
@@ -102,7 +104,7 @@ class HomeStudent extends Component {
 
       { plans?.length > canceledPlans?.length ?
           <div>
-            <TablePlans/>
+            <TablePlansHomeStudent/>
             {/* <ButtonSchedule /> */}
             <div className="content">
               <div className="contentCycles">
@@ -110,14 +112,44 @@ class HomeStudent extends Component {
               </div>
               <div className="contentNextClass">
               <div className="nextHome">
+              <div className="containerNextClass">
+              <h2 className="titleNextClass">
+                <div>
+                    {t("BTN_UPCOMING_CLASS")}
+                </div>
+              </h2>
                 {!showing ?
                 <div className="buttonShed">
                 <button onClick={() => this.setState({ showing: !showing })}>+ AGENDAR AULA</button>
               </div> 
                : null}
+              </div>
                 
-                <NextClass single={true} />
-                <NextClass />
+                <NextClassHomeStudent single={true} />
+                <NextClassHomeStudent />
+
+                <Legend>
+                  <div className="scheduledLegend">
+                    <div className="container"></div>
+                    <h5>Agendadas</h5>
+                  </div>
+                  <div className="InprogressLegend">
+                    <div className="container"></div>
+                    <h5>em andamento</h5>
+                  </div>
+                  <div className="noShowLegend">
+                    <div className="container"></div>
+                    <h5> no show</h5>
+                  </div>
+                  <div className="cancelLegend">
+                    <div className="container"></div>
+                    <h5>cancelado out of limit</h5>
+                  </div>
+                  <div className="performedLegend">
+                    <div className="container"></div>
+                    <h5>realizadas</h5>
+                  </div>  
+                </Legend>
               </div>
                 
               </div>

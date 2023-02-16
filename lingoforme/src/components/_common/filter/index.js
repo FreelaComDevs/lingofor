@@ -191,7 +191,7 @@ class Filters extends Component {
                         <div className="filtersBottom">
                             <div className="items">
                                 <div className="extras">
-                                    <a href="#" onClick={() => this.setState({isVisibleExtra: !this.state.isVisibleExtra})}>Hide extras ></a>
+                                    <a href="#" onClick={() => this.setState({isVisibleExtra: !this.state.isVisibleExtra})}>Hide extras</a>
                                 </div>
                                 <div className="buttons">
                                     <button type="reset">Clear filters</button>

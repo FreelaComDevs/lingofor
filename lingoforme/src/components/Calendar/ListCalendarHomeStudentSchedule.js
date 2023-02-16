@@ -7,16 +7,14 @@ import { getNextClasses, getRequestedClasses} from '../../actions/userActions';
 import { updateCalendarClasses } from '../../actions/calendarActions';
 import { getUserPlans } from '../../actions/userActions';
 import moment from "moment";
-import ButtonDrive from '../_common/button/ButtonDrive'
 import CancelDialog from './CancelDialog';
 import Services from '../_api/Services';
 import Loading from 'react-fullscreen-loading';
 import Service from '../../components/_api/Services'
 import timezone from 'moment-timezone'
-import ButtonDriveContent from '../_common/button/ButtonDriveContent';
-
+import { CardScheduleAluno } from './styleHomeStudent'
 const serv = new Service()
-class ListCalendarSchedule extends Component {
+class ListCalendarHomeStudentSchedule extends Component {
   state = {
     cancelAlertOpen: false,
     alertOpen: false,
@@ -27,7 +25,7 @@ class ListCalendarSchedule extends Component {
     recurrentScheduleEndDate: '',
     recurrentScheduleId: '',
     allSeqClasses: [],
-    languageClass:''//English, Spanish, Portuguese
+    languageClass:''
   }
 
   service = new Services()
@@ -42,7 +40,7 @@ class ListCalendarSchedule extends Component {
 
   cancelSubmit = async (message, cancelledBy, recurrentSchedule, cancelAllRecurrences) => {
     this.setState({ loading: true, cancelAlertOpen: false })
-    const { schedule, getNextClasses, getRequestedClasses,  updateCalendarClasses, getUserPlans, isCalendar } = this.props;
+    const { schedule, getNextClasses, getRequestedClasses,  updateCalendarClasses, getUserPlans } = this.props;
     const url = 'classSchedules/cancelClassSchedule';
     const { role } = JSON.parse(localStorage.getItem("@lingo"))
 
@@ -125,7 +123,6 @@ class ListCalendarSchedule extends Component {
     const localTime = this.service.getLocalTimeFromUtc()
     const endDatetimeUTC = moment.utc(schedule.originalScheduledDateTimeUTC).add(30, "minutes")
     let canCancel = localTime.isBefore(endDatetimeUTC)
-    //Se for student ou\ apenas pode cancelar até o inicio da aula
     if(role === "student" || role === "teacher"){
       canCancel = localTime.isBefore(moment.utc(schedule.originalScheduledDateTimeUTC))
     }
@@ -149,11 +146,9 @@ class ListCalendarSchedule extends Component {
     const {
       props: {schedule },
     } = this
-    //Verfica se o toolId é um link
     const isLink = (schedule.student && schedule.student.classToolId && schedule.student.classToolId.indexOf('http') > -1)
       || (schedule.container && schedule.container.classToolId && schedule.container.classToolId.indexOf('http') > -1);
 
-    // define os dados caso seja uma aula demo ou uma aula normal
     const classTool = (schedule.student && schedule.student.classTool) ? schedule.student.classTool :
                         (schedule.container && schedule.container.classTool) ? schedule.container.classTool : null
 
@@ -216,44 +211,12 @@ class ListCalendarSchedule extends Component {
     return timezone.tz(time, timeTimezone).clone().tz(user.timezone)
   }
 
-  render () {
-    
-    const linkPT = {
-      'A0': 'https://datastudio.google.com/s/tJflG3yqjnM',
-      'A1': 'https://datastudio.google.com/s/q5z-MNLnk0E',
-      'A2': 'https://datastudio.google.com/s/inCnO6TPFzM',
-      'B1': 'https://datastudio.google.com/s/g_5qDNF31ew',
-      'B2': 'https://datastudio.google.com/s/svS4Gzfr9To',
-      'C1': 'https://datastudio.google.com/s/rMpuwWp2F6I',
-      'C2': 'https://datastudio.google.com/s/qkQVK1Ax40U',
-      'DM': 'https://datastudio.google.com/s/s6jFu5jFh9c'
-    };
-    const linkEN = {
-      'A0': 'https://datastudio.google.com/s/gD4Az9OWPOA',
-      'A1': 'https://datastudio.google.com/s/n9ywaqm-jog',
-      'A2': 'https://datastudio.google.com/s/r0OeXGLy-oY',
-      'B1': 'https://datastudio.google.com/s/uHOVpOsH_8M',
-      'B2': 'https://datastudio.google.com/s/u6N1eB0xc9c',
-      'C1': 'https://datastudio.google.com/s/kEH1ebHT3Cc',
-      'C2': 'https://datastudio.google.com/s/ivxtvC4K71g',
-      'DM': 'https://datastudio.google.com/s/lT0p2x6AoQk'
-    }
-    const linkES = {
-      'A0': 'https://datastudio.google.com/s/lgoaNSX9fS8',
-      'A1': 'https://datastudio.google.com/s/tSJ6u7Uj8I4',
-      'A2': 'https://datastudio.google.com/s/nPwsr1stAgQ',
-      'B1': 'https://datastudio.google.com/s/ukEKcy_VluU',
-      'B2': 'https://datastudio.google.com/s/mIGmb5bAgqc',
-      'C1': 'https://datastudio.google.com/s/lbXw3WeD2wA',
-      'C2': 'https://datastudio.google.com/s/hSgn5GLrTsM',
-      'DM': 'https://datastudio.google.com/s/rgchKd2G7nY'
-    }
+  render () {  
     const {
       closeCancelAlert,
       cancelSubmit,
       ConfirmedCardItem,
       CancelCardItem,
-      ClassToolCardItem,
       props: {t, history, schedule },
       state: { cancelAlertOpen, loading, recurrentSchedule, recurrentScheduleId, sequentialScheduleCancelClasses, classes,recurrentScheduleEndDate, allSeqClasses }
     } = this    
@@ -261,140 +224,125 @@ class ListCalendarSchedule extends Component {
     const isStudent = role === "student"
     const isTeacher = role === "teacher"
     const isManager = role === "companyManager" || role === "customerService" || role === "coordinator"
-    const isDemo = schedule.target === "demo"
-    const isFirstClass = schedule && schedule.student && schedule.student.studentLevelGrades && schedule.student.studentLevelGrades.length === 0 && schedule.type !== "trial"? true : false
     const hasTeacher = !!schedule.teacher
-    const time = this.userTimezoneConvert(schedule.originalScheduledDateTimeUTC,'UTC')
-    const initialDate = time.format(t('DATE_FORMAT')); //time.format("DD/MM/YYYY")
-    const initialDay = t(time.format("dddd"))
-    const initialTime = time.format("hh:mm A")
-    const finalTime = time.clone().add(30, "minutes").format("hh:mm A")
-    const mobilePhone = schedule.teacher && schedule.teacher.user.userPhones.find( item => item.userPhoneTypeId === 3)
-      ? schedule.teacher.user.userPhones.find( item => item.userPhoneTypeId === 3).phone
-      : ""
 
-    return (
-      <Fragment>
-        <Loading loading={loading} background="rgba(0,0,0,0.6)" loaderColor="#3498db"/>
-        <CancelDialog
-          openCancelAlert={cancelAlertOpen}
-          closeCancelAlert={closeCancelAlert}
-          cancelSubmit={cancelSubmit}
-          recurrentSchedule={recurrentSchedule}
-          sequentialScheduleCancelClasses={sequentialScheduleCancelClasses}
-          recurrentScheduleId={recurrentScheduleId}
-          classes={classes}
-          recurrentScheduleEndDate={recurrentScheduleEndDate}
-          allSeqClasses={allSeqClasses}
-        />
-        <div className="listScheduleCard">
-          <div className="infosAulas">
+  return (
+    <Fragment>
+      <Loading loading={loading} background="rgba(0,0,0,0.6)" loaderColor="#3498db"/>
+      <CancelDialog
+        openCancelAlert={cancelAlertOpen}
+        closeCancelAlert={closeCancelAlert}
+        cancelSubmit={cancelSubmit}
+        recurrentSchedule={recurrentSchedule}
+        sequentialScheduleCancelClasses={sequentialScheduleCancelClasses}
+        recurrentScheduleId={recurrentScheduleId}
+        classes={classes}
+        recurrentScheduleEndDate={recurrentScheduleEndDate}
+        allSeqClasses={allSeqClasses}
+      />
+    <div>
+      <CardScheduleAluno>
+        
+      <div className="listScheduleCardH" style={schedule.status === "canceled" && !
+      schedule.status === "pending"  ? {border: "3px solid #ff5666"} : {border: "3px solid #91E2CF"}}>
+        <div className="infosAulas">
           <h3 className="scheduleDateTime">
-            {/* {`${initialDate} • ${initialDay} • ${initialTime} - ${finalTime}`} */}
             {schedule.timeTotal}
           </h3>
-          <ClassToolCardItem/>
-          </div>
-          <div className='scheduleDetails'>
-            <div className="scheduleDetailsInfo">
+        </div>
+        <div className='scheduleDetails'>
+          <div className="scheduleDetailsInfo">
             <div className="scheduleLanguage">
               <h4 className="scheduleLanguageName">
                 <FlagIcon code={schedule.lingoLanguage.flag}/>
                 {t(schedule.lingoLanguage.language.name.toUpperCase())}
               </h4>
               { isManager && (
-                <h4 className="scheduleLanguageLevels" >
-                  { schedule.student && schedule.student.studentLevelGrades && (
-                    schedule.student.studentLevelGrades.map(scheduleLevel => (
-                      <Fragment key={JSON.stringify(scheduleLevel)}>
-                        {`${t('CARD_PLAN_LEVEL')}: `}
-                        { scheduleLevel.level.level }
-                      </Fragment>
-                    ))
-                  )}
-                  { schedule.container && (
-                    <Fragment>
-                      {`${t('CARD_PLAN_LEVEL')}: `}
-                      { schedule.container.levelByLingo
-                        ? schedule.container.levelByLingo
-                        : schedule.container.levelByStudent
-                      }
-                    </Fragment>
-                  )}
-                </h4>
+              <h4 className="scheduleLanguageLevels" >
+                { schedule.student && schedule.student.studentLevelGrades && (
+                schedule.student.studentLevelGrades.map(scheduleLevel => (
+                <Fragment key={JSON.stringify(scheduleLevel)}>
+                  {`${t('CARD_PLAN_LEVEL')}: `}
+                  { scheduleLevel.level.level }
+                </Fragment>
+                ))
+                )}
+                { schedule.container && (
+                <Fragment>
+                  {`${t('CARD_PLAN_LEVEL')}: `}
+                  { schedule.container.levelByLingo
+                  ? schedule.container.levelByLingo
+                  : schedule.container.levelByStudent
+                  }
+                </Fragment>
+                )}
+              </h4>
               )}
             </div>
+
             <div className="scheduleLanguageDetails">
               { schedule.classScheduleDetails.length > 0 && (
+              <div className="typeClass">
                 <h4 className="scheduleLanguageContent">
-                  {`${t("CARD_CLASS_CONTENT")}: ${t(schedule.classScheduleDetails[0].focus.toUpperCase())}`}
-                  { isFirstClass && ` • ${t("FIRST_CLASS")}`}
-                  { schedule.type  === 'trial' && ` • ${t("TRIAL_CLASS")}`}
+                  {`${t("CARD_CLASS_CONTENT")}`}
                 </h4>
+                <h4 className="typeText">
+                  {`: ${t(schedule.classScheduleDetails[0].focus.toUpperCase())}`}
+                </h4>
+              </div>
+
               )}
               { !isStudent && schedule.studentPlan && !schedule.studentPlan.plan.trial && schedule.studentPlan.studentPlanLanguages.length > 0 && (
-                <h4 className="scheduleLanguageFocus">
-                  {`${t("CARD_CLASS_FOCUS")}: ${t(schedule.studentPlan.studentPlanLanguages[0].focus.toUpperCase())}`}
-                </h4>
+              <h4 className="scheduleLanguageFocus">
+                {`${t("CARD_CLASS_FOCUS")}: ${t(schedule.studentPlan.studentPlanLanguages[0].focus.toUpperCase())}`}
+              </h4>
               )}
               { !isStudent && schedule.studentPlan && schedule.studentPlan.plan.trial && schedule.studentPlan.studentPlanLanguages.length > 0 && (
-                <h4 className="scheduleLanguageFocus">
-                  {`${t("LEVEL")}: ${t(schedule.studentPlan.studentPlanLanguages[0].studentLanguageLevel)}`}
-                </h4>
+              <h4 className="scheduleLanguageFocus">
+                {`${t("LEVEL")}: ${t(schedule.studentPlan.studentPlanLanguages[0].studentLanguageLevel)}`}
+              </h4>
               )}
             </div>
-            <div className="scheduleLanguagePeoples">
-              { (isManager || (isTeacher && hasTeacher )) && (
-                <h4 className="scheduleLanguagePeople">{`${t('CARD_CLASS_STUDENT')}: `}
-                  {schedule.student ? schedule.student.user.name : ''}
-                  {schedule.container && schedule.container.studentName ? schedule.container.studentName : '' }
-                </h4>
-              )}
-              { isManager && !!schedule.teacher && (
-                <h4 className="scheduleLanguagePeople">{`${t('CARD_CLASS_TEACHER')}: `}
-                  { schedule.teacher.user.name }
-                  { mobilePhone && ` • ${t("CELLPHONE")} - ${mobilePhone}`}
-                </h4>
-              )}
-            </div>
+
             { (isTeacher && hasTeacher ) && (
-                <h4 className="scheduleLanguageLevels">
-                  {t('CARD_PLAN_LEVEL')}:
-                  { schedule.student && schedule.student.studentLevelGrades && (
-                    schedule.student.studentLevelGrades.map(scheduleLevel => (
-                      <Fragment key={JSON.stringify(scheduleLevel)}>
-                        {scheduleLevel.level.level}
-                      </Fragment>
-                    ))
-                  )}
-                  { schedule.container
-                    ? schedule.container.levelByLingo
-                      ? schedule.container.levelByLingo
-                      : schedule.container.levelByStudent
-                    : ""
-                  }
-                </h4>
+            <h4 className="scheduleLanguageLevels">
+              {t('CARD_PLAN_LEVEL')}:
+              { schedule.student && schedule.student.studentLevelGrades && (
+              schedule.student.studentLevelGrades.map(scheduleLevel => (
+              <Fragment key={JSON.stringify(scheduleLevel)}>
+                {scheduleLevel.level.level}
+              </Fragment>
+              ))
               )}
-            </div>
-            <div className="scheduleActions">
-              { (!isDemo && !isStudent)
-                ? <ButtonDrive language={schedule.lingoLanguage.language.name} />
-                : schedule.student ? (schedule.student.studentLevelGrades.length > 0) ? 
-                  <ButtonDriveContent idioma={t('LINK_DRIVE')} language={`${schedule.lingoLanguage.language.name}`} link={schedule.lingoLanguage.language.name === 'English' ? linkEN[schedule.student.studentLevelGrades[0].level.level] : schedule.lingoLanguage.language.name === 'Portuguese' ? linkPT[schedule.student.studentLevelGrades[0].level.level] : linkES[schedule.student.studentLevelGrades[0].level.level]}/> 
-                  : <></>
-                :<ButtonDrive language={schedule.lingoLanguage.language.name} />
+              { schedule.container
+              ? schedule.container.levelByLingo
+              ? schedule.container.levelByLingo
+              : schedule.container.levelByStudent
+              : ""
               }
+            </h4>
+            )}
+          </div>
+          <div className="scheduleActions">
+            <button className="viewSchedule" onClick={() => history.push(`/class-details/${schedule.id}`)}>
+              {"CLIQUE AQUI PARA ACESSAR A AULA"} 
+            </button>
+          </div>
+        </div>
+        <div className='scheduleDetails'>
+          <div className="scheduleDetailsInfo">
+            <div className="scheduleActions">
               <ConfirmedCardItem />
               <CancelCardItem />
-              <button className="viewSchedule" onClick={() => history.push(`/class-details/${schedule.id}`)}>
-                {t('BTN_VIEW')} <i className="fa fa-angle-right"></i>
-              </button>
             </div>
           </div>
         </div>
+      </div>
+      </CardScheduleAluno>
 
-      </Fragment>
-    )
+    </div>
+    </Fragment>
+  )
   }
 }
 
@@ -406,4 +354,4 @@ const mapDispatchToProps = dispatch => ({
   getUserPlans: data => dispatch(getUserPlans(data)),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate('translations')(ListCalendarSchedule)))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(translate('translations')(ListCalendarHomeStudentSchedule)))

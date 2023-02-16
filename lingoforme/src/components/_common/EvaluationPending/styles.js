@@ -7,7 +7,7 @@ export const ContainerEvaluationPending = styled.div`
 
 .card-evaluation-pending {
     height: 66px;
-    width: 127px;
+    width: 157px;
     display: flex;
     align-items: center;
     background-color: #FFF;
@@ -26,6 +26,6 @@ export const ContainerEvaluationPending = styled.div`
 .number-card {
     color : #3DA8FE;
     font-weight: bold;
-    font-size: 32px;
+    font-size: 28px;
 }
 `;

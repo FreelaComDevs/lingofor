@@ -17,6 +17,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { Buttons } from '../Home/Componentes/Buttons/styles'
 import SchedulesClass from '../ScheduleClass/index'
 import { Legend } from './styles'
+import ScheduleCycle from './Componentes/CalendarCycles'
 class HomeStudent extends Component {
 
   constructor (props) {
@@ -108,7 +109,7 @@ class HomeStudent extends Component {
             {/* <ButtonSchedule /> */}
             <div className="content">
               <div className="contentCycles">
-
+                <ScheduleCycle />
               </div>
               <div className="contentNextClass">
               <div className="nextHome">

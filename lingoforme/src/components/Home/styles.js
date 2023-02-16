@@ -252,7 +252,7 @@ export const Profile = styled.div`
 
         .listScheduleCard{                    
             width: 94%;
-            margin-left: 0px;  
+            margin-left: 100px;  
         }
 
         .buttonShed {

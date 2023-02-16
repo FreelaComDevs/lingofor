@@ -12,6 +12,7 @@ import Services from '../_api/Services';
 import Loading from 'react-fullscreen-loading';
 import Service from '../../components/_api/Services'
 import timezone from 'moment-timezone'
+import { CardScheduleAluno } from './styleHomeStudent'
 const serv = new Service()
 class ListCalendarHomeStudentSchedule extends Component {
   state = {
@@ -240,7 +241,9 @@ class ListCalendarHomeStudentSchedule extends Component {
         allSeqClasses={allSeqClasses}
       />
     <div>
-      <div className="listScheduleCard" style={schedule.status === "canceled" && !
+      <CardScheduleAluno>
+        
+      <div className="listScheduleCardH" style={schedule.status === "canceled" && !
       schedule.status === "pending"  ? {border: "3px solid #ff5666"} : {border: "3px solid #91E2CF"}}>
         <div className="infosAulas">
           <h3 className="scheduleDateTime">
@@ -335,6 +338,8 @@ class ListCalendarHomeStudentSchedule extends Component {
           </div>
         </div>
       </div>
+      </CardScheduleAluno>
+
     </div>
     </Fragment>
   )

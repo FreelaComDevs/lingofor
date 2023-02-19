@@ -47,7 +47,7 @@ class Schedules extends Component {
       textSpecific: null,
       studentPlanId: 0,
       lingoLanguageId: 0,
-      focus: '',
+      focus: 'Regular',
       scheduledStart: '12:00:00',
       scheduledEnd: '12:30:00',
       numberOfClasses: 0,
@@ -369,7 +369,7 @@ class Schedules extends Component {
   }
 
   handlerSubjectEspecific = (boll, value) => {
-    this.setState({ isVisibleText: boll, textSpecific:  !!boll ? this.state.textSpecific :  '', focus: value })
+    this.setState({ isVisibleText: boll, textSpecific:  !!boll ? this.state.textSpecific :  null, focus: value })
   }
 
   render() {
@@ -424,7 +424,7 @@ class Schedules extends Component {
             <Schedule>
               <div className="boxWhite">
                 <div className="selectDays">
-                  <h2>{t('BTN_SCHEDULE_NEW_CLASS')} </h2>
+                  <h2>{t('BTN_SCHEDULE_NEW_CLASS')}</h2>
                   <h4>{t('LANGUAGE')}:</h4>
                   <div>
                   <ul>

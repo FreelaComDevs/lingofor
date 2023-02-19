@@ -436,7 +436,7 @@ class Schedules extends Component {
             <Schedule>
               <div className="boxWhite">
                 <div className="selectDays">
-                  <h2>{t('BTN_SCHEDULE_NEW_CLASS')} </h2>
+                  <h2>{t('BTN_SCHEDULE_NEW_CLASS')}</h2>
                   <h4>{t('LANGUAGE')}:</h4>
                   <ul>
                     { languages.map(lang => (

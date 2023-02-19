@@ -108,8 +108,8 @@ class HomeStudent extends Component {
             <TablePlansHomeStudent/>
             {/* <ButtonSchedule /> */}
             <div className="content">
-              <div className="contentCycles">
-                <ScheduleCycle />
+              <div className="contentCycles overflow-y-scroll">
+                <ScheduleCycle hasCycle={true} />
               </div>
               <div className="contentNextClass">
               <div className="nextHome">

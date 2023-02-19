@@ -6,6 +6,7 @@ export const RatingModal = styled.div`
     align-content: center;
     align-items: center;
     flex-direction: column;
+
     h2{
         font-size: 32px;
         font-weight: 500;
@@ -1138,6 +1139,86 @@ export const Next = styled.div`
                 font-size: 14px;
             }
         }
+    }
+`
+export const DialogRatingStudent = styled.div`
+
+    .dialogImagePicture {
+        width: 178px;
+        height: 178px;
+        border-radius: 100%;
+        object-fit: cover;
+        margin: 0 auto;
+    }
+
+    .dialogRatingTarget {
+        font-size: 21px;
+        letter-spacing: 0px;
+        color: #3D3D3D;
+        opacity: 1;
+        margin-top: 15px;
+    }
+
+    .dialogRatingTitle {
+        font-weight: 600;
+        font-size: 21px;
+        letter-spacing: 0px;
+        color: #3D3D3D;
+        opacity: 1;
+    }
+
+    .dialogClassForRating {
+        letter-spacing: 0px;
+        color: #707070;
+        opacity: 1;
+        font-weight: 0;
+        font-size: 20px;
+    }
+
+    .dialogRating {
+        font-family: 'Quicksand', sans-serif;
+        font-size: 18px;
+        font-weight: bold;
+        letter-spacing: 0px;
+        color: #3D3D3D;
+        opacity: 1;
+    }
+`
+
+export const RatingStudent = styled.div`
+
+    .dialogContainer{
+        display: flex;
+        margin: auto 0;
+    }
+
+    .ImageRating {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    .dialogRating {
+        padding: 0 30px;
+    }
+
+    .titleOpcao {
+        font-weight: 600;
+        font-size: 15px;
+        letter-spacing: 0px;
+        color: #3D3D3D;
+        opacity: 1;
+        margin-bottom: 20px;
+    }
+
+    .titleOpcaoLike {
+        font-weight: 600;
+        font-size: 15px;
+        letter-spacing: 0px;
+        color: #3D3D3D;
+        opacity: 1;
+    }
+
+    .dialogContainerLike {
+
     }
 `;
 

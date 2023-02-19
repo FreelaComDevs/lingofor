@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import { cap } from '../../helpers/helpers'
 import { connect } from 'react-redux'
 import { getClassesForRating, unsetClassesForRating, sendRatings } from '../../actions/userActions'
 import { FlagIcon } from 'react-flag-kit'
@@ -9,16 +8,31 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import ratingImg from "../../images/rating/img_classRatingStarsHero.png";
-import Rating from 'react-rating'
+
+import yesLoveG from "../../images/rating/amei_g.png";
+import yesLove from "../../images/rating/amei.png";
+import yesG from "../../images/rating/nao_g.png";
+import yes from "../../images/rating/nao.png";
+import noG from "../../images/rating/sim_g.png";
+import no from "../../images/rating/sim.png";
+
+import { DialogRatingStudent, RatingStudent } from './styles'
 import Services from '../_api/Services';
 const service = new Services();
 
 class ModalRatingStudent extends Component {
   state = this.initialState
 
+  visible = {showing: true};
+  visibleNo = {showing: true};
+  visibleYes = {showing: true};
+  
+  visibleInternet = {showing: true};
+  visibleContent = {showing: true};
+
   get initialState() {
     const { target, lingo: { ratingCriterias }, user: { classesForRating } } = this.props;
+
     return {
       ratingCriteriasInputs: ratingCriterias
         .filter(criteria => criteria.target === target && !criteria.fixed)
@@ -113,6 +127,8 @@ class ModalRatingStudent extends Component {
   }
 
   render() {
+    const { visible, visibleNo, visibleYes, visibleInternet, visibleContent } = this.state;
+
     let {
       handleStars,
       submitRatings,
@@ -124,10 +140,6 @@ class ModalRatingStudent extends Component {
       lingo: { ratingCriterias } }
     } = this;
 
-    // const { role } = user
-    // console.log('userJason', user)
-    const targetString = role === "student" ? "teacherRating" : role === "teacher" ? "studentRating" : ""
-
     const listRating = this.props.user.classesForRating
     const classesForRating =  listRating.filter(val => {
       return val.teacher != null
@@ -135,7 +147,6 @@ class ModalRatingStudent extends Component {
       && val.status !== "canceled"
       && val.status !== "pending"
       && val.target !== "demo"
-      // && (val[targetString] === null || val[targetString].status !== 'done')
 
     })
 
@@ -144,11 +155,20 @@ class ModalRatingStudent extends Component {
     return (
       <Fragment>
         { classesForRating && classesForRating.length > 0 && classesForRating[classesForRating.length -1].status === 'done' && (
-          <Dialog open={!!classesForRating.length} onClose={(e) => submitRatings(e, true)} className="newDialog" >
+          <Dialog open={!!classesForRating.length} onClose={(e) => submitRatings(e, true)} className="newDialog">
             <DialogTitle className="dialogTitle">{t("CLASS_RATING")}</DialogTitle>
             <DialogContent className="dialogContent">
-              <img className="dialogImage" src={ratingImg} alt={t("CANCEL_IMAGE")} />
-              <p className="ratingTitle">{t('RATING_MODAL_TITLE')}:</p>
+              <DialogRatingStudent>
+                <img className="dialogImagePicture" src={user.picture == "" ? "https://www.seekpng.com/png/detail/847-8474751_download-empty-profile.png" : user.picture} alt={t("CANCEL_IMAGE")} />
+              
+                { classesForRating[0][target] &&
+                  <p className="dialogRatingTarget">
+                    <span>{t(target.toUpperCase())}: </span>{classesForRating[0][target].user.name}
+                  </p>
+                }
+                <p className="dialogRatingTitle">{t('RATING_MODAL_TITLE')}:</p>
+              
+              <hr/>
               <div className="classesForRating">
                 { classesForRating.map( rating => {
                   const { lingoLanguage: { flag, description }, scheduledDate, scheduledStartTime, originalScheduledTimezoneName  } = rating
@@ -159,56 +179,100 @@ class ModalRatingStudent extends Component {
                   const initialTime = loggedUserTime.format('hh:mm A')
                   const finalTime = loggedUserTime.clone().add(30, "minutes").format('hh:mm A')
                   return (
-                    <p key={JSON.stringify(rating)} className="classForRating">
+                    <p key={JSON.stringify(rating)} className="dialogClassForRating">
                       <FlagIcon code={flag} size={18}/>
                       {`${t(description.toUpperCase())} • ${initialDate} • ${initialDay} • ${initialTime} - ${finalTime}`}
                     </p>
                   )
                 })}
               </div>
-              { classesForRating[0][target] &&
-                <p className="ratingTarget">
-                  <span>{t(target.toUpperCase())}: </span>{classesForRating[0][target].user.name}
-                </p>
-              }
               <hr/>
+              <p className="dialogRating">{t('Você gostaria de ter mais aulas com este professor?')}</p>
+
+              </DialogRatingStudent>
+              
               { ratingScreen === "ratings" && (
                 <Fragment>
-                  <div className="criterias">
-                    {  ratingCriterias.length > 0 && ratingCriterias
-                      .filter(criteria => criteria.target === target && criteria.nameEnglish !== "Attendance")
-                      .map((criteria, index) => {
 
-                        return (
-                          <div key={JSON.stringify(criteria)} className="criteria">
-                            <h4 className="criteriaTitle">{criteria[t("INDEX_KEY_STRING")]}</h4>
-                            <Rating
-                              onChange={(value) => handleStars(value, index)}
-                              emptySymbol="fa fa-star-o fa-2x"
-                              fullSymbol="fa fa-star fa-2x"
-                              initialRating={ratingCriteriasInputs[index] ? ratingCriteriasInputs[index].value : 5}
-                              fractions={2}
-                              readonly={readOnly()}
-                              />
+                  <RatingStudent>
+                    <div className="dialogContainer">
+                     
+                      <div>
+                        {!visible ?
+                          <button onClick={() => this.setState({ visible: !visible})}>
+                            <img className="ImageRating" src={yesLoveG} />
+                          </button>
+                        : <button onClick={() => {this.setState({ visible: !visible }), handleStars(5, 0)}}>
+                            <img className="ImageRating" src={yesLove} />
+                          </button>}
+                        
+                        <p className="titleOpcao">Sim, amei!!!</p>
+                      </div>
+
+                      <div className="dialogRating">
+                      {!visibleYes ?
+                          <button onClick={() => this.setState({ visibleYes: !visibleYes })}>
+                            <img className="ImageRating" src={yesG} />
+                          </button>
+                        : <button onClick={() => {this.setState({ visibleYes: !visibleYes }), handleStars(4, 1)}}>
+                            <img className="ImageRating" src={yes} />
+                          </button>}
+
+                        <p class="titleOpcao">Sim</p>
+                      </div>
+
+                      <div class="dialogRating">
+                      {!visibleNo ?
+                          <button onClick={() => this.setState({ visibleNo: !visibleNo })}>
+                            <img className="ImageRating" src={noG} />
+                          </button>
+                        : 
+                          <div>
+                            <button onClick={() => {this.setState({ visibleNo: !visibleNo }), handleStars(3, 2)}}>
+                              <img className="ImageRating" src={no} />
+                            </button>
+
+                            <input
+                              type="checkbox"
+                          />
+                          <div>AAA</div>
                           </div>
-                        )
-                      }
-                    )}
-                  </div>
-                  <h4>{t('COMMENTS')}</h4>
-        <div>MDKOPEDNMK</div>
+                        }
+                        
+                        <p class="titleOpcao">Não</p>
+                      </div>
 
-                  <textarea
-                    className="ratingComment"
-                    value={comments}
-                    onChange={(e) => this.setState({comments: e.target.value})}
-                    rows="4"
-                    cols="50"
-                    name="comments"
-                    maxLength="2000"
-                    disabled={readOnly()}
-                    placeholder={t('COMMENTS')}>
-                    </textarea>
+                    </div>
+
+                    <div className="dialogContainer">
+                     
+                      <div class="dialogRating">
+                      <p class="titleOpcaoLike">Conteúdo</p>
+
+                        {!visibleContent ?
+                          <button onClick={() => {this.setState({ visibleContent: !visibleContent }),handleStars(3, 3)}}>
+                            <img className="ImageRating" src={yesLoveG} />
+                          </button>
+                        : <button onClick={() => {this.setState({ visibleContent: !visibleContent }),handleStars(5, 4)}}>
+                            <img className="ImageRating" src={yesLove} />
+                          </button>}
+                        
+                      </div>
+
+                      <div class="dialogRating">
+                        <p class="titleOpcaoLike">Conexão Internet</p>
+
+                      {!visibleInternet ?
+                          <button onClick={() => {this.setState({ visibleInternet: !visibleInternet }),handleStars(3, 5)}}>
+                            <img className="ImageRating" src={yesG} />
+                          </button>
+                        : <button onClick={() => {this.setState({ visibleInternet: !visibleInternet }),handleStars(5, 6)}}>
+                            <img className="ImageRating" src={yes} />
+                          </button>}
+
+                      </div>
+                    </div>
+                  </RatingStudent>
                 </Fragment>
               )}
               { ratingScreen === "blockTeacherQuestion" && (

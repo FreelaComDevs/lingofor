@@ -3,18 +3,19 @@ import { connect } from 'react-redux'
 import { getClassesForRating, unsetClassesForRating, sendRatings } from '../../actions/userActions'
 import { FlagIcon } from 'react-flag-kit'
 import { translate } from 'react-i18next'
+import Rating from 'react-rating'
 import moment from 'moment';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import yesLoveG from "../../images/rating/amei_g.png";
 import yesLove from "../../images/rating/amei.png";
-import yesG from "../../images/rating/nao_g.png";
-import yes from "../../images/rating/nao.png";
-import noG from "../../images/rating/sim_g.png";
-import no from "../../images/rating/sim.png";
+import yes from "../../images/rating/sim.png";
+import no from "../../images/rating/nao.png";
+
+import like from "../../images/rating/like.png";
+import deslike from "../../images/rating/deslike.png";
 
 import { DialogRatingStudent, RatingStudent } from './styles'
 import Services from '../_api/Services';
@@ -23,27 +24,37 @@ const service = new Services();
 class ModalRatingStudent extends Component {
   state = this.initialState
 
-  visible = {showing: true};
-  visibleNo = {showing: true};
-  visibleYes = {showing: true};
+  ratingLove = {showing: true};
+  ratingNo = {showing: true};
+  ratingYes = {showing: true};
   
-  visibleInternet = {showing: true};
-  visibleContent = {showing: true};
+  likeInternet = {showing: true};
+  noLikeInternet = {showing: true};
+
+  likeContent = {showing: true};
+  noLikeContent = {showing: true};
 
   get initialState() {
     const { target, lingo: { ratingCriterias }, user: { classesForRating } } = this.props;
+  
+
+    console.log("TESTESTETS====>")
+    console.log()
 
     return {
       ratingCriteriasInputs: ratingCriterias
         .filter(criteria => criteria.target === target && !criteria.fixed)
         .map((criteria, index) => {
+
           if(classesForRating[0] && classesForRating[0].criteriasGrades && classesForRating[0].criteriasGrades.length > 1){
             const hasCriteria = classesForRating[0].criteriasGrades.filter(grade =>  grade.id == criteria.id)
-            return ({
+            
+            return ({ 
               value: hasCriteria.length > 0 ? hasCriteria[0].value : 5,
-              id: criteria.id
+              id: criteria.id,
             })
           }else {
+            
             return ({
               value: 5,
               id: criteria.id
@@ -55,6 +66,7 @@ class ModalRatingStudent extends Component {
       blockTeacherJustify: { value: "", error: false },
       ratingScreen: "ratings",
     }
+            
   }
 
 
@@ -74,7 +86,8 @@ class ModalRatingStudent extends Component {
       status: later ? 'pending' : 'done'
     }
 
-    ratingClassObj[`${target}CriteriaRatings`] = ratingCriteriasInputs.map( rating => {
+    ratingCriteriasInputs.map( rating => { 
+      {console.log("LOG===>", rating)}    
       return ({
         ratingCriteriaId: Number(rating.id),
         grade: Number(rating.value)
@@ -83,7 +96,8 @@ class ModalRatingStudent extends Component {
 
     ratingCriteriasInputs.map( criteria => {
       console.log("criteria ==>", criteria)
-      if (criteria.value <= 3 && criteria.id === 1) { blockTeacher = true }
+     
+      if (criteria.value <= 3) { blockTeacher = true }
     })
 
     if(ratingScreen === "ratings" && !later && blockTeacher && target === "teacher") {
@@ -100,6 +114,7 @@ class ModalRatingStudent extends Component {
         await sendRatings({ ratingClassObj, target, action, updateScreen, blockTeacher })
       }
     } else {
+      console.log("sendRatings ==>", ratingClassObj)
       sendRatings({ ratingClassObj, target, action, updateScreen })
     }
   }
@@ -113,12 +128,19 @@ class ModalRatingStudent extends Component {
   }
 
   handleStars = (value, index) => {
+    console.log("handleStars ==>", value, index);
+
     const { ratingCriteriasInputs } = this.state
     const newRatingCriteriasInputs = [ ...ratingCriteriasInputs ]
     newRatingCriteriasInputs[index] = { ...newRatingCriteriasInputs[index], value }
+
+
     this.setState({
       ratingCriteriasInputs: newRatingCriteriasInputs
     })
+
+    console.log("newRatingCriteriasInputs ==>", value, index)
+
   }
 
   readOnly = () => {
@@ -127,7 +149,7 @@ class ModalRatingStudent extends Component {
   }
 
   render() {
-    const { visible, visibleNo, visibleYes, visibleInternet, visibleContent } = this.state;
+    const { ratingLove, ratingNo, ratingYes, likeInternet, noLikeInternet, likeContent, noLikeContent } = this.state;
 
     let {
       handleStars,
@@ -154,7 +176,173 @@ class ModalRatingStudent extends Component {
     const userFromToken = service.getUserFromToken();
     return (
       <Fragment>
-        { classesForRating && classesForRating.length > 0 && classesForRating[classesForRating.length -1].status === 'done' && (
+        <div
+            className="justify-center w-auto  items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+          >
+            <div className="relative w-full my-6 max-w-3xl">
+              {/*content*/}
+              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                {/*header*/}
+                <div className="flex mx-auto justify-between p-5">
+                  <h3 className="text-3xl font-semibold text-[#004FFF]">
+                  {t("CLASS_RATING")}
+                  </h3>
+                </div>
+
+                <img className="mx-auto w-40 h-40 rounded-full mb-8" src={user.picture == "" ? "https://www.seekpng.com/png/detail/847-8474751_download-empty-profile.png" : user.picture} alt={t("CANCEL_IMAGE")} />
+
+
+                <p className="mx-auto">
+                    <span>{t(target.toUpperCase())}: </span>{classesForRating[0][target].user.name}
+                </p>
+
+                <p className="mx-auto font-semibold">{t('RATING_MODAL_TITLE')}:</p>
+
+                <hr/>
+                <div className="relative flex-auto mx-auto">
+                  { classesForRating.map( rating => {
+                    const { lingoLanguage: { flag, description }, scheduledDate, scheduledStartTime, originalScheduledTimezoneName  } = rating
+                    const time =  moment.tz(scheduledDate + 'T' + scheduledStartTime + '.000', originalScheduledTimezoneName);
+                    const loggedUserTime = time.clone().tz(userFromToken.timezone);
+                    const initialDate = loggedUserTime.format(t('DATE_FORMAT'))
+                    const initialDay = t(loggedUserTime.format('dddd').toUpperCase())
+                    const initialTime = loggedUserTime.format('hh:mm A')
+                    const finalTime = loggedUserTime.clone().add(30, "minutes").format('hh:mm A')
+                    return (
+                      <p key={JSON.stringify(rating)}>
+                        <FlagIcon code={flag} size={18}/>
+                        {`${t(description.toUpperCase())} • ${initialDate} • ${initialDay} • ${initialTime} - ${finalTime}`}
+                      </p>
+                    )
+                  })}
+                </div>
+                <hr/>
+                <p className="mx-auto font-semibold">{t('Você gostaria de ter mais aulas com este professor?')}</p>
+
+               
+                <div className="mx-auto  justify-center mt-8 mb-8">
+                  <div className="flex items-center">
+                    <div>
+                      <button class={ratingLove ? "grayscale-0" : "grayscale"} onClick={(index) => ratingLove 
+                        ? (handleStars(0, index), this.setState({ ratingLove: !ratingLove})) 
+                        : (handleStars(5, index),this.setState({ ratingLove: !ratingLove}))}>
+                        <img class="px-4" src={yesLove} />
+                      </button>
+                      <p className="font-[500] text-[21px]">Sim, amei!!!</p>
+                    </div>
+
+                    <div>
+                      <button class={ratingYes ? "grayscale-0" : "grayscale"} onClick={(index) => ratingYes 
+                        ? (handleStars(0, index), this.setState({ ratingYes: !ratingYes})) 
+                        : (handleStars(4, index),this.setState({ ratingYes: !ratingYes}))}>
+                        <img class="px-4" src={yes} />
+                      </button>
+                      <p className="px-8 font-[500] text-[21px]">Sim</p>
+                    </div>
+
+                    <div>
+                      <button class={ratingNo ? "grayscale-0" : "grayscale"} onClick={(index) => ratingNo 
+                        ? (handleStars(0, index), this.setState({ ratingNo: !ratingNo})) 
+                        : (handleStars(3, index),this.setState({ ratingNo: !ratingNo}))}>
+                        <img class="px-4" src={no} />
+                      </button>
+                      <p className="px-8 font-[500] text-[21px]">Não</p>
+                    </div>
+                  </div>
+                </div>
+
+                {ratingNo ?  
+                    <div className="mx-auto ">
+                     <div className="md flex items-center pl-[20px] pr-[20px]">
+                        <div class="mb-4 mr-4 w-60">
+                            <input value={"Não se expressa direito"}
+                    onChange={(e) => this.setState({comments: e.target.value})} id="default-checkbox" type="checkbox" class="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                            <label for="default-checkbox" class="ml-2 text-[16px] font-medium">Não se expressa direito</label>
+                        </div>
+                        <div class="mb-4 mr-4 w-60">
+                            <input value={"Fala muito baixo"}
+                    onChange={(e) => this.setState({comments: e.target.value})} id="default-checkbox" type="checkbox" class="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                            <label for="default-checkbox" class="ml-2 text-[16px] font-medium">Fala muito baixo</label>
+                        </div>
+                        <div class="mb-4 mr-4 w-60">
+                            <input value={"Fala muito durante a aula"}
+                    onChange={(e) => this.setState({comments: e.target.value})} id="default-checkbox" type="checkbox" class="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                            <label for="default-checkbox" class="ml-2 text-[16px] font-medium">Fala muito durante a aula</label>
+                        </div>  
+                     </div>
+                     <div className="md flex items-center pl-[20px] pr-[20px]">
+                      <div class="mb-4 mr-4 w-60">
+                            <input value={"Não aplica correções"}
+                    onChange={(e) => this.setState({comments: e.target.value})} id="default-checkbox" type="checkbox" class="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                            <label for="default-checkbox" class="ml-2 text-[16px] font-medium">Não aplica correções</label>
+                        </div>
+                        <div class="mb-4 mr-4 w-60">
+                            <input value={"Não explica bem"}
+                    onChange={(e) => this.setState({comments: e.target.value})} id="default-checkbox" type="checkbox" class="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                            <label for="default-checkbox" class="ml-2 text-[16px] font-medium">Não explica bem</label>
+                        </div>
+                     </div>
+                    </div>
+                  : null}
+
+                <div className="mx-auto  justify-center">
+                  <div className="flex items-center">
+                    <div>
+                      <p className="font-semibold text-[21px] mb-8 px-16">Conteúdo</p>
+
+                      <button class={likeInternet ? "grayscale-0" : "grayscale"} 
+                      onClick={(index) => likeInternet ? (handleStars(0, index),this.setState({ likeInternet: !likeInternet})) :
+                      (handleStars(5, index),this.setState({ likeInternet: !likeInternet}))}>
+                        <img class="px-8" src={like} />
+                      </button>
+                      
+                      <button class={noLikeInternet ? "grayscale-0" : "grayscale"} 
+                      onClick={(index) => noLikeInternet ? (handleStars(0, index),this.setState({ noLikeInternet: !noLikeInternet})) : 
+                      (handleStars(3, index),this.setState({ noLikeInternet: !noLikeInternet}))}>
+                        <img class="px-3" src={deslike} />
+                      </button>
+                    </div>
+
+                    <div>
+                      <p className="font-semibold text-[21px] mb-8 px-16">Conexão Internet</p>
+
+                      <button class={likeContent ? "grayscale-0" : "grayscale"}  
+                      onClick={(index) => likeContent ? (handleStars(0, index),this.setState({ likeContent: !likeContent})) : 
+                      (handleStars(5, index),this.setState({ likeContent: !likeContent}))}>
+                        <img class="pl-20" src={like} />
+                      </button>
+                      
+                      <button class={noLikeContent ? "grayscale-0" : "grayscale"}  
+                      onClick={(index) => noLikeContent ?  (handleStars(0, index),this.setState({ noLikeContent: !noLikeContent})) :
+                         (handleStars(3, index),this.setState({ noLikeContent: !noLikeContent}))}>
+                        <img class="pl-9" src={deslike} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/*footer*/}
+                <div className="flex items-center justify-center mt-8 mb-8">
+                  <button
+                    className="rounded-full border border[#3D3D3D] text[#3D3D3D] background-transparent uppercase px-8 py-1 text-[12px] outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={(e) => unsetClassesForRating(e)} 
+                  >
+                    {t('CANCEL_LATER_RATE')}
+                  </button>
+                  <button
+                    className="bg-[#004FFF] text-white active:bg-emerald-600 font-bold uppercase px-8 py-1 text-[12px] rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={(e) => submitRatings(e)}
+                  >
+                    {t('RATE')}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+        {/* { classesForRating && classesForRating.length > 0 && classesForRating[classesForRating.length -1].status === 'done' && (
           <Dialog open={!!classesForRating.length} onClose={(e) => submitRatings(e, true)} className="newDialog">
             <DialogTitle className="dialogTitle">{t("CLASS_RATING")}</DialogTitle>
             <DialogContent className="dialogContent">
@@ -309,7 +497,7 @@ class ModalRatingStudent extends Component {
               }
             </DialogActions>
           </Dialog>
-        )}
+        )} */}
       </Fragment>
     )
   }

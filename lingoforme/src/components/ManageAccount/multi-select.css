@@ -24,6 +24,8 @@
 
 .multi-select span{
     font-size: 14px !important;
+    display: flex;
+    align-items: center;
 }
 
 .multi-select .select-item{
@@ -35,28 +37,28 @@
     grid-template-columns: 1fr 3fr;
 }
 
-.korVuG .tabs .formulario input{
-    width: auto;
-    height: 20px;
-    margin: 0;
+.gekLj .tabs .formulario input[type="checkbox"]{
+    margin: 10px 0;
+    width: 50px;
+    height: 16px;    
     border-bottom: 1px solid #B2B2B7;
+}
+
+.gekLj .tabs .formulario input[type="text"]{
+    width: 100%;
+    height: 28px;
+    margin-bottom: 0; 
 }
 
 .rmsc .dropdown-content{
     left: 0;
 }
 
-.korVuG .tabs .formulario span{
-    align-self: center;
-}
-
 .rmsc .gray{
     margin-right: 8px;
 }
 
-.rmsc .search input{
-    width: 100% !important;
-    height: 25px !important;
+.rmsc .search input{    
     padding: 0;
     border-radius: 0 !important;    
 }

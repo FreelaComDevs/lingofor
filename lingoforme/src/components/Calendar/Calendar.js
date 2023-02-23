@@ -443,7 +443,7 @@ class Calendar extends Component {
             <InputForText name="student" data={student} label="STUDENT" placeholder="STUDENT" extra={true} />
           </Filter>
         )}
-        <div className="new-container">
+        <div className="new-container" style={{marginLeft: '0'}}>
           <div className="calendar">
             <Schedule />
           </div>

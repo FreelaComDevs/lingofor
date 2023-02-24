@@ -9,12 +9,12 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const RenderDay = ({ date, dayIdx, cycle }) => {
+const RenderDay = ({ date, dayIdx, cycle, selectedDate, setSelectedDate }) => {
   const startCycle = date.isSame(cycle.start);
   const endCycle = date.isSame(cycle.end);
   const hasCycle = date.isBetween(cycle.start, cycle.end);
   const hasClass = false;
-  const isToday = date.isSame(moment().format("YYYY-MM-DD"));
+  const isToday = date.isSame(selectedDate.format("YYYY-MM-DD"));
 
   return (
     <div key={date} className={classNames(dayIdx > 6 && "", "py-2")}>
@@ -38,6 +38,9 @@ const RenderDay = ({ date, dayIdx, cycle }) => {
             "text-[#333C49] text-sm relative z-20",
             isToday ? "border-[#555D67] border bg-transparent" : ""
           )}
+          onClick={() => {
+            setSelectedDate(date);
+          }}
         >
           <time
             dateTime={date.format()}
@@ -53,7 +56,7 @@ const RenderDay = ({ date, dayIdx, cycle }) => {
   );
 };
 
-const generateDays = (selectedDay, cycle) => {
+const generateDays = (selectedDay, cycle, selectedDate, setSelectedDate) => {
   const lastDay = selectedDay.daysInMonth();
   const month = selectedDay.month() + 1;
   const year = selectedDay.year();
@@ -73,6 +76,8 @@ const generateDays = (selectedDay, cycle) => {
         dayIdx={i}
         currentDate={selectedDay}
         cycle={cycle}
+        selectedDate={selectedDate}
+        setSelectedDate={setSelectedDate}
       />
     );
   }
@@ -123,9 +128,11 @@ const Calendar = ({
   prevMonth,
   currentCycle,
   cycle,
+  selectedDate,
+  setSelectedDate,
 }) => {
   const days = useMemo(() => {
-    return generateDays(date, cycle);
+    return generateDays(date, cycle, selectedDate, setSelectedDate);
   }, [date, cycle]);
 
   return (
@@ -154,45 +161,14 @@ const Calendar = ({
   );
 };
 
-const CalendarCycleRender = ({ user }) => {
-  let myDate =
-    user?.plans[0]?.student?.contractPlanStudents[0]?.studentPlanB2BRenewalCycle
-      ?.startCy ?? null;
-  myDate = myDate.split("T");
-  myDate = myDate[0];
-
-  const [date, setDate] = useState(moment(myDate));
-
-  const cycle = useMemo(() => {
-    const plan =
-      user.plans[0].student.contractPlanStudents[0].studentPlanB2BRenewalCycle;
-    const startDate = plan.startCy.split("T");
-    const endDate = plan.nextCyc.split("T");
-
-    if (date.isSame(startDate, "month")) {
-      const date_end = moment(endDate[0]).subtract(1, "days");
-      return {
-        start: date.format("YYYY-MM-DD"),
-        end: date_end.format("YYYY-MM-DD"),
-      };
-    } else {
-      const day = date.date();
-      const monthDate = moment(
-        `${date.format("YYYY")}-${date.format("MM")}-${day}`
-      );
-      /*console.log(
-        "not same month",
-        date,
-        `${date.year()}-${date.month()}-${day}`
-      );*/
-      const endDate = monthDate.clone().add(1, "months").subtract(1, "days");
-      return {
-        start: monthDate.format("YYYY-MM-DD"),
-        end: endDate.format("YYYY-MM-DD"),
-      };
-    }
-  }, [date.format("YYYY-MM-DD")]);
-
+const CalendarCycleRender = ({
+  user,
+  date,
+  setDate,
+  cycle,
+  selectedDate,
+  setSelectedDate,
+}) => {
   const nextMonth = () => {
     setDate(date.clone().add(1, "months"));
   };
@@ -225,8 +201,15 @@ const CalendarCycleRender = ({ user }) => {
         currentCycle={currentCycle}
         hasCycle={true}
         cycle={cycle}
+        selectedDate={selectedDate}
+        setSelectedDate={setSelectedDate}
       />
-      <Calendar date={date.clone().add(1, "months")} cycle={cycle} />
+      <Calendar
+        selectedDate={selectedDate}
+        setSelectedDate={setSelectedDate}
+        date={date.clone().add(1, "months")}
+        cycle={cycle}
+      />
     </>
   );
 };

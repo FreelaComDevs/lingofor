@@ -211,7 +211,7 @@ export const RatingModal = styled.div`
             border-radius: 26px;
             color: #87868F;
             font-size: 11px;
-            width: 58px;
+            width: 80px;
             height: 22px;
             float: right;
             cursor: pointer;
@@ -1081,7 +1081,7 @@ export const Next = styled.div`
             border-radius: 26px;
             color: #87868F;
             font-size: 11px;
-            width: 58px;
+            width: 80px;
             height: 22px;
             float: right;
             cursor: pointer;

@@ -7,15 +7,25 @@ import { NotificationArea } from "../notification/notification";
 import { InfoCard } from '../infoArea/infoCard';
 import { RatingArea } from '../infoArea/ratingArea';
 import { Evaluation } from '../EvaluationPending/evaluation';
+import moment from 'moment'
 
-const Header = ({ title, icon, children, user }) => {
+const Header = ({ title, icon, children, user, ...rest }) => {
+  console.log('user', user)
+  const formatSinceDate = moment(user.createdAt).format('MMMM/YYYY')
   return (
     <Head>
       <header>
         <div className="header-holder">
           <div className='container conteinar-between'>
-            {user.role != "student" ?
-                <div className='info-area'>
+            
+            {user.role === "student" || user.role === ""?
+              <Evaluation />
+             : 
+              null
+             }
+
+             {user.role === "teacher" ?
+              <div className='info-area'>
                 <InfoCard>
                   <RatingArea
                     data={[{
@@ -31,20 +41,18 @@ const Header = ({ title, icon, children, user }) => {
                       rating: 3.3
                     }
                     ]}
-                  />
+                  />              
                 </InfoCard>
               </div>
-             : 
-              <Evaluation />
-             }
+              : <div className='info-area'></div>}
             
             <div className='user-area'>
               <NotificationArea />
               <AvatarArea
                 name={user.name}
-                language={"Português"}
-                country={"Brasil"}
-                date={"02/09/2020"}
+                language={user.nativeLanguageName}
+                country={user.countryName}
+                date={formatSinceDate}
                 href={"/manage-account"}
                 src={user.picture ?? "https://www.seekpng.com/png/detail/847-8474751_download-empty-profile.png"}
               />

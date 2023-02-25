@@ -19,14 +19,16 @@ class CalendarIndex extends Component {
     setCalendarInitialParams(targetDate);
   }
 
-  render () {
-  const { t, calendar: { atualDate }, user: { role }} = this.props  
+  render() {
+    const { t, calendar: { atualDate }, user: { role } } = this.props
 
     return (
       <div className='view new-view calendar-view'>
-        <SideMenu />
-        <Header title={t("ITEM_SCHEDULE")} icon={scheduleIcon} />
-        { atualDate && role && <Calendar/> }
+        <section>
+          <SideMenu />
+          <Header title={t("ITEM_SCHEDULE")} icon={scheduleIcon} />
+          {atualDate && role && <Calendar />}
+        </section>
       </div>
     )
   }

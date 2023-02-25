@@ -18,8 +18,8 @@ const service = new Services();
 export const getUserInfo = () => dispatch => {
   const user = service.getUserFromToken()
   if (!user) { return }
-  const { id, name, picture, role } = user
-  const userInfo = { id, name, picture, role }
+  const { id, name, picture, role, countryName, nativeLanguageName, createdAt } = user
+  const userInfo = { id, name, picture, role, countryName, nativeLanguageName, createdAt }
   dispatch({ type: GET_USER_INFO, userInfo })
 };
 

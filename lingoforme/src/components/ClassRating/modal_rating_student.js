@@ -204,7 +204,7 @@ class ModalRatingStudent extends Component {
                   })}
                 </div>
                 <hr/>
-                <p className="mx-auto font-semibold">{t('Você gostaria de ter mais aulas com este professor?')}</p>
+                <p className="mx-auto font-semibold">{t('WOULD_YOU_LIKE')}</p>
                   
                 {  ratingCriterias.length > 0 && ratingCriterias
                       .filter(criteria => criteria.target === target && criteria.nameEnglish !== "Attendance")
@@ -219,7 +219,7 @@ class ModalRatingStudent extends Component {
                                }>
                                  <img className="px-4" src={yesLove} />
                                </button>
-                               <p className="font-[500] text-[21px]">Sim, amei!!!</p>
+                               <p className="font-[500] text-[21px]">{t("RATING_YES_LOVE")}</p>
                              </div>
 
                              <div>
@@ -228,7 +228,7 @@ class ModalRatingStudent extends Component {
                                  }>
                                   <img className="px-4" src={yes} />
                                 </button>
-                                <p className="px-8 font-[500] text-[21px]">Sim</p>
+                                <p className="px-8 font-[500] text-[21px]">{t("RATING_YES")}</p>
                               </div>
 
                               <div>
@@ -237,7 +237,7 @@ class ModalRatingStudent extends Component {
                                 }>
                                   <img className="px-4" src={no} />
                                 </button>
-                                <p className="px-8 font-[500] text-[21px]">Não</p>
+                                <p className="px-8 font-[500] text-[21px]">{t("RATING_NO")}</p>
                               </div>
                             </div>
                             : null}
@@ -290,9 +290,9 @@ class ModalRatingStudent extends Component {
                         return (
                           <div className="flex items-center mx-auto" key={JSON.stringify(criteria)}>
                                 
-                                {criteria[t("INDEX_KEY_STRING")] === "Conteúdo" ?
+                                {criteria[t("INDEX_KEY_STRING")] === "Content" || criteria[t("INDEX_KEY_STRING")] === "Conteúdo" || criteria[t("INDEX_KEY_STRING")] === "Contenido" ?
                                   <div>
-                                  <p className="font-semibold text-[21px] mb-8 px-6">Conexão Internet</p>
+                                  <p className="font-semibold text-[21px] mb-8 px-6">{t("TITLE_RATING_CONNECTION")}</p>
                                   
                                   <button className={likeInternet || ratingCriteriasInputs[index].value == 5  ? "grayscale-0" : "grayscale"} 
                                     onClick={(value) => (handleStars(value = 5, index))}>
@@ -307,9 +307,10 @@ class ModalRatingStudent extends Component {
                                   
                                 }
 
-                                {criteria[t("INDEX_KEY_STRING")] === "Conteúdo" ?
+                                {criteria[t("INDEX_KEY_STRING")] === "Content" || criteria[t("INDEX_KEY_STRING")] === "Conteúdo" || criteria[t("INDEX_KEY_STRING")] === "Contenido" ?
+
                                   <div>
-                                    <p className="font-semibold text-[21px] mb-8 px-16">Conteúdo</p>
+                                    <p className="font-semibold text-[21px] mb-8 px-16">{t("TITLE_RATING_CONTENT")}</p>
                                     <button className={likeContent  || ratingCriteriasInputs[index].value == 5 ? "grayscale-0" : "grayscale"}  
                                     onClick={(value) => (handleStars(value = 5, index))}>
                                       <img className="pl-16" src={like} />

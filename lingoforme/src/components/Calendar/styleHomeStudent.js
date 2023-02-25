@@ -109,7 +109,7 @@ export const CardScheduleAluno = styled.div`
   
         .typeClass {
           display: flex;
-          width: 180px;
+          width: 203px;
         }
   
         .typeText {

@@ -39,7 +39,7 @@ class HomeStudent extends Component {
   }
 
   toggleShowing() {
-    this.setState({ showing: !this.showing });
+    this.setState({ showing: !this.state.showing });
   }
 
   render() {

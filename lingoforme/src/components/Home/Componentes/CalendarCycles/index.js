@@ -30,13 +30,13 @@ const RenderDay = ({ date, dayIdx, cycle, selectedDate, setSelectedDate }) => {
         <button
           type="button"
           className={classNames(
+            isToday ? "border-[#555D67] border" : "",
             startCycle || endCycle
-              ? "border-[#555D67] bg-[#555D67] border-2 text-[#F1F1F1]"
+              ? "border-[#42474f] bg-[#555D67] border-2 text-[#F1F1F1]"
               : "",
             hasClass ? "border-[1px] border-[#555D67]" : "",
             "mx-auto flex h-8 w-8 items-center justify-center rounded-full",
-            "text-[#333C49] text-sm relative z-20",
-            isToday ? "border-[#555D67] border bg-transparent" : ""
+            "text-[#333C49] text-sm relative z-20"
           )}
           onClick={() => {
             setSelectedDate(date);
@@ -195,7 +195,7 @@ const CalendarCycleRender = ({
   return (
     <>
       <Calendar
-        date={date}
+        date={date.clone()}
         nextMonth={nextMonth}
         prevMonth={date.isSameOrBefore(initialCycle) ? null : prevMonth}
         currentCycle={currentCycle}

@@ -184,20 +184,28 @@ const nextClassHomeStudent = ({
     const user = serv.getUserFromToken();
 
     const formated = response?.result?.items.map((c) => {
-      const dateUTC = timezone
+      /*const dateUTC = timezone
         .tz(c.originalScheduledDateTimeUTC, "UTC")
         .clone()
-        .tz(user?.timezone);
+        .tz(user?.timezone);*/
 
-      const dateEnd = moment(c.scheduledEndDateTime).utc();
-      const dateEndUTC = timezone.tz(dateEnd, "UTC").clone().tz(user?.timezone);
+      const dateUTC = moment(c.scheduledStartDateTime);
+
+      const dateEnd = moment(c.scheduledEndDateTime);
+      //const dateEndUTC = moment(c.scheduledEndDateTime)
 
       const dateFormated = dateUTC.format("DD/MM/YYYY");
       const dayweek = dateUTC.format("dddd");
       const hourStart = dateUTC.format("HH:mm A");
-      const hourEnd = dateEndUTC.format("HH:mm A");
+      const hourEnd = dateEnd.format("HH:mm A");
+      const diff = moment.duration(dateEnd.diff(dateUTC));
 
-      c.timeTotal = `${dateFormated} • ${dayweek}  • ${hourStart} - ${hourStart} • `;
+      const hours = parseInt(diff.asHours());
+      const minutes = parseInt(diff.asMinutes()) % 60;
+      let timeDiff = hours > 0 ? hours + "H:" : "";
+      timeDiff += minutes > 0 ? minutes + "M" : "";
+
+      c.timeTotal = `${dateFormated} • ${dayweek}  • ${hourStart} - ${hourEnd} • ${timeDiff} `;
       return c;
     });
     setClasses(formated || []);

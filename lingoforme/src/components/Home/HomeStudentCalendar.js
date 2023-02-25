@@ -42,10 +42,8 @@ const HomeStudentCalendar = ({ t, user, showing, toggleShowing }) => {
     }
   }, [date.format("YYYY-MM-DD")]);
 
-  console.log("toggleShowing", toggleShowing);
-
   return (
-    <div className="content">
+    <div className="content" style={{ position: "relative" }}>
       <div className="contentCycles overflow-y-scroll">
         <ScheduleCycle
           hasCycle={true}
@@ -64,7 +62,9 @@ const HomeStudentCalendar = ({ t, user, showing, toggleShowing }) => {
             </h2>
             {!showing ? (
               <div className="buttonShed">
-                <button onClick={() => toggleShowing()}>+ AGENDAR AULA</button>
+                <button onClick={() => toggleShowing()}>
+                  + {t("BTN_SCHEDULE_HOME")}
+                </button>
               </div>
             ) : null}
           </div>
@@ -99,8 +99,8 @@ const HomeStudentCalendar = ({ t, user, showing, toggleShowing }) => {
         </div>
       </div>
       {showing ? (
-        <div>
-          <SchedulesClass></SchedulesClass>
+        <div style={{ position: "absolute", right: 0 }}>
+          <SchedulesClass toggleShowing={toggleShowing} />
         </div>
       ) : null}
     </div>

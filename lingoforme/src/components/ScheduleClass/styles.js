@@ -13,7 +13,7 @@ export const Schedule = styled.div`
 
   .boxWhite {
     margin-top: 15px;
-    width: 350px;
+    width: 500px;
     padding: 24px !important;
 
     .selectDays {

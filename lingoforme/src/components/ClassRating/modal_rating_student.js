@@ -176,7 +176,7 @@ class ModalRatingStudent extends Component {
                   </h3>
                 </div>
 
-                <img className="mx-auto w-40 h-40 rounded-full mb-8" src={user.picture == "" ? "https://www.seekpng.com/png/detail/847-8474751_download-empty-profile.png" : user.picture} alt={t("CANCEL_IMAGE")} />
+                <img className="mx-auto w-36 h-36 rounded-full mb-4" src={user.picture == "" ? "https://www.seekpng.com/png/detail/847-8474751_download-empty-profile.png" : user.picture} alt={t("CANCEL_IMAGE")} />
 
 
                 <p className="mx-auto">
@@ -210,7 +210,7 @@ class ModalRatingStudent extends Component {
                       .filter(criteria => criteria.target === target && criteria.nameEnglish !== "Attendance")
                       .map((criteria, index) => {
                         return (
-                          <div key={JSON.stringify(criteria)} className="mx-auto  justify-center mt-8">
+                          <div key={JSON.stringify(criteria)} className="mx-auto  justify-center mt-4">
                             {criteria[t("INDEX_KEY_STRING")] == "Teacher" ? 
                              <div className="flex items-center">
                              <div>
@@ -328,7 +328,7 @@ class ModalRatingStudent extends Component {
                       }
                 )}
                
-                 <div className="mx-auto mt-8 mb-8">
+                 <div className="mx-auto mt-4 mb-4">
                     <button
                       className="rounded-full border border[#3D3D3D] text[#3D3D3D] background-transparent uppercase px-8 py-1 text-[12px] outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                       type="button"

@@ -565,7 +565,7 @@ class Schedules extends Component {
                 >
                   <h2>{t("BTN_SCHEDULE_NEW_CLASS")}</h2>
                   <button onClick={() => this.props.toggleShowing()}>
-                    {t("BTN_CLOSE")}
+                   <CloseIcon/>
                   </button>
                 </div>
                 <h4>{t("LANGUAGE")}:</h4>

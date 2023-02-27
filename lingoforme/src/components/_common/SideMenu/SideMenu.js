@@ -153,11 +153,11 @@ class SideMenu extends Component {
       case 'student':
         return (
           <div>
-            <li>
+            {/* <li>
               <Link to="/Calendar">
                 <MenuItemLingo name={t('SCHEDULE')} icon={'schedule'} isSelected={this.state.selected === 'Calendar' ? true : false} clickAction={this.handleClick} />
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link to="/class-rating">
                 <MenuItemLingo name={t('CLASS_RATING')} icon={'rating'} isSelected={this.state.selected === 'class-rating' ? true : false} clickAction={this.handleClick} />
@@ -181,11 +181,11 @@ class SideMenu extends Component {
       case 'teacher':
         return (
           <div>
-            <li>
+            {/* <li>
               <Link to="/Calendar">
                 <MenuItemLingo name={t('SCHEDULE')} icon={'schedule'} isSelected={this.state.selected === 'Calendar' ? true : false} clickAction={this.handleClick} />
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link to="/class-rating">
                 <MenuItemLingo name={t('CLASS_RATING')} icon={'rating'} isSelected={this.state.selected === 'class-rating' ? true : false} clickAction={this.handleClick} />

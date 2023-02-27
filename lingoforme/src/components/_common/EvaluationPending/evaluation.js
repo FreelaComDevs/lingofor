@@ -27,7 +27,7 @@ const EvaluationPending = () => {
             <Link to="/class-rating">
                 <div className="card-evaluation-pending">
                 <div className="text-card">{"Avaliações Pendentes"}</div>
-                <div className="number-card">{value}</div>
+                <div className="number-card">{value > "10" ? "10" : value}</div>
                 </div>
             </Link>
         </ContainerEvaluationPending>

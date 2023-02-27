@@ -17,8 +17,15 @@ const Header = ({ title, icon, children, user, ...rest }) => {
       <header>
         <div className="header-holder">
           <div className='container conteinar-between'>
-            {user.role != "student" ?
-                <div className='info-area'>
+            
+            {user.role === "student" || user.role === ""?
+              <Evaluation />
+             : 
+              null
+             }
+
+             {user.role === "teacher" ?
+              <div className='info-area'>
                 <InfoCard>
                   <RatingArea
                     data={[{
@@ -34,12 +41,10 @@ const Header = ({ title, icon, children, user, ...rest }) => {
                       rating: 3.3
                     }
                     ]}
-                  />
+                  />              
                 </InfoCard>
               </div>
-             : 
-              <Evaluation />
-             }
+              : <div className='info-area'></div>}
             
             <div className='user-area'>
               <NotificationArea />

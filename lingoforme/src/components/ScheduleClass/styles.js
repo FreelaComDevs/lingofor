@@ -1,341 +1,329 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import arrow from '../../images/ico_select_arrow_white.png';
+import arrow from "../../images/ico_select_arrow_white.png";
 
 export const Schedule = styled.div`
-    button:disabled,
-        button[disabled]{
-            border: 1px solid #999999 !important;
-            background-color: #cccccc !important;
-            color: #666666 !important;
-    }
-    width: 100%;
-                    
-    .boxWhite{
-        margin-top: 15px;
-        width: 350px;
+  button:disabled,
+  button[disabled] {
+    border: 1px solid #999999 !important;
+    background-color: #cccccc !important;
+    color: #666666 !important;
+  }
+  width: 100%;
 
-        .selectDays{
-            color: #403F4C;
-            margin: 0;
+  .boxWhite {
+    margin-top: 15px;
+    width: 500px;
+    padding: 24px !important;
 
-            h2{
-                color: #004FFF;
-                font-weight: bold;
-                font-size: 28px;
-                margin: 0;
-            }
+    .selectDays {
+      color: #403f4c;
+      margin: 0;
 
-            h4{
-                color: #3d3d3d;
-                font-size: 12px;
-                margin: 24px 0 6px 0;
-            }
+      h2 {
+        color: #004fff;
+        font-weight: bold;
+        font-size: 28px;
+        margin: 0;
+      }
 
-            span{
-                color: #403F4C;
-                font-size: 12px;
-                margin: 0 0 5px 0;
-            }
-            span:last-child{
-                margin: 20px 0 0 0;
-                color: #004FFF;
-                font-weight: bold;
-                font-size: 15px;
-                font-family: 'Work Sans', sans-serif;
-            }
+      h4 {
+        color: #3d3d3d;
+        font-size: 12px;
+        margin: 24px 0 6px 0;
+      }
 
-            ul{
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                flex-wrap: wrap;
-                justify-content: start;
-                list-style: none;
-                width: 100%;
+      span {
+        color: #403f4c;
+        font-size: 12px;
+        margin: 0 0 5px 0;
+      }
+      span:last-child {
+        margin: 20px 0 0 0;
+        color: #004fff;
+        font-weight: bold;
+        font-size: 15px;
+        font-family: "Work Sans", sans-serif;
+      }
 
-                .input-lingo {
-                    width: 100%;
-                    max-width: 22%;
-                    height: 28px;
-                    margin-top: 5px;
-                    margin-bottom: 0;
-                }
+      ul {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: start;
+        list-style: none;
+        width: 100%;
 
-
-                li{
-                    margin: 0 10px 0 0;
-                    padding: 5px 0 0 0;
-                    
-                    .plan{
-                        display: flex;
-                        flex-direction: row;
-                        width: 150px;
-                        height: 100%;
-                        margin-top: 25px;
-
-                        select{
-                            background-color: #004FFF;
-                            margin-top: 7px;
-                            color: #fff;
-                            font-size: 14px;
-                            border-radius: 26px;
-                            border: 0;
-                            width: auto;
-                            height: 28px;
-                            padding: 0 30px 0 18px;
-                            background-image: url(${arrow});
-                        }
-                    }
-
-                    span{
-                        color: #403F4C;
-                        font-size: 12px;
-                        font-weight: 500;
-                        margin: -7px 0 12px 0;
-                        display: flex
-                    }
-
-                    label{
-                        background-color: #fff;
-                        border-radius: 26px;
-                        border: 1px solid #B2B2B7;
-                        padding: 4px 20px 4px 20px;
-                        font-size: 14px;
-                        font-weight: 500;
-                        color: #B2B2B7;
-                        cursor: pointer;
-
-                        input{
-                            display: none;
-                        }
-                    }
-
-                }
-
-                button {
-                    background-color: #fff;
-                    border: 1px solid #B2B2B7;
-                    color: #B2B2B7;
-                    font-size: 14px;
-                    border-radius: 26px;
-                    width: 89px;
-                    height: 28px;
-                    margin-top: 0;
-                    cursor: pointer;
-                }
-
-                .customCalendar button{
-                    background: none;
-                    line-height: 1.7rem;
-                    text-align: center;
-                    cursor: pointer;
-                    position: absolute;
-                    top: 10px;
-                    width: 0;
-                    padding: 0;
-                    border: 0.45rem solid transparent;
-                    z-index: 1;
-                    height: 10px;
-                    width: 10px;
-                    text-indent: -999em;
-                    overflow: hidden;
-                    border-radius:0px;
-                }
-
-                .customCalendar button.react-datepicker__navigation--next {
-                    right: 10px;
-                    border-left-color: #ccc;
-                }
-
-                .customCalendar button.react-datepicker__navigation--next:hover {
-                    border-left-color: #b3b3b3;
-                }
-
-                .customCalendar button.react-datepicker__navigation--previous {
-                    right: 10px;
-                    border-right-color: #ccc;
-                }
-
-                .customCalendar button.react-datepicker__navigation--previous:hover {
-                    border-right-color: #b3b3b3;
-                }
-                
-                .active {
-                    background-color: #004FFF;
-                    color: #fff;
-                    border: #004FFF;
-                }
-
-                .normal {
-                    background-color: #fff;
-                    color: #fff;
-                    border: #004FFF;
-                }
-            }
-            
+        .input-lingo {
+          width: 100%;
+          max-width: 22%;
+          height: 28px;
+          margin-top: 5px;
+          margin-bottom: 0;
         }
 
-        .focus{
+        li {
+          margin: 0 10px 0 0;
+          padding: 5px 0 0 0;
+
+          .plan {
             display: flex;
-            justify-content: space-between;
+            flex-direction: row;
+            width: 150px;
+            height: 100%;
+            margin-top: 25px;
+
+            select {
+              background-color: #004fff;
+              margin-top: 7px;
+              color: #fff;
+              font-size: 14px;
+              border-radius: 26px;
+              border: 0;
+              width: auto;
+              height: 28px;
+              padding: 0 30px 0 18px;
+              background-image: url(${arrow});
+            }
+          }
+
+          span {
+            color: #403f4c;
+            font-size: 12px;
+            font-weight: 500;
+            margin: -7px 0 12px 0;
+            display: flex;
+          }
+
+          label {
+            background-color: #fff;
+            border-radius: 26px;
+            border: 1px solid #b2b2b7;
+            padding: 4px 20px 4px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #b2b2b7;
+            cursor: pointer;
+
+            input {
+              display: none;
+            }
+          }
         }
 
-            
-        .time, .focus{
-            margin-bottom: 15px;
-            
-            .lineInputs{
-                margin-bottom: 20px;
+        button {
+          background-color: #fff;
+          border: 1px solid #b2b2b7;
+          color: #b2b2b7;
+          font-size: 14px;
+          border-radius: 26px;
+          width: 89px;
+          height: 28px;
+          margin-top: 0;
+          cursor: pointer;
+        }
+
+        .customCalendar button {
+          background: none;
+          line-height: 1.7rem;
+          text-align: center;
+          cursor: pointer;
+          position: absolute;
+          top: 10px;
+          width: 0;
+          padding: 0;
+          border: 0.45rem solid transparent;
+          z-index: 1;
+          height: 10px;
+          width: 10px;
+          text-indent: -999em;
+          overflow: hidden;
+          border-radius: 0px;
+        }
+
+        .customCalendar button.react-datepicker__navigation--next {
+          right: 10px;
+          border-left-color: #ccc;
+        }
+
+        .customCalendar button.react-datepicker__navigation--next:hover {
+          border-left-color: #b3b3b3;
+        }
+
+        .customCalendar button.react-datepicker__navigation--previous {
+          right: 10px;
+          border-right-color: #ccc;
+        }
+
+        .customCalendar button.react-datepicker__navigation--previous:hover {
+          border-right-color: #b3b3b3;
+        }
+
+        .active {
+          background-color: #004fff;
+          color: #fff;
+          border: #004fff;
+        }
+
+        .normal {
+          background-color: #fff;
+          color: #fff;
+          border: #004fff;
+        }
+      }
+    }
+
+    .focus {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .time,
+    .focus {
+      margin-bottom: 15px;
+
+      .lineInputs {
+        margin-bottom: 20px;
+      }
+
+      ul {
+        li {
+          display: flex;
+          flex-direction: column;
+
+          span {
+            color: #403f4c;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 6px;
+          }
+
+          select {
+            background-color: #004fff;
+            color: #fff;
+            font-size: 14px;
+            border-radius: 26px;
+            border: 0;
+            width: auto;
+            height: 28px;
+            padding: 0 25px 0 10px;
+            background-image: url(${arrow});
+
+            &:placeholder-shown {
+              background-color: red;
             }
+          }
 
-            ul{
-                li{
-                    display: flex;
-                    flex-direction: column;
+          input {
+            border: 1px solid #b2b2b7;
+            color: #b2b2b7;
+            border-radius: 26px;
+            width: auto;
+            height: 28px;
+            text-align: left;
+            padding: 0 0 0 20px;
+          }
 
-                    span{
-                        color: #403F4C;
-                        font-size: 12px;
-                        font-weight: bold;
-                        margin-bottom: 6px;
-                    }   
-                    
-                    select{
-                        background-color: #004FFF;
-                        color: #fff;
-                        font-size: 14px;
-                        border-radius: 26px;
-                        border: 0;
-                        width: auto;
-                        height: 28px;
-                        padding: 0 25px 0 10px;
-                        background-image: url(${arrow});
-
-                            &:placeholder-shown {
-                                background-color: red;
-                            }
-                    }
-
-            
-            
-                    input{
-                        border: 1px solid #B2B2B7;
-                        color: #B2B2B7;
-                        border-radius: 26px;
-                        width: auto;
-                        height: 28px;
-                        text-align: left;
-                        padding: 0 0 0 20px;
-                    }
-
-                    /* button{
+          /* button{
                         width: 55px;
                     } */
-
-                }
-            }
-
-            
-
-        }    
-
-        .repeatClass{
-            // margin: 16px 0 32px 24px;
-
-            display: none;
-
-            h4{
-                color: #3d3d3d;
-                font-size: 12px;
-                // margin: 24px 0 6px 0;
-            }
-
-            ul{
-                li{
-                    display: flex;
-                    flex-direction: column;
-
-                    span {
-                        color: #403F4C;
-                        font-size: 12px;
-                        margin: -28px 0 10px 0;
-                    }
-
-                    
-                }
-            }
-
-            select{
-                background-color: #004FFF;
-                color: #fff;
-                font-size: 14px;
-                border-radius: 26px;
-                border: 0;
-                width: auto;
-                height: 28px;
-                padding: 0 25px 0 18px;
-                background-image: url(${arrow});
-            }
-
-            input{
-                border: 1px solid #B2B2B7;
-                color: #B2B2B7;
-                border-radius: 26px;
-                width: auto;
-                height: 28px;
-                text-align: left;
-                padding-left: 10px;
-            }
         }
+      }
     }
 
-    /** Media Queries **/
-    @media (max-width: 1024px) {
-        
-        .boxWhite{
-            .selectDays{
-                ul {
-                    li{
-                        span {
-                            margin: 21px 0 6px 0;
-                        }
-                        span:last-child {
-                            margin: 0 0 0 22px;
-                        }
-                    }
-                }
-            }
+    .repeatClass {
+      // margin: 16px 0 32px 24px;
 
-            .time, .focus {
-                margin-bottom: 0px;
-            }
+      display: none;
 
-            .focus{
-                ul{
-                    li{
-                        width: 100%;
+      h4 {
+        color: #3d3d3d;
+        font-size: 12px;
+        // margin: 24px 0 6px 0;
+      }
 
-                        select {
-                            width: 100%;
-                        }
-                    }
-                }
-            }
-            .repeatClass {
-                margin: 16px 0 32px 0;
+      ul {
+        li {
+          display: flex;
+          flex-direction: column;
 
-                h3 {
-                    margin-bottom: 12px;
-                }
-            }
+          span {
+            color: #403f4c;
+            font-size: 12px;
+            margin: -28px 0 10px 0;
+          }
         }
+      }
+
+      select {
+        background-color: #004fff;
+        color: #fff;
+        font-size: 14px;
+        border-radius: 26px;
+        border: 0;
+        width: auto;
+        height: 28px;
+        padding: 0 25px 0 18px;
+        background-image: url(${arrow});
+      }
+
+      input {
+        border: 1px solid #b2b2b7;
+        color: #b2b2b7;
+        border-radius: 26px;
+        width: auto;
+        height: 28px;
+        text-align: left;
+        padding-left: 10px;
+      }
     }
+  }
 
-    
+  /** Media Queries **/
+  @media (max-width: 1024px) {
+    .boxWhite {
+      .selectDays {
+        ul {
+          li {
+            span {
+              margin: 21px 0 6px 0;
+            }
+            span:last-child {
+              margin: 0 0 0 22px;
+            }
+          }
+        }
+      }
 
-    /** @mixins - Colocar no global **/
-    /* @mixin Button {
+      .time,
+      .focus {
+        margin-bottom: 0px;
+      }
+
+      .focus {
+        ul {
+          li {
+            width: 100%;
+
+            select {
+              width: 100%;
+            }
+          }
+        }
+      }
+      .repeatClass {
+        margin: 16px 0 32px 0;
+
+        h3 {
+          margin-bottom: 12px;
+        }
+      }
+    }
+  }
+
+  /** @mixins - Colocar no global **/
+  /* @mixin Button {
         font-weight: bold;
         font-size: 14px;
         border-radius: 26px;
@@ -354,46 +342,43 @@ export const Schedule = styled.div`
         color: #FFF;
     } */
 
-    /** Buttons -  Colocar no global **/
-    .buttons{
+  /** Buttons -  Colocar no global **/
+  .buttons {
+    justify-content: flex-end;
+    display: flex;
 
-        justify-content: flex-end;
-        display: flex;
-
-        button{
-            @include Button();
-            background-color: #403F4C;
-            border: 1px solid #787780;
-            width: 128px;
-            height: 38px;
-            margin-top: 8px;
-        }
-
-        .button-blue{
-            background-color: #004FFF;
-            border: 1px solid #004FFF;
-            width: 165px;
-            height: 34px;
-            margin-top: 24px;
-            margin-bottom: 24px;
-            border-radius: 26px;
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer
-        }
-
-
-        .cancel button{
-            background-color: transparent;
-            border: 1px solid #FF5666;
-            color: #FF5666;
-            font-size: 11px;
-            border-radius: 26px;
-            width: 104px;
-            height: 22px;
-            margin-top: 5px;
-            cursor: pointer;
-        }
+    button {
+      @include Button();
+      background-color: #403f4c;
+      border: 1px solid #787780;
+      width: 128px;
+      height: 38px;
+      margin-top: 8px;
     }
 
-`; 
+    .button-blue {
+      background-color: #004fff;
+      border: 1px solid #004fff;
+      width: 165px;
+      height: 34px;
+      margin-top: 24px;
+      margin-bottom: 24px;
+      border-radius: 26px;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .cancel button {
+      background-color: transparent;
+      border: 1px solid #ff5666;
+      color: #ff5666;
+      font-size: 11px;
+      border-radius: 26px;
+      width: 104px;
+      height: 22px;
+      margin-top: 5px;
+      cursor: pointer;
+    }
+  }
+`;

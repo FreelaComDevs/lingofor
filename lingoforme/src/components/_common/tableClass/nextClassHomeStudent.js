@@ -1,148 +1,254 @@
-import React, { Component, Fragment } from 'react';
-import { translate } from 'react-i18next';
-import { connect } from 'react-redux';
-import moment from 'moment';
-import Services from '../../_api/Services';
-import PlaceholderText from '../../_common/placeholder/placeholderText';
-import ListCalendarHomeStudentSchedule from '../../Calendar/ListCalendarHomeStudentSchedule';
-import timezone from 'moment-timezone';
-import {MomentHelpers} from '../../_common/momentLocalDate/momentLocalDate';
-import {Scroll} from './styles_next_class_home'
+import React, { useEffect, Fragment, useState } from "react";
+import { translate } from "react-i18next";
+import { connect } from "react-redux";
+import moment from "moment";
+import Services from "../../_api/Services";
+import PlaceholderText from "../../_common/placeholder/placeholderText";
+import ListCalendarHomeStudentSchedule from "../../Calendar/ListCalendarHomeStudentSchedule";
+import timezone from "moment-timezone";
+import { MomentHelpers } from "../../_common/momentLocalDate/momentLocalDate";
+import { Scroll } from "./styles_next_class_home";
 
-const nextClassHomeStudent = ({ t, single, user: { nextClasses } }) => {
+const nextClassHomeStudent = ({
+  t,
+  single,
+  date,
+  cycle,
+  user: { id, nextClasses },
+}) => {
+  const [classes, setClasses] = useState([]);
   const lang = localStorage.getItem("i18nextLng");
-  let saveCod = [];
-  let saveSchedule = '';
-  let startTime = '';
-  let array = [];
-
-  let num;
-  let hours;
-  let rhours;
-  let minutes;
-  let rminutes;
-  let count = 0;
 
   const serv = new Services();
-  
-  if(nextClasses?.length > 0){
-    console.log('nextClasses: ', nextClasses);
-    nextClasses?.map((el, index) =>{
-      if(count < 10){
+
+  const format = (classes) => {
+    let saveCod = [];
+    let saveSchedule = "";
+    let startTime = "";
+
+    let num;
+    let hours;
+    let rhours;
+    let minutes;
+    let rminutes;
+    let array = [];
+    if (classes?.length > 0) {
+      //console.log('nextClasses: ', nextClasses);
+      const classesFormated = classes?.map((el, index) => {
         const user = serv.getUserFromToken();
-        const resp = timezone.tz(el.originalScheduledDateTimeUTC, 'UTC').clone().tz(user?.timezone);
+        const resp = timezone
+          .tz(el.originalScheduledDateTimeUTC, "UTC")
+          .clone()
+          .tz(user?.timezone);
         const time = resp;
         const initialDate = MomentHelpers.formatHelper(time, lang);
         const initialDay = t(time.format("dddd"));
         const initialTime = time.format("hh:mm A");
         const finalTime = time.clone().add(30, "minutes").format("hh:mm A");
         const schedule = `${initialDate} • ${initialDay} • ${initialTime} - ${finalTime}`;
-        if(el.sequentialSchedule == true){
+        if (el.sequentialSchedule == true) {
           let numeroAulas = el?.sequentialScheduleClassesCount;
           let cont = 0;
-          if(saveCod.includes(el?.allocationScheduleId) == false){          
+          if (saveCod.includes(el?.allocationScheduleId) == false) {
             saveCod.push(el?.allocationScheduleId);
-            for(let a = 0; a < nextClasses?.length; a++){
-              if(nextClasses[a]?.allocationScheduleId == el?.allocationScheduleId){
+            for (let a = 0; a < classes?.length; a++) {
+              if (
+                classes[a]?.allocationScheduleId == el?.allocationScheduleId
+              ) {
                 cont++;
-                if(cont == numeroAulas){
+                if (cont == numeroAulas) {
                   //gravar aula no array
                   const user2 = serv.getUserFromToken();
-                  const resp2 = timezone.tz(nextClasses[a]?.originalScheduledDateTimeUTC, 'UTC').clone().tz(user2.timezone);
+                  const resp2 = timezone
+                    .tz(classes[a]?.originalScheduledDateTimeUTC, "UTC")
+                    .clone()
+                    .tz(user2.timezone);
                   const atualDate2 = serv.getLocalTimeFromUtcAdd();
-                  const formatDateAtual = atualDate2.format("YYYY-MM-DDTHH:mm:ss.sss");
-                  const startT = moment(formatDateAtual, "YYYY-MM-DDTHH:mm:ss.sss");
+                  const formatDateAtual = atualDate2.format(
+                    "YYYY-MM-DDTHH:mm:ss.sss"
+                  );
+                  const startT = moment(
+                    formatDateAtual,
+                    "YYYY-MM-DDTHH:mm:ss.sss"
+                  );
                   const endT = moment(resp2, "YYYY-MM-DDTHH:mm:ss.sss");
-                  const hoursDiff = endT.diff(startT, 'minutes');
-                  console.log('NextClass => hoursDiff :: ', hoursDiff);
-                  if((hoursDiff + 30) > 0){
+                  const hoursDiff = endT.diff(startT, "minutes");
+                  if (hoursDiff + 30 > 0) {
                     const time2 = resp2;
-                    const initialDate2 = MomentHelpers.formatHelper(time2, lang);
+                    const initialDate2 = MomentHelpers.formatHelper(
+                      time2,
+                      lang
+                    );
                     const initialDay2 = t(time2.format("dddd"));
-                    const finalTime2 = time2.clone().add(30, "minutes").format("hh:mm A");
-    
+                    const finalTime2 = time2
+                      .clone()
+                      .add(30, "minutes")
+                      .format("hh:mm A");
+
                     //time
-                    num = (numeroAulas * 30);
-                    hours = (num / 60);
+                    num = numeroAulas * 30;
+                    hours = num / 60;
                     rhours = Math.floor(hours);
                     minutes = (hours - rhours) * 60;
                     rminutes = Math.round(minutes);
-                    if(rminutes == 0){
-                      rminutes = `• (${rhours}h)`
-                    }else if(rhours == 0){
+                    if (rminutes == 0) {
+                      rminutes = `• (${rhours}h)`;
+                    } else if (rhours == 0) {
                       rminutes = `• (${rminutes}m)`;
-                    }else{
+                    } else {
                       rminutes = `• (${rhours}h:${rminutes}m)`;
                     }
                     const total = rminutes;
                     const schedule2 = `${initialDate} • ${initialDay} • ${startTime} - ${finalTime2} ${total}`;
                     el.timeTotal = schedule2;
-                    count++;
+                    //count++;
                     array.push(el);
                   }
-                }else{
+                } else {
                   //gravar inicio da aula
-                  if(cont == 1){
+                  if (cont == 1) {
                     startTime = initialTime.toString();
                   }
                 }
               }
             }
           }
-        }else{
-          
+        } else {
           const atualDate2 = serv.getLocalTimeFromUtcAdd();
           const formatDateAtual = atualDate2.format("YYYY-MM-DDTHH:mm:ss.sss");
           const startT = moment(formatDateAtual, "YYYY-MM-DDTHH:mm:ss.sss");
           const endT = moment(resp, "YYYY-MM-DDTHH:mm:ss.sss");
-          const hoursDiff = endT.diff(startT, 'minutes');
-          console.log('NextClass => hoursDiff :: ', hoursDiff);
-          console.log('NextClass => startT :: ', startT);
-          console.log('NextClass => endT :: ', endT);
+          const hoursDiff = endT.diff(startT, "minutes");
+          console.log("NextClass => hoursDiff :: ", hoursDiff);
+          console.log("NextClass => startT :: ", startT);
+          console.log("NextClass => endT :: ", endT);
           //initialDay
-          console.log('NextClass => initialDate :: ', initialDate);
-          console.log('NextClass => atualDate2 :: ', MomentHelpers.formatHelper(atualDate2, lang));
-          if((hoursDiff + 30) > 0){
+          console.log("NextClass => initialDate :: ", initialDate);
+          console.log(
+            "NextClass => atualDate2 :: ",
+            MomentHelpers.formatHelper(atualDate2, lang)
+          );
+          if (hoursDiff + 30 > 0) {
             saveSchedule = schedule;
             el.timeTotal = schedule;
-            count++;
+            //count++;
             array.push(el);
           }
         }
-      }
-    });
-  }
-  array.sort((a,b) => a?.sequentialScheduleClassesCount < b?.sequentialScheduleClassesCount ? 1 : -1).sort((a,b) => a?.originalScheduledDateTimeUTC > b?.originalScheduledDateTimeUTC ? 1 : -1);
-  const schedules = array;
-  const date = moment(nextClasses[0]?.scheduledDate).format('DD/MM')
+        console.log("array", array);
+        return el;
+      });
 
-  // const schedules = nextClasses.length > 0 
+      return classesFormated
+        .sort((a, b) =>
+          a?.sequentialScheduleClassesCount < b?.sequentialScheduleClassesCount
+            ? 1
+            : -1
+        )
+        .sort((a, b) =>
+          a?.originalScheduledDateTimeUTC > b?.originalScheduledDateTimeUTC
+            ? 1
+            : -1
+        );
+    } else {
+      return [];
+    }
+  };
+
+  const fetchClasses = async () => {
+    const pageNumber = 1;
+    const pageSize = 9999;
+    const startAt = date + `T00:00:00.000`;
+    const endAt = cycle.end + `T23:59:59.000`;
+    //const type = selectedType ? selectedType : "";
+    //const lingoLanguageId = selectedLingoLanguageId ? selectedLingoLanguageId: "";
+    //const planId = selectedPlanId ? selectedPlanId : "";
+    //const status = selectedStatus ? selectedStatus : "";
+    //const studentId = id;
+    // const teacher = selectedTeacher ? selectedTeacher : "";
+    const orderByAsc = "originalScheduledDateTimeUTC";
+    const params = {
+      pageNumber,
+      pageSize,
+      startAt,
+      endAt,
+      //lingoLanguageId,
+      //type,
+      //planId,
+      //status,
+      //teacher,
+      //studentId,
+      orderByAsc,
+    };
+    const response = await serv.ApiGetParams("classSchedules", params);
+    const user = serv.getUserFromToken();
+
+    const formated = response?.result?.items.map((c) => {
+      /*const dateUTC = timezone
+        .tz(c.originalScheduledDateTimeUTC, "UTC")
+        .clone()
+        .tz(user?.timezone);*/
+
+      const dateUTC = moment(c.scheduledStartDateTime);
+
+      const dateEnd = moment(c.scheduledEndDateTime);
+      //const dateEndUTC = moment(c.scheduledEndDateTime)
+
+      const dateFormated = dateUTC.format("DD/MM/YYYY");
+      const dayweek = dateUTC.format("dddd");
+      const hourStart = dateUTC.format("HH:mm A");
+      const hourEnd = dateEnd.format("HH:mm A");
+      const diff = moment.duration(dateEnd.diff(dateUTC));
+
+      const hours = parseInt(diff.asHours());
+      const minutes = parseInt(diff.asMinutes()) % 60;
+      let timeDiff = hours > 0 ? hours + "H:" : "";
+      timeDiff += minutes > 0 ? minutes + "M" : "";
+
+      c.timeTotal = `${dateFormated} • ${dayweek}  • ${hourStart} - ${hourEnd} • ${timeDiff} `;
+      return c;
+    });
+    setClasses(formated || []);
+  };
+
+  useEffect(() => {
+    console.log("mudou data", date);
+    fetchClasses();
+  }, [date]);
+
+  // const schedules = nextClasses.length > 0
   //   ? single ? [nextClasses[0]] : nextClasses
   //   : []
-  return (
-    single ?
+  return single ? (
     <></>
-    :
+  ) : (
     <Fragment>
-      
-          <strong className="dateNexyClass">
-            {date}
-          </strong>
-          <hr className="separator"></hr>
+      <strong className="dateNexyClass">
+        {classes.length > 0
+          ? moment(classes[0].originalScheduledDateTime).format("DD/MM")
+          : null}
+      </strong>
+      <hr className="separator"></hr>
 
-      
-      
       <Scroll>
         <div>
-          { schedules?.length > 0 
-            ? schedules?.map( schedule => <ListCalendarHomeStudentSchedule key={JSON.stringify(schedule)} schedule={schedule} /> )  
-            : <PlaceholderText />
-          }
+          {classes?.length > 0 ? (
+            classes?.map((schedule) => (
+              <ListCalendarHomeStudentSchedule
+                key={JSON.stringify(schedule)}
+                schedule={schedule}
+              />
+            ))
+          ) : (
+            <PlaceholderText />
+          )}
         </div>
       </Scroll>
     </Fragment>
-  )
-}
+  );
+};
 
-const mapStateToProps = ({ user }) => ({ user })
-export default connect(mapStateToProps)(translate('translations')(nextClassHomeStudent))
+const mapStateToProps = ({ user }) => ({ user });
+export default connect(mapStateToProps)(
+  translate("translations")(nextClassHomeStudent)
+);

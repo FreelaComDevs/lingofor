@@ -1,21 +1,39 @@
 import React, { Component, Fragment } from 'react'
-import { cap } from '../../helpers/helpers'
 import { connect } from 'react-redux'
 import { getClassesForRating, unsetClassesForRating, sendRatings } from '../../actions/userActions'
 import { FlagIcon } from 'react-flag-kit'
 import { translate } from 'react-i18next'
+import ratingImg from "../../images/rating/img_classRatingStarsHero.png";
+import Rating from 'react-rating'
 import moment from 'moment';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import ratingImg from "../../images/rating/img_classRatingStarsHero.png";
-import Rating from 'react-rating'
+
+import yesLove from "../../images/rating/amei.png";
+import yes from "../../images/rating/sim.png";
+import no from "../../images/rating/nao.png";
+
+import like from "../../images/rating/like.png";
+import deslike from "../../images/rating/deslike.png";
+
+import { DialogRatingStudent, RatingStudent } from './styles'
 import Services from '../_api/Services';
 const service = new Services();
 
 class ModalRatingStudent extends Component {
   state = this.initialState
+
+  ratingLove = {showing: true};
+  ratingNo = {showing: true};
+  ratingYes = {showing: true};
+  
+  likeInternet = {showing: true};
+  noLikeInternet = {showing: true};
+
+  likeContent = {showing: true};
+  noLikeContent = {showing: true};
 
   get initialState() {
     const { target, lingo: { ratingCriterias }, user: { classesForRating } } = this.props;
@@ -68,7 +86,8 @@ class ModalRatingStudent extends Component {
     })
 
     ratingCriteriasInputs.map( criteria => {
-      console.log("criteria ==>", criteria)
+
+      console.log("criteriacriteriacriteria ==>", criteria)
       if (criteria.value <= 3 && criteria.id === 1) { blockTeacher = true }
     })
 
@@ -105,6 +124,7 @@ class ModalRatingStudent extends Component {
     this.setState({
       ratingCriteriasInputs: newRatingCriteriasInputs
     })
+    console.log("OIOIOI==>", ratingCriteriasInputs )
   }
 
   readOnly = () => {
@@ -113,6 +133,8 @@ class ModalRatingStudent extends Component {
   }
 
   render() {
+    const { ratingLove, ratingNo, ratingYes, likeInternet, noLikeInternet, likeContent, noLikeContent } = this.state;
+
     let {
       handleStars,
       submitRatings,
@@ -143,109 +165,191 @@ class ModalRatingStudent extends Component {
     const userFromToken = service.getUserFromToken();
     return (
       <Fragment>
-        { classesForRating && classesForRating.length > 0 && classesForRating[classesForRating.length -1].status === 'done' && (
-          <Dialog open={!!classesForRating.length} onClose={(e) => submitRatings(e, true)} className="newDialog" >
-            <DialogTitle className="dialogTitle">{t("CLASS_RATING")}</DialogTitle>
-            <DialogContent className="dialogContent">
-              <img className="dialogImage" src={ratingImg} alt={t("CANCEL_IMAGE")} />
-              <p className="ratingTitle">{t('RATING_MODAL_TITLE')}:</p>
-              <div className="classesForRating">
-                { classesForRating.map( rating => {
-                  const { lingoLanguage: { flag, description }, scheduledDate, scheduledStartTime, originalScheduledTimezoneName  } = rating
-                  const time =  moment.tz(scheduledDate + 'T' + scheduledStartTime + '.000', originalScheduledTimezoneName);
-                  const loggedUserTime = time.clone().tz(userFromToken.timezone);
-                  const initialDate = loggedUserTime.format(t('DATE_FORMAT'))
-                  const initialDay = t(loggedUserTime.format('dddd').toUpperCase())
-                  const initialTime = loggedUserTime.format('hh:mm A')
-                  const finalTime = loggedUserTime.clone().add(30, "minutes").format('hh:mm A')
-                  return (
-                    <p key={JSON.stringify(rating)} className="classForRating">
-                      <FlagIcon code={flag} size={18}/>
-                      {`${t(description.toUpperCase())} • ${initialDate} • ${initialDay} • ${initialTime} - ${finalTime}`}
-                    </p>
-                  )
-                })}
-              </div>
-              { classesForRating[0][target] &&
-                <p className="ratingTarget">
-                  <span>{t(target.toUpperCase())}: </span>{classesForRating[0][target].user.name}
+        <div
+            className="justify-center w-auto  items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+          >
+            <div className="relative w-full my-6 max-w-3xl">
+              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                <div className="flex mx-auto justify-between p-5">
+                  <h3 className="text-3xl font-semibold text-[#004FFF]">
+                  {t("CLASS_RATING")}
+                  </h3>
+                </div>
+
+                <img className="mx-auto w-36 h-36 rounded-full mb-4" src={user.picture == "" ? "https://www.seekpng.com/png/detail/847-8474751_download-empty-profile.png" : user.picture} alt={t("CANCEL_IMAGE")} />
+
+
+                <p className="mx-auto">
+                    <span>{t(target.toUpperCase())}: </span>{classesForRating[0][target].user.name}
                 </p>
-              }
-              <hr/>
-              { ratingScreen === "ratings" && (
-                <Fragment>
-                  <div className="criterias">
+
+                <p className="mx-auto font-semibold">{t('RATING_MODAL_TITLE')}:</p>
+
+                <hr/>
+                <div className="relative flex-auto mx-auto">
+                  { classesForRating.map( rating => {
+                    const { lingoLanguage: { flag, description }, scheduledDate, scheduledStartTime, originalScheduledTimezoneName  } = rating
+                    const time =  moment.tz(scheduledDate + 'T' + scheduledStartTime + '.000', originalScheduledTimezoneName);
+                    const loggedUserTime = time.clone().tz(userFromToken.timezone);
+                    const initialDate = loggedUserTime.format(t('DATE_FORMAT'))
+                    const initialDay = t(loggedUserTime.format('dddd').toUpperCase())
+                    const initialTime = loggedUserTime.format('hh:mm A')
+                    const finalTime = loggedUserTime.clone().add(30, "minutes").format('hh:mm A')
+                    return (
+                      <p key={JSON.stringify(rating)}>
+                        <FlagIcon code={flag} size={18}/>
+                        {`${t(description.toUpperCase())} • ${initialDate} • ${initialDay} • ${initialTime} - ${finalTime}`}
+                      </p>
+                    )
+                  })}
+                </div>
+                <hr/>
+                <p className="mx-auto font-semibold">{t('WOULD_YOU_LIKE')}</p>
+                  
+                {  ratingCriterias.length > 0 && ratingCriterias
+                      .filter(criteria => criteria.target === target && criteria.nameEnglish !== "Attendance")
+                      .map((criteria, index) => {
+                        return (
+                          <div key={JSON.stringify(criteria)} className="mx-auto  justify-center mt-4">
+                            {criteria[t("INDEX_KEY_STRING")] == "Teacher" ? 
+                             <div className="flex items-center">
+                             <div>
+                               <button className={ratingLove || ratingCriteriasInputs[index].value == 5 ? "grayscale-0" : "grayscale"} onClick={(value) => 
+                                (handleStars(value = 5, index)) 
+                               }>
+                                 <img className="px-4" src={yesLove} />
+                               </button>
+                               <p className="font-[500] text-[21px]">{t("RATING_YES_LOVE")}</p>
+                             </div>
+
+                             <div>
+                                <button className={ratingYes || ratingCriteriasInputs[index].value == 4  ? "grayscale-0" : "grayscale"} onClick={(value) => 
+                                  (handleStars(value = 4, index)) 
+                                 }>
+                                  <img className="px-4" src={yes} />
+                                </button>
+                                <p className="px-8 font-[500] text-[21px]">{t("RATING_YES")}</p>
+                              </div>
+
+                              <div>
+                                <button className={ratingNo || ratingCriteriasInputs[index].value == 3 ? "grayscale-0" : "grayscale"} onClick={(value) => 
+                                   (handleStars(value = 3, index)) 
+                                }>
+                                  <img className="px-4" src={no} />
+                                </button>
+                                <p className="px-8 font-[500] text-[21px]">{t("RATING_NO")}</p>
+                              </div>
+                            </div>
+                            : null}
+                            </div>
+                          );
+                      }
+                )}
+
+                  {ratingNo ?  
+                    <div className="mx-auto ">
+                     <div className="md flex items-center pl-[20px] pr-[20px]">
+                        <div className="mb-4 mr-4 w-60">
+                            <input value={"Não se expressa direito"}
+                    onChange={(e) => this.setState({comments: e.target.value})} id="default-checkbox" type="checkbox" className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                            <label for="default-checkbox" className="ml-2 text-[16px] font-medium">Não se expressa direito</label>
+                        </div>
+                        <div className="mb-4 mr-4 w-60">
+                            <input value={"Fala muito baixo"}
+                    onChange={(e) => this.setState({comments: e.target.value})} id="default-checkbox" type="checkbox" className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                            <label for="default-checkbox" className="ml-2 text-[16px] font-medium">Fala muito baixo</label>
+                        </div>
+                        <div className="mb-4 mr-4 w-60">
+                            <input value={"Fala muito durante a aula"}
+                    onChange={(e) => this.setState({comments: e.target.value})} id="default-checkbox" type="checkbox" className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                            <label for="default-checkbox" className="ml-2 text-[16px] font-medium">Fala muito durante a aula</label>
+                        </div>  
+                     </div>
+                     <div className="md flex items-center pl-[20px] pr-[20px]">
+                      <div className="mb-4 mr-4 w-60">
+                            <input value={"Não aplica correções"}
+                    onChange={(e) => this.setState({comments: e.target.value})} id="default-checkbox" type="checkbox" className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                            <label for="default-checkbox" className="ml-2 text-[16px] font-medium">Não aplica correções</label>
+                        </div>
+                        <div className="mb-4 mr-4 w-60">
+                            <input value={"Não explica bem"}
+                    onChange={(e) => this.setState({comments: e.target.value})} id="default-checkbox" type="checkbox" className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                            <label for="default-checkbox" className="ml-2 text-[16px] font-medium">Não explica bem</label>
+                        </div>
+                     </div>
+                    </div>
+                  : null}
+
+
+
                     {  ratingCriterias.length > 0 && ratingCriterias
                       .filter(criteria => criteria.target === target && criteria.nameEnglish !== "Attendance")
                       .map((criteria, index) => {
-
+                        console.log("oioi-->", criteria)
+                        
                         return (
-                          <div key={JSON.stringify(criteria)} className="criteria">
-                            <h4 className="criteriaTitle">{criteria[t("INDEX_KEY_STRING")]}</h4>
-                            <Rating
-                              onChange={(value) => handleStars(value, index)}
-                              emptySymbol="fa fa-star-o fa-2x"
-                              fullSymbol="fa fa-star fa-2x"
-                              initialRating={ratingCriteriasInputs[index] ? ratingCriteriasInputs[index].value : 5}
-                              fractions={2}
-                              readonly={readOnly()}
-                              />
-                          </div>
-                        )
-                      }
-                    )}
-                  </div>
-                  <h4>{t('COMMENTS')}</h4>
-        <div>MDKOPEDNMK</div>
+                          <div className="flex items-center mx-auto" key={JSON.stringify(criteria)}>
+                                
+                                {criteria[t("INDEX_KEY_STRING")] === "Content" || criteria[t("INDEX_KEY_STRING")] === "Conteúdo" || criteria[t("INDEX_KEY_STRING")] === "Contenido" ?
+                                  <div>
+                                  <p className="font-semibold text-[21px] mb-8 px-6">{t("TITLE_RATING_CONNECTION")}</p>
+                                  
+                                  <button className={likeInternet || ratingCriteriasInputs[index].value == 5  ? "grayscale-0" : "grayscale"} 
+                                    onClick={(value) => (handleStars(value = 5, index))}>
+                                      <img className="px-8" src={like} />
+                                    </button>
 
-                  <textarea
-                    className="ratingComment"
-                    value={comments}
-                    onChange={(e) => this.setState({comments: e.target.value})}
-                    rows="4"
-                    cols="50"
-                    name="comments"
-                    maxLength="2000"
-                    disabled={readOnly()}
-                    placeholder={t('COMMENTS')}>
-                    </textarea>
-                </Fragment>
-              )}
-              { ratingScreen === "blockTeacherQuestion" && (
-                <h4>{t('STOP_HAVING_CLASSES')}?</h4>
-              )}
-              { ratingScreen === "blockTeacherJustify" && (
-                <Fragment>
-                  <h4 className={`blockTeacherJustifyLabel ${blockTeacherJustify.error ? "invalid" : ""}`}>{t('PLACEHOLDER_WHY_YOU_WANT')}?</h4>
-                  <textarea
-                    className={`blockTeacherJustifyInput ${blockTeacherJustify.error ? "invalid" : ""}`}
-                    value={blockTeacherJustify.value}
-                    onChange={(e) => this.setState({ blockTeacherJustify: { value: e.target.value, error: false }})}
-                    rows="4"
-                    cols="50"
-                    name="justify"
-                    maxLength="256"
-                    placeholder={t('PLACEHOLDER_WHY_YOU_WANT')}>
-                  </textarea>
-                </Fragment>
-              )}
-            </DialogContent>
-            <DialogActions className="dialogActions">
-              { ratingScreen !== "blockTeacherQuestion"
-                ? readOnly()
-                  ? <button className="closeRate" onClick={(e) => unsetClassesForRating(e)} >{t('BTN_CLOSE')}</button>
-                  : <div className='buttons'>
-                      <button className="rateLater" onClick={(e) => submitRatings(e, true)}>{t('CANCEL_LATER_RATE')}</button>
-                      <button className="rate" onClick={(e) => submitRatings(e)} >{t('RATE')}</button>
-                    </div>
-                  : <div className='buttons'>
-                      <button className="keepTeacher" onClick={(e) => keepTeacher(e)}>{t('KEEP_TEACHER')}</button>
-                      <button className="blockTeacher" onClick={(e) => blockTeacher(e)}>{t('REMOVE_TEACHER')}</button>
-                    </div>
-              }
-            </DialogActions>
-          </Dialog>
-        )}
+                                    <button className={noLikeInternet  || ratingCriteriasInputs[index].value == 3  ? "grayscale-0" : "grayscale"} 
+                                    onClick={(value) => (handleStars(value = 3, index))}>
+                                      <img className="px-3" src={deslike} />
+                                    </button>
+                                </div> : null
+                                  
+                                }
+
+                                {criteria[t("INDEX_KEY_STRING")] === "Content" || criteria[t("INDEX_KEY_STRING")] === "Conteúdo" || criteria[t("INDEX_KEY_STRING")] === "Contenido" ?
+
+                                  <div>
+                                    <p className="font-semibold text-[21px] mb-8 px-16">{t("TITLE_RATING_CONTENT")}</p>
+                                    <button className={likeContent  || ratingCriteriasInputs[index].value == 5 ? "grayscale-0" : "grayscale"}  
+                                    onClick={(value) => (handleStars(value = 5, index))}>
+                                      <img className="pl-16" src={like} />
+                                    </button>
+
+                                    <button className={noLikeContent || ratingCriteriasInputs[index].value == 3 ? "grayscale-0" : "grayscale"}  
+                                    onClick={(value) => (handleStars(value = 3, index))}>
+                                      <img className="pl-9" src={deslike} />
+                                    </button>
+                                  </div> : 
+                                  null
+                                } 
+                                </div>
+                          );
+                      }
+                )}
+               
+                 <div className="mx-auto mt-4 mb-4">
+                    <button
+                      className="rounded-full border border[#3D3D3D] text[#3D3D3D] background-transparent uppercase px-8 py-1 text-[12px] outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      type="button"
+                      onClick={(e) => unsetClassesForRating(e)} 
+                    >
+                      {t('CANCEL_LATER_RATE')}
+                    </button>
+
+                    <button
+                      className="bg-[#004FFF] text-white active:bg-emerald-600 font-bold uppercase px-8 py-1 text-[12px] rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      type="button"
+                      onClick={(e) => submitRatings(e)}
+                    >
+                      {t('RATE')}
+                    </button>
+                  </div>
+                      
+              </div>
+            </div>
+          </div>
+          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
       </Fragment>
     )
   }
